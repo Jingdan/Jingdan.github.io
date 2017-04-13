@@ -13,11 +13,11 @@
 
     <title>
         
-          Hello World - undefined
+          postName - undefined
         
     </title>
 
-    <link rel="canonical" href="https://Jingdan.github.io/2017/03/16/hello-world/">
+    <link rel="canonical" href="https://Jingdan.github.io/2017/04/13/my-first-blog/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -142,11 +142,11 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>Hello World</h1>
+                    <h1>postName</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 荆蛋 on
-                        2017-03-16
+                        2017-04-13
                     </span>
                 </div>
             </div>
@@ -165,15 +165,30 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+                <p>####堆内存<br>对象数据类型或者函数数据类型在定义的时候，首先都会开辟一个堆内存，堆内存有一个引用地址，如果外面有变量等知道了这个地址，我们就说这个内存被占用了，不能被销毁了。<br>`<br>var obj1 = {name:”张三”};<br>var obj2 = obj1;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3500546-fdaf241442646cd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"><br><code>var obj1 = {name:&quot;jdy&quot;,age:&#39;1&#39;};
+ var obj2 = obj1;
+ obj1 = null;
+ obj2 = null;</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3500546-51a1ff03335092ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
+<p>我们想要堆内存销毁/释放，只需要把引用它的变量赋值为null即可。如果当前的堆内存没有被任何东西占用了，那么浏览器会在空闲的时候把它销毁。</p>
+<p>####栈内存</p>
+<p>######全局作用域：只有当页面关闭的时候，全局作用域才会销毁</p>
+<p>######私有的作用域（只有函数执行才会产生私有的作用域），一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完毕后，会被销毁。但是还是存在特殊的情况：<br>当前私用作用域中的内容被作用域以外的东西占用了，那么当前的这个作用域就不能被销毁了（里面的私有变量也不能被销毁）。<br>1.函数执行返回了一个引用数据类型值，并且在函数外面被其他东西给接收了，这种情况下一般形成的私有作用域都不会被销毁。<br><code>function fn() {
+    var num = 100;
+    return function () { 
+    }
+}
+var a = fn();  //fn执行形成的这个私有作用域就不能被销毁了</code><br>2.在私有作用域中，给dom元素绑定方法，一般情况下，我们的私有作用域都不销毁<br><code>(function () {
+    oDiv.onclick = function () {
+       }
+})();//当前自执行函数形成的这个私有的作用域也不销毁</code><br><img src="http://upload-images.jianshu.io/upload_images/3500546-520240676d40a3a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3500546-eff6de9944a9fe19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>3.下述这种情况，不会马上销毁，fn返回的函数没有被其他东西占用，但是还需要执行一次，所以暂时不能销毁。当返回的值执行完成后，浏览器会在空闲的时候销毁。<br><code>function fn() {
+    var a = 100;
+    return function () {
+    }
+}
+fn()();</code></p>
 
 
                 <hr>
@@ -182,10 +197,10 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/04/13/my-first-blog/" data-toggle="tooltip" data-placement="top" title="postName">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/2017/03/16/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
