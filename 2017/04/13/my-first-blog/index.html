@@ -13,7 +13,7 @@
 
     <title>
         
-          postName - undefined
+          js内存释放 - undefined
         
     </title>
 
@@ -142,7 +142,7 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>postName</h1>
+                    <h1>js内存释放</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 荆蛋 on
@@ -165,14 +165,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>####堆内存<br>对象数据类型或者函数数据类型在定义的时候，首先都会开辟一个堆内存，堆内存有一个引用地址，如果外面有变量等知道了这个地址，我们就说这个内存被占用了，不能被销毁了。<br>`<br>var obj1 = {name:”张三”};<br>var obj2 = obj1;</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3500546-fdaf241442646cd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"><br><code>var obj1 = {name:&quot;jdy&quot;,age:&#39;1&#39;};
+                <p>###堆内存<br>对象数据类型或者函数数据类型在定义的时候，首先都会开辟一个堆内存，堆内存有一个引用地址，如果外面有变量等知道了这个地址，我们就说这个内存被占用了，不能被销毁了。<br><code>var obj1 = {name:&quot;张三&quot;};
+var obj2 = obj1;</code><br><img src="http://upload-images.jianshu.io/upload_images/3500546-fdaf241442646cd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"><br><code>var obj1 = {name:&quot;jdy&quot;,age:&#39;1&#39;};
  var obj2 = obj1;
  obj1 = null;
  obj2 = null;</code></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/3500546-51a1ff03335092ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
 <p>我们想要堆内存销毁/释放，只需要把引用它的变量赋值为null即可。如果当前的堆内存没有被任何东西占用了，那么浏览器会在空闲的时候把它销毁。</p>
-<p>####栈内存</p>
+<p>###栈内存</p>
 <p>######全局作用域：只有当页面关闭的时候，全局作用域才会销毁</p>
 <p>######私有的作用域（只有函数执行才会产生私有的作用域），一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完毕后，会被销毁。但是还是存在特殊的情况：<br>当前私用作用域中的内容被作用域以外的东西占用了，那么当前的这个作用域就不能被销毁了（里面的私有变量也不能被销毁）。<br>1.函数执行返回了一个引用数据类型值，并且在函数外面被其他东西给接收了，这种情况下一般形成的私有作用域都不会被销毁。<br><code>function fn() {
     var num = 100;
@@ -197,10 +197,6 @@ fn()();</code></p>
 
                 <ul class="pager">
                     
-                    
-                        <li class="next">
-                            <a href="/2017/03/16/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">Next Post &rarr;</a>
-                        </li>
                     
                 </ul>
 
