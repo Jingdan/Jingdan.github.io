@@ -13,11 +13,11 @@
 
     <title>
         
-          undefined
+          js内存释放 - undefined
         
     </title>
 
-    <link rel="canonical" href="https://Jingdan.github.io/archives/2017/04/">
+    <link rel="canonical" href="https://Jingdan.github.io/2017/03/20/my-first-blog/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -123,7 +123,117 @@
 
 
     <!-- Main Content -->
-    <!-- Default Archive layout, we use archives instead. -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://Jingdan.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/undefined')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>js内存释放</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 荆蛋 on
+                        2017-03-20
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="堆内存少林寺累死了"><a href="#堆内存少林寺累死了" class="headerlink" title="堆内存少林寺累死了"></a>堆内存少林寺累死了</h3><p>对象数据类型或者函数数据类型在定义的时候，首先都会开辟一个堆内存，堆内存有一个引用地址，如果外面有变量等知道了这个地址，我们就说这个内存被占用了，不能被销毁了。</p>
+<p><code>var obj1 = {name:&quot;张三&quot;};
+var obj2 = obj1;</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3500546-fdaf241442646cd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"></p>
+<p><code>var obj1 = {name:&quot;jdy&quot;,age:&#39;1&#39;};
+ var obj2 = obj1;
+ obj1 = null;
+ obj2 = null;</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3500546-51a1ff03335092ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
+<p>我们想要堆内存销毁/释放，只需要把引用它的变量赋值为null即可。如果当前的堆内存没有被任何东西占用了，那么浏览器会在空闲的时候把它销毁。</p>
+<h3 id="栈内存"><a href="#栈内存" class="headerlink" title="栈内存"></a>栈内存</h3><h6 id="全局作用域：只有当页面关闭的时候，全局作用域才会销毁"><a href="#全局作用域：只有当页面关闭的时候，全局作用域才会销毁" class="headerlink" title="全局作用域：只有当页面关闭的时候，全局作用域才会销毁"></a>全局作用域：只有当页面关闭的时候，全局作用域才会销毁</h6><h6 id="私有的作用域（只有函数执行才会产生私有的作用域），一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完毕后，会被销毁。但是还是存在特殊的情况："><a href="#私有的作用域（只有函数执行才会产生私有的作用域），一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完毕后，会被销毁。但是还是存在特殊的情况：" class="headerlink" title="私有的作用域（只有函数执行才会产生私有的作用域），一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完毕后，会被销毁。但是还是存在特殊的情况："></a>私有的作用域（只有函数执行才会产生私有的作用域），一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完毕后，会被销毁。但是还是存在特殊的情况：</h6><p>当前私用作用域中的内容被作用域以外的东西占用了，那么当前的这个作用域就不能被销毁了（里面的私有变量也不能被销毁）。<br>1.函数执行返回了一个引用数据类型值，并且在函数外面被其他东西给接收了，这种情况下一般形成的私有作用域都不会被销毁。<br><code>function fn() {
+    var num = 100;
+    return function () { 
+    }
+}
+var a = fn();  //fn执行形成的这个私有作用域就不能被销毁了</code><br>2.在私有作用域中，给dom元素绑定方法，一般情况下，我们的私有作用域都不销毁<br><code>(function () {
+    oDiv.onclick = function () {
+       }
+})();//当前自执行函数形成的这个私有的作用域也不销毁</code><br><img src="http://upload-images.jianshu.io/upload_images/3500546-520240676d40a3a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3500546-eff6de9944a9fe19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>3.下述这种情况，不会马上销毁，fn返回的函数没有被其他东西占用，但是还需要执行一次，所以暂时不能销毁。当返回的值执行完成后，浏览器会在空闲的时候销毁。<br><code>function fn() {
+    var a = 100;
+    return function () {
+    }
+}
+fn()();</code></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
 
     <!-- Footer -->
     <!-- Footer -->
