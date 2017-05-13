@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Angular - 作用域&amp;&amp;自定义指令｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2017/03/12/Angular - 作用域&amp;&amp;自定义指令/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Angular - 作用域&amp;&amp;自定义指令</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2017-03-12
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Angular"
+                           title="Angular">Angular</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Angular - 作用域&&自定义指令
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="控制器作用域"><a href="#控制器作用域" class="headerlink" title="控制器作用域"></a>控制器作用域</h2><pre><code>控制器和函数一样,也有自己的作用域.类似函数,作用域范围内先自己自身找,自己有就用自己的,自己没有的话会向上查找,找父控制器.
+子级可以访问父级元素,父级元素不能访问子级元素
+每个控制器(controller)都对应一个模型(Model),也就是($scope)对象,不同层级控制器下的$scope便产生了作用域.
+模块之间是不可以嵌套使用的
+但是控制器之间是可以嵌套使用的
+使用ng-init 定义全局作用域。范围是整个模块。$rootScope
+</code></pre><h5 id="示例代码-函数作用域"><a href="#示例代码-函数作用域" class="headerlink" title="示例代码: 函数作用域"></a>示例代码: 函数作用域</h5><pre><code>&lt;script&gt;
+    var a = 10;
+    function test() {
+        var a = 20;
+        var b = 10;
+    }
+    //alert(a);
+    test();
+    //子级可以访问父级的作用域。
+    //父级不能访问子级的作用域。
+&lt;/script&gt; 
+</code></pre><h5 id="示例代码-控制器作用域"><a href="#示例代码-控制器作用域" class="headerlink" title="示例代码:控制器作用域"></a>示例代码:控制器作用域</h5><pre><code>// 全局作用域也就是根作用域
+&lt;body ng-app=&quot;app&quot; ng-init=&quot;name=&apos;eee&apos;&quot;&gt;
+&lt;div ng-controller=&quot;appController1&quot;&gt;
+    &lt;div&gt;{{name}}&lt;/div&gt;
+&lt;/div&gt;
+&lt;div ng-controller=&quot;appController2&quot;&gt;
+    &lt;div&gt;{{name}}&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = angular.module(&apos;app&apos;,[]);
+    app.controller(&apos;appController1&apos;,[&apos;$scope&apos;,function ($scope) {
+        // 输出eee
+    }]);
+    app.controller(&apos;appController2&apos;,[&apos;$scope&apos;,function ($scope) {
+        // 输出eee
+    }]);
+
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre><h2 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h2><p>AngularJs允许根据实际业务需要自定义指令,通过angular全局对象下的directive方法实现</p>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appController&quot;&gt;
+&lt;ele&gt;
+    &lt;ul&gt;
+        &lt;li&gt;我是transclude1&lt;/li&gt;
+        &lt;li&gt;我是transclude2&lt;/li&gt;
+        &lt;li&gt;我是transclude3&lt;/li&gt;
+        &lt;li&gt;我是transclude4&lt;/li&gt;
+        &lt;li&gt;我是transclude5&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/ele&gt;
+&lt;script src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = angular.module(&apos;app&apos;, []);
+    app.controller(&apos;appController&apos;, [&apos;$scope&apos;, function ($scope) {
+    }]);
+    // 第一个参数:指令名称
+    // 第二个参数:回调函数
+    app.directive(&apos;ele&apos;, function () {
+        return {
+            // E:代表元素 A:代表属性 C:当做类
+            restrict: &apos;EAC&apos;, // 以哪一种形式出现
+            template: &quot;&lt;div&gt;&lt;h1&gt;自定义指令&lt;/h1&gt; &lt;p&gt;p标签&lt;/p&gt; &lt;div&gt;232222222&lt;/div&gt;&lt;/div&gt;&quot;,
+            replace: true, //是否替换原标签 
+                           //如果要替换整个标签 需要一个大标签把自定义的标签包裹起来
+            transclude: false  // 是否保留原标签的内容
+        }
+    });
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre><h2 id="模版命令"><a href="#模版命令" class="headerlink" title="模版命令"></a>模版命令</h2><h5 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>// 上面的代码都一样 就是需要自定义一个html文件,然后引入 方便管理
+app.directive(&apos;ele&apos;, function () {
+        return {
+            // E:代表元素 A:代表属性 C:当做类
+            restrict: &apos;EA&apos;, // 以哪一种形式出现
+            templateUrl: &quot;./ele.html&quot;,
+            replace: true, //是否替换原标签
+            transclude: true  // 是否保留原标签的内容
+        }
+    });
+</code></pre><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><pre><code>AngularJs内置9个过滤器
+过滤器的本质就是函数
+管道符 上次的结果作为下一次的参数传递
+</code></pre><h5 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;!-- 
+1.currency默认是美元符号 也可以自定义符号 
+currency:将数值转化为货币格式
+--&gt;
+&lt;p&gt;{{price | currency:'&yen'}}&lt;/p&gt;
+&lt;!--
+2.日期格式化 年(y) 月(M) 日(d) 星期(EEEE/EEE) 时(H/h) 分(mm) 秒(ss) 毫秒(sss)
+--&gt;
+&lt;p&gt;{{dateTime | date:'yyyy-MM-dd hh:mm:ss'}}&lt;/p&gt;
+&lt;!--
+3.filter:在给定数组中选择满足条件的一个子集,并返回一个新数组,其条件可以是字符串\对象\函数
+--&gt;
+&lt;p&gt;{{course | filter:'j'}}&lt;/p&gt;
+&lt;!--
+4.limitTo:取出字符串或者数组的的前几位(正数)或者后几位(负数)
+--&gt;
+&lt;p&gt;{{course | limitTo:-2}}&lt;/p&gt;
+&lt;!--
+5.uppercase:把文本转换成大写
+lowercase: 把文本转成小写
+--&gt;
+&lt;p&gt;{{name | uppercase | lowercase}}&lt;/p&gt;
+&lt;!--
+6.numStr:在number当中不能出现非数字
+--&gt;
+&lt;p&gt;{{numStr | number:4}}&lt;/p&gt;
+&lt;!--
+7.orderBy:排序true降序 false升序
+--&gt;
+&lt;p&gt;{{scores | orderBy:'':false}}&lt;/p&gt;
+&lt;p&gt;{{scores | orderBy:'score':true}}&lt;/p&gt;
+&lt;!--
+8.取出所有的数据
+--&gt;
+&lt;p&gt;{{stus}}&lt;/p&gt;
+&lt;!--
+9.json 也是取出数据
+--&gt;
+&lt;p&gt;{{stus | json}}&lt;/p&gt;
+</code></pre><p><br></p>
+<pre><code>&lt;script src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = angular.module(&apos;app&apos;, []);
+    app.controller(&apos;appController&apos;, [&apos;$scope&apos;, function ($scope) {
+        // price
+        $scope.price = &quot;18&quot;;
+        // 日期
+        $scope.dateTime = new Date();
+        // 数组
+        $scope.course = [&apos;ios&apos;,&apos;html&apos;,&apos;java&apos;,&apos;ui&apos;];
+        $scope.course = [100,30,40,20,4];
+        // 大小写转化
+        $scope.name = &apos;LENG&apos;
+        /* 实现原理
+        * parseInt() 直到遇到非数字才停止
+        * number:里面不允许出非数字。
+        * */
+        $scope.numStr = &apos;18&apos;;
+        // 排序
+        $scope.scores = [100,30,40,20,4];
+        $scope.stus = [
+            {name:&apos;zs&apos;,score:20},
+            {name:&apos;wc&apos;,score:90},
+            {name:&apos;ls&apos;,score:59}
+        ]
+    }]);
+&lt;/script&gt;
+</code></pre><h2 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h2><p>AngularJs内置过滤器外,还可以根据业务需要自定义过滤器<br>通过模块对象实例提供的filter方法自定义过滤器</p>
+<h5 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appController&quot;&gt;
+&lt;p&gt;{{price | eFilter:'eFilter'}}&lt;/p&gt;
+&lt;!-- 需求:把第一个字符变成大写 --&gt;
+&lt;p&gt;{{name | eeUppercase}}&lt;/p&gt;
+&lt;p&gt;{{price | eeCurrent : '&'}}&lt;/p&gt;
+&lt;script src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = angular.module(&apos;app&apos;, []);
+    app.controller(&apos;appController&apos;, [&apos;$scope&apos;, function ($scope) {
+        $scope.price = &apos;18.8&apos;;
+        $scope.name = &apos;ee&apos;;
+    }]);
+    // 自定义指令
+    app.directive(&apos;ee&apos;, function () {
+        return {
+            restrict: &quot;ECA&quot;,
+            template: &quot;&lt;h1&gt;ee&lt;/h1&gt;&quot;,
+            replace: true
+        }
+    });
+    /*过滤器的本质就是一个function
+     * 第一个参数:过滤器的名称 第二个参数:回调函数
+     * input 就是管道符前面执行的结果
+     * 返回值为一个函数
+     * */
+    app.filter(&apos;eFilter&apos;, function () {
+        return function (input, args) {
+            console.log(input + args);
+        }
+    });
+    angular.module(&apos;app&apos;).filter(&apos;eeUppercase&apos;,function () {
+        return function (input) {
+            var str = input[0].toUpperCase() + input.slice(1);
+            return str;
+        }
+    });
+    app.filter(&apos;eeCurrent&apos;,function () {
+       return function (input, args) {
+           if(args){
+               return args + input;
+           }
+           else {
+               return + &apos;$&apos; + input;
+           }
+       }
+    });
+    // 打印结果  Ee  &amp;18.8
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre><h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><pre><code>AngularJS采用模块化的方式组织代码，将一些通用逻辑封装成一个对象或函数，实现最大程度的复用这导致了使用者和被使用者之间存在依赖关系。
+所谓依赖注入是指在运行时自动查找依赖关系
+然后将查找到依赖传递给使用者的一种机制。
+</code></pre><h3 id="依赖注入为分两种"><a href="#依赖注入为分两种" class="headerlink" title="依赖注入为分两种:"></a>依赖注入为分两种:</h3><p>行内式注入<br>以数组形式明确声明依赖，数组元素都是包含依赖名称的字符串，数组最后一个元素是依赖注入的目标函数<br>推荐使用行内式注入.</p>
+<p>推断式注入<br>没有明确声明依赖，AngularJS会将函数参数名称当成是依赖的名称<br>这种方式会带来一个问题，当代码经过压缩后函数的参数被压缩，这样便会造成依赖无法找到。</p>
+<h5 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body ng-app=&quot;app&quot; ng-controller=&quot;xiController&quot;&gt;
+&lt;h1&gt;{{name}}&lt;/h1&gt;
+&lt;script src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    /*
+     * 1.什么是服务？
+     *   服务就是angular内置的一些功能。直接拿到该功能做一些事情。
+     * 2.依赖注入？
+     *   模块当中依赖系统的哪些功能（用到系统-&gt;angular默认的哪些功能）
+     *   查找该功能，找到之后， 系统会对应的功能，传递给指定的模块。这个过程，依赖注入。
+     *   行内式注入
+     *   推断式注入
+     * */
+    var app = angular.module(&apos;app&apos;,[]);
+    // 行内式注入 -- 推荐使用行内式注入
+    app.controller(&apos;appController&apos;,[&apos;$scope&apos;,function ($scope) {
+        $scope.name = &apos;行内式注入&apos;;
+    }]);
+    // 推断式注入 -- 当代码被压缩时 参数就不会被找到
+    app.controller(&apos;xiController&apos;,function ($scope) {
+        $scope.name = &apos;推断式注入&apos;
+    });
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre><h2 id="location服务"><a href="#location服务" class="headerlink" title="$location服务"></a>$location服务</h2><p>服务就angular内置的功能<br>它的本质就是一个对象或函数<br>$location是对原生Javascript中location对象属性和方法的封装。  </p>
+<h5 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appController&quot;&gt;
+&lt;!--
+    https://www.baidu.com/?tn=93912046_hao_pg
+    https:协议
+    主机地址:www.baidu.com 192.52.6.74
+    端口号：63342/8080
+    /code/06-$location服务.html  :文件路径
+    ？name=xmg&amp;age=10   : 传递的参数
+    #/test/ 锚点  hash值。
+--&gt;
+&lt;p&gt;{{name}}&lt;/p&gt;
+&lt;p&gt;{{absUrl}}&lt;/p&gt;
+&lt;p&gt;{{hostName}}&lt;/p&gt;
+&lt;p&gt;{{url}}&lt;/p&gt;
+&lt;p&gt;{{search}}&lt;/p&gt;
+&lt;script&gt;
+    // js原生网络地址
+    for (var key in location) {
+        console.log(key + &apos;------&apos; + location[key]);
+    }
+&lt;/script&gt;
+&lt;script src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = angular.module(&apos;app&apos;, []);
+    app.controller(&apos;appController&apos;, [&apos;$scope&apos;, &apos;$location&apos;, function ($scope, $location) {
+        $scope.name = &apos;xibalu&apos;;
+        // 获取当前地址
+        $scope.absUrl = $location.absUrl();
+        // 获取主机名
+        $scope.hostName = $location.host();
+        // 获取锚点后面的地址
+        $scope.url = $location.url();
+        // 获得第二个锚点之后的地址
+        $scope.hash = $location.hash();
+        // 单页面应用程序 锚点搜索
+        $scope.search = $location.search();
+    }]);
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre><h2 id="定时器服务"><a href="#定时器服务" class="headerlink" title="定时器服务"></a>定时器服务</h2><p>$timeout&amp;$interval对原生Javascript中的setTimeout和setInterval进行了封装。</p>
+<h5 id="示例代码-6"><a href="#示例代码-6" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appController&quot;&gt;
+&lt;p&gt;{{name}}&lt;/p&gt;
+&lt;p&gt;{{timeDate | date:'yyyy-MM-dd hh:mm:ss'}}&lt;/p&gt;
+&lt;input type=&quot;button&quot; value=&quot;点击停止&quot; ng-click=&quot;stop()&quot;&gt;
+&lt;script src=&quot;../js/angular.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = angular.module(&apos;app&apos;, []);
+    app.controller(&apos;appController&apos;, [&apos;$scope&apos;, &apos;$timeout&apos;, &apos;$interval&apos;, function ($scope, $timeout, $interval) {
+        // 一次定时器
+        $timeout(function () {
+            $scope.name = &apos;xiba&apos;;
+        }, 2000);
+        // 多次定时器
+        var timer = $interval(function () {
+            $scope.timeDate = new Date();
+        },1000);
+        /*如何停止定时器
+         * 通过变量保存。
+         * $interval.cancel(timer);
+         * */
+        $scope.stop = function () {
+            $interval.cancel(timer);
+        }
+    }]);
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2017/03/12/Angular - 作用域&amp;&amp;自定义指令/"
+                     data-title="Angular - 作用域&amp;&amp;自定义指令"
+                     data-url="https://Jingdan.github.io/2017/03/12/Angular - 作用域&amp;&amp;自定义指令/"
+                     data-images="https://Jingdan.github.io/2017/03/12/Angular - 作用域&amp;&amp;自定义指令/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+控制器作用域控制器和函数一样,也有自己的作用域.类似函数,作用域范围内先自己自身找,自己有就... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/03/22/Vue - 基本属性和事件/" data-toggle="tooltip" data-placement="top"
+                           title="Angular - 自定义服务&&路由">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/03/01/Angular - 基本属性&&功能/" data-toggle="tooltip" data-placement="top"
+                           title="Angular - 基本属性&&功能">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2017/03/12/Angular - 作用域&amp;&amp;自定义指令/"
+                         data-title="Angular - 作用域&amp;&amp;自定义指令"
+                         data-url="https://Jingdan.github.io/2017/03/12/Angular - 作用域&amp;&amp;自定义指令/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制器作用域"><span class="toc-text">控制器作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-函数作用域"><span class="toc-text">示例代码: 函数作用域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-控制器作用域"><span class="toc-text">示例代码:控制器作用域</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义指令"><span class="toc-text">自定义指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模版命令"><span class="toc-text">模版命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤器"><span class="toc-text">过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义过滤器"><span class="toc-text">自定义过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入"><span class="toc-text">依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖注入为分两种"><span class="toc-text">依赖注入为分两种:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#location服务"><span class="toc-text">$location服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定时器服务"><span class="toc-text">定时器服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Angular"
+                           title="Angular">Angular</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

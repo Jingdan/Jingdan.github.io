@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Vue - 基本属性和事件｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2017/04/02/Angular - 自定义服务&amp;&amp;路由/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Vue - 基本属性和事件</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2017-04-02
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Vue"
+                           title="Vue">Vue</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Vue - 基本属性和事件
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="Vue的基本指令"><a href="#Vue的基本指令" class="headerlink" title="Vue的基本指令"></a>Vue的基本指令</h2><p>Vue和Angular的用法差不多,语法和属性也差不多,Vue更像是国人的框架,所有的用法和习惯也都符号国人程序员的习惯,所以这也是Vue越来越热的原因,Vue就是简化了Angular一些复杂操作,用起来更加简单,便捷</p>
+<p>Angular是用ng开头的指令,而Vue是用v开头的指令</p>
+<p>下面是一段代码,看完之后 你就瞬间明白是什么意思了!如果你已经学过Angualr的话,Vue可以说是鼻涕往嘴里流呢! So easy too happy!</p>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;!--
+    指令:是特殊的带有前缀v-的特征.
+        扩展了html原有标签属性功能.
+        v-text:把模型当中的内容当做文件展示到页面当中.
+        v-html:把模型当中的内容当做普通 HTML 插入
+        v-show:根据表达式的值来显示或隐藏HTML元素  display:none
+        v-if:根据表达式的值在DOM中生成或移除一个元素
+        v-else:就是javaScript中else的意思,必须跟着v-if或v-show.充当else的功能.
+        v-for:基于源数据重复渲染元素.
+        v-model:数据双向绑定
+        v-pre:跳转编译.不去解析里面的内容.
+        v-cloak:防止闪烁
+--&gt;
+&lt;p v-cloak&gt;{{test}}&lt;/p&gt;
+&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;
+&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;
+&lt;p v-show=&quot;isShow&quot;&gt;是否显示&lt;/p&gt;
+&lt;p v-if=&quot;isShow&quot;&gt;是否存在该标签&lt;/p&gt;
+&lt;h1 v-else&gt;No&lt;/h1&gt;
+&lt;span v-pre&gt;{{ msg }}&lt;/span&gt;
+&lt;hr&gt;
+&lt;!--可以通过template指定一个代码片段--&gt;
+&lt;template v-if=&quot;true&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;1&lt;/li&gt;
+        &lt;li&gt;2&lt;/li&gt;
+        &lt;li&gt;3&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/template&gt;
+&lt;!--数据的双向绑定--&gt;
+&lt;input value=&quot;text&quot; v-model=&quot;msg&quot;&gt;
+&lt;hr&gt;
+遍历数组第一种:
+&lt;!--遍历数据  在遍历时,内置了一个$index 就是下标 第一种方式--&gt;
+&lt;p v-for=&quot;value in course&quot;&gt;{{value}}----{{$index}}&lt;/p&gt;
+&lt;hr&gt;
+遍历数组第二种:
+&lt;p v-for=&quot;(key,value) in course&quot;&gt;{{value}}----{{key}}&lt;/p&gt;
+&lt;hr&gt;
+遍历对象第一种:
+&lt;p v-for=&quot;(key,value) in students&quot;&gt;{{key}}--- {{value.name}}----{{value.age}}&lt;/p&gt;
+&lt;hr&gt;
+遍历对象第二种:
+&lt;p v-for=&quot;stu in students&quot;&gt;{{$index}}--- {{stu.name}}----{{stu.age}}&lt;/p&gt;
+&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue({
+        el:&apos;body&apos;,
+        data:{
+            test:&apos;cloak&apos;,
+            msg:&apos;xmg&lt;h1&gt;大标题&lt;/h1&gt;&apos;,
+            isShow:true,
+            course:[&apos;html&apos;,&apos;css&apos;,&apos;js&apos;],
+            students:[
+                {name:&apos;zs&apos;,age:10},
+                {name:&apos;li&apos;,age:20}
+            ]
+        }
+    })
+&lt;/script&gt;
+</code></pre><h2 id="Vue的基本写法"><a href="#Vue的基本写法" class="headerlink" title="Vue的基本写法"></a>Vue的基本写法</h2><h5 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body&gt;
+// 这种绑定的方式 是不是看起来更加熟悉呢
+&lt;p id=&quot;app1&quot;&gt;{{msg}}&lt;/p&gt;
+&lt;p class=&quot;app2&quot;&gt;{{msg}}&lt;/p&gt;
+&lt;div class=&quot;app3&quot;&gt;
+    &lt;p&gt;{{name}}&lt;/p&gt;
+    &lt;!--跟angular一样 这里可以写运算 也可以写判断{{age?'value':'value'}}
+    --&gt;
+    &lt;p&gt;{{age + 10}}&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        /*创建一个vue对象,它就相当于我们之前学习angular的控制器,
+         * 其中el: 可以是标签,id选择器,类选择器
+         * data:就是模型.
+         * 可以使用插值语法把模型的内容绑定到标签所在的作用域当中.
+         * */
+        new Vue({
+            el: &apos;#app1&apos;,
+            data: {
+                msg: &apos;xiba1&apos;,
+            }
+        });
+        new Vue({
+            el: &apos;.app2&apos;,
+            data: {
+                msg: &apos;xiba2&apos;,
+            }
+        });
+        new Vue({
+            el: &apos;.app3&apos;,
+            data: {
+                name: &apos;xiba3&apos;,
+                age: 10
+            }
+        });
+    }
+&lt;/script&gt;
+</code></pre><h2 id="Vue事件处理"><a href="#Vue事件处理" class="headerlink" title="Vue事件处理"></a>Vue事件处理</h2><h5 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body id=&quot;app&quot;&gt;
+&lt;p&gt;{{name}}&lt;/p&gt;
+&lt;!-- 注册事件 --&gt;
+&lt;button v-on:click=&quot;click()&quot;&gt;点击&lt;/button&gt;
+&lt;!-- 注册事件简写 --&gt;
+&lt;button @dblclick=&quot;dbclick()&quot;&gt;双击&lt;/button&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        new Vue({
+            el: &apos;#app&apos;,
+            data:{
+                name:&apos;xiba&apos;,
+                age:&apos;20&apos;
+            },
+            methods:{
+                click(){
+                    console.log(&apos;点了一下&apos;);
+                },
+                dbclick(){
+                    console.log(&apos;双击了&apos;);
+                }
+            }
+        });
+    }
+&lt;/script&gt;
+</code></pre><h2 id="Vue事件绑定"><a href="#Vue事件绑定" class="headerlink" title="Vue事件绑定"></a>Vue事件绑定</h2><h5 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body id=&quot;app&quot;&gt;
+&lt;!-- input里面的内容修改 下面的内容也会修改 --&gt;
+&lt;input type=&quot;text&quot; v-model=&quot;msg&quot;&gt;
+&lt;p&gt;{{msg}}&lt;/p&gt;
+&lt;!-- 加上*好之后只解析一次 内容就不会被一直修改掉 --&gt;
+&lt;p&gt;{{*msg}}&lt;/p&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        new Vue({
+            data:{
+                msg:&apos;xiba&apos;
+            }
+        }).$mount(app);   // 这里的$mount等价与把el:&apos;#app&apos;写里面
+    }
+&lt;/script&gt;
+</code></pre><h2 id="Vue基本属性"><a href="#Vue基本属性" class="headerlink" title="Vue基本属性"></a>Vue基本属性</h2><h5 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>.red{
+     color: darkgreen;
+}
+.fs20{
+     font-size:20px;
+}
+&lt;body id=&quot;app&quot;&gt;
+&lt;!--red为模型当中定义的属性名称 多个属性使用逗号隔开--&gt;
+&lt;p :class=&quot;[red,fs]&quot;&gt;这是一段文字&lt;/p&gt;
+&lt;!--使用对象的形式 和angular相似 同样, 值也可能在模型定义--&gt;
+&lt;p :class=&quot;{red:true,fs20:true}&quot;&gt;这是一段文字&lt;/p&gt;
+&lt;!--第三种使用使用模型对象形式--&gt;
+&lt;p :class=&quot;class&quot;&gt;这是一段文字&lt;/p&gt;
+&lt;!--style第1种直接写属性--&gt;
+&lt;h1 :style=&quot;{color:&apos;gray&apos;}&quot;&gt;大标签&lt;/h1&gt;
+&lt;!--通过定义模型属性[属性名] 如果有多个, 使用逗号隔开--&gt;
+&lt;h1 :style=&quot;[style]&quot;&gt;大标签&lt;/h1&gt;
+&lt;!--第三种,通过属性对象形式--&gt;
+&lt;h1 :style=&quot;style&quot;&gt;大标签&lt;/h1&gt;
+![]({{url}})
+&lt;!--
+    可以在原标签属性上添加一个v-bind 或简写成 &quot;:属性&quot;
+    后面就可以直接跟上模型当中的属性.
+--&gt;
+![](url)
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        new Vue({
+            data:{
+                url:&apos;images/post_3.png&apos;,
+                width:&apos;100px&apos;,
+                red:&apos;red&apos;,
+                fs:&apos;fs20&apos;,
+                class:{
+                    red:true,
+                    fs20:false
+                },
+                style:{
+                    color:&apos;blue&apos;,
+                    &apos;font-size&apos;:&apos;50px&apos;
+                }
+            }
+        }).$mount(app);
+    }
+&lt;/script&gt;
+</code></pre><h2 id="Vue事件绑定-1"><a href="#Vue事件绑定-1" class="headerlink" title="Vue事件绑定"></a>Vue事件绑定</h2><h5 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body id=&quot;app&quot;&gt;
+&lt;!-- 事件绑定 v-on指令 --&gt;
+&lt;button v-on:click=&quot;show()&quot;&gt;点击弹出&lt;/button&gt;
+&lt;button v-on:click=&quot;hide(&apos;xibalu&apos;)&quot;&gt;点击&lt;/button&gt;
+&lt;!-- 事件绑定简写 --&gt;
+&lt;button @click=&quot;show&quot;&gt;再次点我&lt;/button&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        new Vue({
+            // data里面写属性
+            data:{
+                msg:&apos;xiba&apos;
+            },
+            // methods里面写方法
+            methods:{
+                show(){
+                    console.log(this.msg);
+                },
+                hide(arg){
+                    console.log(arg);
+                }
+            }
+        }).$mount(app);
+    }
+&lt;/script&gt; 
+</code></pre><p>##Vue内置过滤器</p>
+<h5 id="示例代码-6"><a href="#示例代码-6" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body id=&quot;app&quot;&gt;
+&lt;!--在vue当中使用过滤器和angular当中非常一样.通过管道符的写法--&gt;
+&lt;p&gt;{{name | uppercase}}&lt;/p&gt;
+&lt;!--同样它也支持连写的形式--&gt;
+&lt;p&gt;{{name | uppercase | lowercase}}&lt;/p&gt;
+&lt;!--转成货币 注意它的传形式与angular有些区别, 它不要: 直接在后面空格写上参数--&gt;
+&lt;p&gt;{{price | currency '&'}}&lt;/p&gt;
+&lt;!--过滤数组 filterBy &apos;过滤条件&apos; --&gt;
+&lt;input type=&quot;text&quot; v-model=&quot;search&quot;&gt;
+&lt;ul&gt;
+    &lt;li v-for=&quot;value in dataList | filterBy search&quot;&gt;{{value}}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--过滤数组 limitBy &apos;取得数量 偏移量&apos; --&gt;
+&lt;ul&gt;
+    &lt;li v-for=&quot;value in numList | limitBy 5 3&quot;&gt;{{value}}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--排序 大于等于0为升序 小于为降序--&gt;
+&lt;ul&gt;
+    &lt;li v-for=&quot;value in numList | orderBy -1&quot;&gt;{{value}}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- 键盘弹起时 延时1秒后再去执行对应的方法 --&gt;
+&lt;input type=&quot;text&quot; @keyup=&quot;show | debounce 1000&quot;&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        new Vue({
+            data:{
+                name:&apos;xibalu&apos;,
+                price:20.2,
+                dataList:[&apos;css&apos;,&apos;html&apos;,&apos;java&apos;],
+                numList:[1,3,4,5,6,34,45,7,8]
+            },
+            methods:{
+                show(){
+                    console.log(&apos;延时执行了&apos;);
+                }
+            }
+        }).$mount(app);
+    }
+&lt;/script&gt;
+</code></pre><h2 id="Vue自定义指令和标签"><a href="#Vue自定义指令和标签" class="headerlink" title="Vue自定义指令和标签"></a>Vue自定义指令和标签</h2><h5 id="示例代码-7"><a href="#示例代码-7" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body id=&quot;app&quot;&gt;
+&lt;!-- 在使用指令时,前面加上v- --&gt;
+&lt;p v-order&gt;自定义指令1&lt;/p&gt;
+&lt;!-- 在传递参数时要用&apos;&apos;包裹 --&gt;
+&lt;p v-color=&quot;&apos;red&apos;&quot;&gt;自定义指令2&lt;/p&gt;
+&lt;!-- 自定义出来的元素都是行内元素 --&gt;
+&lt;kin&gt;自定义元素&lt;/kin&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        /*自定义指令
+         * 在使用指令时,前面加上v-
+         * v-指令名称
+         * */
+        Vue.directive(&apos;order&apos;, function () {
+            // 在自定义指令当中可以拿到指令所在的标签
+            this.el.style.background = &apos;green&apos;;
+            this.el.style.fontSize = &apos;30px&apos;;
+        });
+        // 自定义指令可以传参数
+        Vue.directive(&apos;color&apos;, function (color) {
+            this.el.style.background = color;
+        });
+        // 自定义元素指令
+        Vue.elementDirective(&apos;kin&apos;,{
+            bind:function () {
+                this.el.style.background = &apos;#ccc&apos;;
+            }
+        });
+        new Vue({}).$mount(app);
+    }
+&lt;/script&gt;
+</code></pre><h2 id="Vue自定义过滤器"><a href="#Vue自定义过滤器" class="headerlink" title="Vue自定义过滤器"></a>Vue自定义过滤器</h2><h5 id="示例代码-8"><a href="#示例代码-8" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body id=&quot;app&quot;&gt;
+&lt;p&gt;{{e | defined 11 12}}&lt;/p&gt;
+&lt;p&gt;{{e | defined2 11 12}}&lt;/p&gt;
+&lt;p&gt;{{nowDate | dateTime}}&lt;/p&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        // 自定义过滤器
+        Vue.filter(&apos;defined&apos;, function (input) {
+            return input &lt; 10 ? &apos;0&apos; + input : &apos;&apos; + input;
+        });
+        // 可以传递参数
+        Vue.filter(&apos;defined2&apos;, function (input, a, b) {
+            // alert(a + &apos;&apos; + b);
+            return input &lt; 10 ? &apos;0&apos; + input : &apos;&apos; + input;
+        });
+        // 获取年月日的过滤器
+        Vue.filter(&apos;dateTime&apos;, function () {
+            var date = new Date();
+            return date.getFullYear() + &apos;-&apos; + (date.getMonth() + 1) + &apos;-&apos; + date.getDate() + &apos; &apos; + date.getHours() + &apos;:&apos; + date.getMinutes() + &apos;:&apos; + date.getSeconds();
+        });
+        new Vue({
+            data: {
+                e: 9,
+                nowDate: new Date()
+            }
+        }).$mount(app);3
+    }
+&lt;/script&gt;
+</code></pre><h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>这里要特别注意get()和set()方法, 下面请看代码详解</p>
+<h5 id="示例代码-9"><a href="#示例代码-9" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;body&gt;
+&lt;div&gt;{{price}}&lt;/div&gt;
+&lt;button @click=&quot;totalPrice&quot;&gt;总价&lt;/button&gt;
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        var vm = new Vue({
+            data: {
+                price: 10,
+                num: 3
+            },
+            computed: {
+                total: {
+                    /*
+                     * 计算属性get方法
+                     * this.属性名称，（this.total）如果该属性是计算属性，那么就会自动调用该属性的get方法
+                     * this.属性名称 值就是get方法的返回、
+                     * get方法，必须得要有返回值
+                     * */
+                    get(){
+                        return this.price * 3;
+                    },
+                    /*
+                     * 计算属性的set方法
+                     * 当执行this.属性名称 = 值 (this.total = 10) 就会自动调用该属性的set方法。
+                     * 并且把.=后面的执行，传递给set方法当作参数
+                     * 不能在set方法内部执行该属性的 点等于
+                     *   set(val){  不能这种形式出现， 会发生死循环。
+                     this.total = 10;
+                     }
+                     * */
+                    set(val){
+                        this.price += val;
+                        // this.val = 10;  死循环
+                    }
+                }
+            },
+            methods: {
+                totalPrice(){
+                    alert(this.total);
+                }
+            }
+        }).$mount(&apos;body&apos;);
+        vm.total = 10;
+    }
+&lt;/script&gt;
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2017/04/02/Angular - 自定义服务&amp;&amp;路由/"
+                     data-title="Vue - 基本属性和事件"
+                     data-url="https://Jingdan.github.io/2017/04/02/Angular - 自定义服务&amp;&amp;路由/"
+                     data-images="https://Jingdan.github.io/2017/04/02/Angular - 自定义服务&amp;&amp;路由/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+Vue的基本指令Vue和Angular的用法差不多,语法和属性也差不多,Vue更像是国人的框... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/03/22/Vue - 基本属性和事件/" data-toggle="tooltip" data-placement="top"
+                           title="Angular - 自定义服务&&路由">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2017/04/02/Angular - 自定义服务&amp;&amp;路由/"
+                         data-title="Vue - 基本属性和事件"
+                         data-url="https://Jingdan.github.io/2017/04/02/Angular - 自定义服务&amp;&amp;路由/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的基本指令"><span class="toc-text">Vue的基本指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的基本写法"><span class="toc-text">Vue的基本写法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue事件处理"><span class="toc-text">Vue事件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue事件绑定"><span class="toc-text">Vue事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue基本属性"><span class="toc-text">Vue基本属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue事件绑定-1"><span class="toc-text">Vue事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue自定义指令和标签"><span class="toc-text">Vue自定义指令和标签</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-7"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue自定义过滤器"><span class="toc-text">Vue自定义过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-8"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算属性"><span class="toc-text">计算属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-9"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Vue"
+                           title="Vue">Vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
