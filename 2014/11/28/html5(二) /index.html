@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        HTML5-知识点汇总二｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2014/11/28/html5(二) /">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTML5-知识点汇总二</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2014-11-28
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#html"
+                           title="html">html</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTML5-知识点汇总二
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="表单标签"><a href="#表单标签" class="headerlink" title="表单标签"></a>表单标签</h2><p>专门用来搜集用户信息</p>
+<p>在HTML中，标签/标记元素都是指HTML中的标签<br>例如：<code>&lt;a&gt; a标签/a元素/a标记</code><br>表单元素其实就是HTML中的一些标签，只不过这些标签比较特殊，在浏览器中所有的表单标签都是特殊的外观和默认的功能</p>
+<h3 id="表单格式："><a href="#表单格式：" class="headerlink" title="表单格式："></a>表单格式：</h3><h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;form&gt;
+    &lt;表单元素&gt;
+&lt;/form&gt;
+</code></pre><h2 id="常见的表单元素"><a href="#常见的表单元素" class="headerlink" title="常见的表单元素"></a>常见的表单元素</h2><p>input元素，有一个type的属性，这个属性有很多不同类型的取值，取值不同，功能和外观就不同</p>
+<h4 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;form&gt;
+    &lt;!--明文输入框--&gt;
+    帐号:&lt;input type=&quot;text&quot;/&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;!--暗文输入框--&gt;
+    密码:&lt;input type=&quot;password&quot;&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;!--给输入框设置默认值--&gt;
+    帐号:&lt;input type=&quot;text&quot; value=&quot;请输入帐号&quot;/&gt;&lt;br/&gt;&lt;br/&gt;
+    密码:&lt;input type=&quot;password&quot;&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;!--
+    单选框
+    注意点：
+    1.默认情况下单选框不会互斥，要想单选框互斥，必须给每一个设置一个name属性，然后name值还必须设置相同的值
+    2.要想让单选框默认选中某一个框，那么给input添加一个checked属性
+    3.在HTML中如果属性的取值和属性的名称一样，可以只写一个，但是在企业开发中不要省略取值
+    --&gt;
+    性别:
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot;/&gt;男
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot;/&gt;女
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot; checked=&quot;checked&quot;/&gt;保密&lt;br&gt;
+    &lt;!--
+    多选框
+    --&gt;
+    爱好：
+    &lt;input type=&quot;checkbox&quot;/&gt;篮球
+    &lt;input type=&quot;checkbox&quot;/&gt;足球
+    &lt;input type=&quot;checkbox&quot;/&gt;羽毛球
+    &lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot;/&gt;棒球
+&lt;/form&gt;
+</code></pre><h4 id="图片展示"><a href="#图片展示" class="headerlink" title="图片展示"></a>图片展示</h4><p><img src="http://upload-images.jianshu.io/upload_images/3359912-5ac31088c80ec0d0.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h3 id="小Demo"><a href="#小Demo" class="headerlink" title="小Demo"></a>小Demo</h3><h4 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;form action=&quot;http://www.520it.com&quot;&gt;
+    帐号:&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;&lt;br/&gt;
+    密码:&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;
+    &lt;!--
+    定义普通按钮
+    可以通过value属性来给按钮指定标题
+    作用：配合JS完成一些动画操作
+    --&gt;
+    &lt;input type=&quot;button&quot; value=&quot;我是按钮&quot; onclick=&quot;alert(123)&quot;/&gt;
+    &lt;!--
+    图片按钮
+    作用：配合JS完成一些动画操作
+    --&gt;
+    &lt;input type=&quot;image&quot; src=&quot;images/register.jpg&quot; onclick=&quot;alert(345)&quot;&gt;
+    &lt;!--
+    重置按钮
+    作用：用于清空表单中已经填好的数据
+    注意点：
+    如果想改重置按钮默认的按钮标题可以通过value属性来修改
+    --&gt;
+    &lt;input type=&quot;reset&quot; value=&quot;清空&quot;/&gt;
+    &lt;!--
+    提交按钮
+    作用：将表单中已经填好的数据，提交到远程服务器
+    注意点：
+    要想把表单中填好的数据提交到远程服务器，必须具备两个条件
+    1.需要给form表单添加一个action的属性，通过这个属性提交到服务器
+    2.需要给需要提交到服务器的表单元素添加一个name属性
+    --&gt;
+    &lt;input type=&quot;submit&quot;/&gt;
+    &lt;!--
+    隐藏域
+    作用：配合提交按钮将一下数据悄悄的提交到服务器
+    Ajax
+    --&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;cc&quot; value=&quot;mimimi&quot;/&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/3359912-8bc5fd53c5edf465.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h2 id="Label标签"><a href="#Label标签" class="headerlink" title="Label标签"></a>Label标签</h2><p>1.默认情况下文字和输入框是没有关联关系的，如果想点击文字时让对应的输入框聚焦时，那么就需要把文字和输入框绑定<br>2.要想让输入框和文字绑定在一起，那么我们可以使用label标签<br>3.绑定的格式：  </p>
+<pre><code>1.将文字利用label标签包裹起来 
+2.给输入框添加一个id属性  
+3.在label标签中通过for属性和输入框里面的id绑定起来
+</code></pre><h4 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;form action=&quot;&quot;&gt;
+    &lt;!--
+    这种绑定方式是官方推荐，不论是后面需要聚焦的输入框是不是和前面的文字对应都可以实现
+    --&gt;
+    &lt;label for=&quot;account&quot;&gt;帐号:&lt;input type=&quot;text&quot; id=&quot;account&quot;&gt;&lt;br/&gt;&lt;/label&gt;
+    &lt;label for=&quot;pwd&quot;&gt;密码:&lt;input type=&quot;password&quot; id=&quot;pwd&quot;/&gt;&lt;/label&gt;
+    &lt;!--
+        虽然把帐号可以包裹在label标签里面也可以实现绑定，但是有局限性
+        如果后面绑定的输入框不是前面对应的文字的时候就无法实现聚焦
+    --&gt;
+    &lt;label&gt;
+        帐号:&lt;input type=&quot;text&quot;&gt;
+    &lt;/label&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/3359912-07f93a1fad5ceb90.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h2 id="Datalist标签"><a href="#Datalist标签" class="headerlink" title="Datalist标签"></a>Datalist标签</h2><h3 id="datalist标签"><a href="#datalist标签" class="headerlink" title="datalist标签"></a>datalist标签</h3><p>作用：给输入框绑定带选项</p>
+<h3 id="datalist格式"><a href="#datalist格式" class="headerlink" title="datalist格式"></a>datalist格式</h3><h4 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;datalist&gt;
+    &lt;option&gt;待选项内容&lt;/option&gt;
+&lt;/datalist&gt;
+</code></pre><h3 id="小Demo-1"><a href="#小Demo-1" class="headerlink" title="小Demo"></a>小Demo</h3><h4 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>请输入你的车型:&lt;input type=&quot;text&quot; list=&quot;cars&quot;&gt;
+&lt;datalist id=&quot;cars&quot;&gt;
+    &lt;option&gt;奔驰&lt;/option&gt;
+    &lt;option&gt;宝马&lt;/option&gt;
+    &lt;option&gt;奥迪&lt;/option&gt;
+    &lt;option&gt;路虎&lt;/option&gt;
+    &lt;option&gt;宾利&lt;/option&gt;
+&lt;/datalist&gt;
+</code></pre><h4 id="图片展示-1"><a href="#图片展示-1" class="headerlink" title="图片展示"></a>图片展示</h4><p><img src="http://upload-images.jianshu.io/upload_images/3359912-25f576e7a3345033.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h2 id="表单标签3"><a href="#表单标签3" class="headerlink" title="表单标签3"></a>表单标签3</h2><h4 id="示例代码-6"><a href="#示例代码-6" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;form action=&quot;&quot;&gt;
+    &lt;!--
+    可以自动校验驶入的内容是否符合邮箱的格式
+    --&gt;
+    邮箱:&lt;input type=&quot;email&quot;/&gt;
+    &lt;!--k
+    可以自动校验驶入的内容是否符合域名的格式
+    --&gt;
+    域名:&lt;input type=&quot;url&quot;&gt;
+    &lt;!--
+    输入框中只可以输入数字
+    --&gt;
+    电话:&lt;input type=&quot;number&quot;&gt;
+    &lt;!--
+    可以通过日历来选择时间
+    --&gt;
+    时间:&lt;input type=&quot;date&quot;&gt;
+    &lt;!--
+    可以通过取色板来选择颜色
+    --&gt;
+    颜色:&lt;input type=&quot;color&quot;&gt;
+
+         &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/3359912-2bb86e005ed25d76.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h2 id="select标签"><a href="#select标签" class="headerlink" title="select标签"></a>select标签</h2><p>作用：用于定义下拉列表</p>
+<h3 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h3><h4 id="示例代码-7"><a href="#示例代码-7" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;select&gt;
+    &lt;optgroup label=&quot;分组名&quot;&gt;
+        &lt;option&gt;列表数据&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;
+</code></pre><h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.下拉列表不能输入内容，但是可以直接在列表中选择内容
+2.可以通过给option添加一个selected属性来指定列表的默认值
+3.可以通过给option包裹一个optgroup标签来给下拉列表中的数据分类
+</code></pre><h2 id="textarea标签"><a href="#textarea标签" class="headerlink" title="textarea标签"></a>textarea标签</h2><p>作用：定义一个多行的输入框</p>
+<h3 id="注意点：-1"><a href="#注意点：-1" class="headerlink" title="注意点："></a>注意点：</h3><pre><code>1.默认情况下输入框可以无限换行
+2.默认情况下输入框有自己的宽度和高度
+3.可以通过cols和rows来指定输入框的宽度和高度，但是还是可以无限换行
+</code></pre><h4 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h4><pre><code>&lt;select&gt;
+    &lt;optgroup label=&quot;北京&quot;&gt;
+        &lt;option&gt;朝阳区&lt;/option&gt;
+        &lt;option&gt;昌平区&lt;/option&gt;
+        &lt;option&gt;通州区&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label=&quot;广州&quot;&gt;
+        &lt;option&gt;天河区&lt;/option&gt;
+        &lt;option&gt;越秀区&lt;/option&gt;
+        &lt;option&gt;文明区&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;
+&lt;hr/&gt;
+&lt;textarea name=&quot;dd&quot; id=&quot;aa&quot; cols=&quot;2&quot; rows=&quot;5&quot;&gt;&lt;/textarea&gt;
+</code></pre><p>！<a href="http://upload-images.jianshu.io/upload_images/3359912-dc2b9ab5c3fcf2bb.png?imageMogr2/auto-orient/strip%7CimageView2/2" target="_blank" rel="external"></a></p>
+<h3 id="小Demo-2"><a href="#小Demo-2" class="headerlink" title="小Demo"></a>小Demo</h3><h4 id="示例代码-8"><a href="#示例代码-8" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;form action=&quot;http://www.520it.com&quot;&gt;
+    &lt;!--
+    fieldest标签给表单添加一个边框
+    lengend标签给表单添加一个标题
+    --&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;注册界面&lt;/legend&gt;
+        &lt;p&gt;
+        &lt;label for=&quot;username&quot;&gt;帐号:&lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;account&quot;&gt;&lt;/label&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+        &lt;label for=&quot;pws&quot;&gt;密码:&lt;input type=&quot;password&quot; id=&quot;pws&quot; name=&quot;pwd&quot;&gt;&lt;/label&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+        性别:
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;男
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;女
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; checked=&quot;checked&quot; value=&quot;sec&quot;&gt;保密
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;!--注意点
+            单选框和多选框都需要指定相同的name值
+            --&gt;
+        爱好:
+        &lt;input type=&quot;checkbox&quot; name=&quot;sport&quot; value=&quot;basketball&quot;&gt;篮球
+        &lt;input type=&quot;checkbox&quot; name=&quot;sport&quot; value=&quot;football&quot;&gt;足球
+        &lt;input type=&quot;checkbox&quot; name=&quot;sport&quot; checked=&quot;checked&quot; value=&quot;crazy&quot;&gt;足浴
+        &lt;/p&gt;
+        &lt;p&gt;
+        个人简介：
+        &lt;textarea role=&quot;15&quot; rows=&quot;6&quot; name=&quot;desc&quot;&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+        生日:&lt;input type=&quot;date&quot; name=&quot;birthday&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+        邮箱:&lt;input type=&quot;email&quot; name=&quot;email&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+        手机:&lt;input type=&quot;number&quot; name=&quot;phone&quot;&gt;
+        &lt;/p&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;注册&quot;&gt;     
+        &lt;input type=&quot;reset&quot; value=&quot;清空&quot;&gt;
+
+    &lt;!--不加value值之前服务器的反馈
+        account=111&amp;
+        pwd=222&amp;
+        gender=on&amp;
+        sport=on&amp;
+        sport=on&amp;d
+        esc=jest+do+it&amp;
+        birthday=2016-10-03&amp;
+        email=12345%40qq.com&amp;
+        phone=12345678910
+    --&gt;
+    &lt;!--
+    除了按钮类型的input标签以外，其他类型的标签都可以通过添加value属性来指定将来提交到服务器的值
+    --&gt;
+    &lt;!--加了value值之后服务器的反馈，这才是完美匹配
+        account=111&amp;
+        pwd=222&amp;
+        gender=male&amp;
+        sport=basketball&amp;
+        sport=crazy&amp;
+        desc=just+do+it&amp;
+        birthday=2016-10-13&amp;
+        email=87987%40qq.com&amp;
+        phone=90898787890
+    --&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/3359912-6c47e7adbd85575f.png?imageMogr2/auto-orient/strip%7CimageView2/2&quot;" alt=""></p>
+<h2 id="video和audio"><a href="#video和audio" class="headerlink" title="video和audio"></a>video和audio</h2><p>video标签是用来播放视频的<br>格式：<br><code>&lt;video src=&quot;&quot;&gt;&lt;/video&gt;</code></p>
+<h3 id="video标签的属性"><a href="#video标签的属性" class="headerlink" title="video标签的属性"></a>video标签的属性</h3><pre><code>1.src：用于告诉video标签需要播放的视频地址
+2.autoplay：用于告诉video标签是否自动播放视频
+3.control：用于告诉video标签是否需要显示控制条
+4.poster：用于告诉video标签视频没有播放之前显示的占位图片
+5.loop：一般用于做广告视频，用于告诉video标签视频播放完毕之后是否循环播放
+6.preload：预加载视频，但是需要注意，这个属性和autoplay相冲，如果设置了autoplay属性，那么preload属性就会失效
+7.muted：静音
+8.width/height：和img标签的设置方式一模一样
+</code></pre><h3 id="video第二种格式"><a href="#video第二种格式" class="headerlink" title="video第二种格式"></a>video第二种格式</h3><h4 id="示例代码-9"><a href="#示例代码-9" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;video&gt;
+    &lt;source src=&quot;&quot; type=&quot;&quot;&gt;&lt;/source&gt;
+    &lt;source src=&quot;&quot; type=&quot;&quot;&gt;&lt;/source&gt;
+&lt;/video&gt;
+</code></pre><p>11由于视频数据非常重要，所以五大浏览器厂商都不愿意指出别人的视频格式，所以导致了没有一种视频格式是所有浏览器都支持的，所以W3C为了解决这个问题，就推出了第二个video标签的格式<br>2.video标签第二种格式存在的意义就是为了解决浏览器的适配问题<br>video元素支持三种视频格式，我们可以把这三种格式都通过source标签指定给video标签，那么当浏览器播放视频的时候它就会自动检测一种自己支持的格式来播放</p>
+<h4 id="注意点：-2"><a href="#注意点：-2" class="headerlink" title="注意点："></a>注意点：</h4><p>当前通过video标签的第二种格式虽然能够指定所有浏览器都支持的视频格式，但是显然所有浏览器都通过video标签播放视频还有一个前提条件，就是浏览器必须支持H5标签，否则无法播放。如果想实现所有浏览器都可以播放视频，后续会学到js里面的一个框架html5media来实现</p>
+<h4 id="示例代码-10"><a href="#示例代码-10" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;video controls=&quot;controls&quot;&gt;
+&lt;source src=&quot;images/sb1.webm&quot; type=&quot;video/webm&quot;&gt;
+&lt;source src=&quot;images/sb1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+&lt;source src=&quot;images/sb1.ogg&quot; type=&quot;video/ogg&quot;&gt;
+</code></pre><p></p>
+<h3 id="audio和video的用法相同"><a href="#audio和video的用法相同" class="headerlink" title="audio和video的用法相同"></a>audio和video的用法相同</h3><p>详情和概论<br>利用summary标签来描述概要信息，默认情况是折叠显示，想看详情必须点击。</p>
+<h4 id="格式：-1"><a href="#格式：-1" class="headerlink" title="格式："></a>格式：</h4><pre><code>&lt;details&gt;
+&lt;summary&gt;概要信息&lt;/summary&gt;
+详情信息
+</code></pre><p></p>
+<h4 id="示例代码-11"><a href="#示例代码-11" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;details&gt;
+&lt;summary&gt;周杰伦&lt;/summary&gt;
+周杰伦（Jay Chou），华语天王巨星。1979年1月18日出生于台湾省新北市，中国台湾流行乐男歌手、音乐人、演员、导演、编剧、监制、商人。
+</code></pre><p></p>
+<h4 id="图片展示-2"><a href="#图片展示-2" class="headerlink" title="图片展示"></a>图片展示</h4><p>![]<a href="http://upload-images.jianshu.io/upload_images/3359912-9733fcdccca82257.png?imageMogr2/auto-orient/strip%7CimageView2/2" target="_blank" rel="external">http://upload-images.jianshu.io/upload_images/3359912-9733fcdccca82257.png?imageMogr2/auto-orient/strip%7CimageView2/2</a>)</p>
+<h2 id="marquee标签"><a href="#marquee标签" class="headerlink" title="marquee标签"></a>marquee标签</h2><p>作用：跑马灯<br>格式：<br><code>&lt;marquee&gt;内容&lt;/marquee&gt;</code></p>
+<h3 id="属性："><a href="#属性：" class="headerlink" title="属性："></a>属性：</h3><pre><code>1.direction：设置滚动方向left/right/up/down
+</code></pre><p>2.scrollamount:设置滚动的速度，值越大越快<br>3.loop：设置滚动的次数，默认值是1<br>4.behavior：设置滚动类型，slide滚动到边界就停止，alternate滚动到边界就弹回</p>
+<h3 id="注意点：-3"><a href="#注意点：-3" class="headerlink" title="注意点："></a>注意点：</h3><p>marquee不是W3C推荐的标签，在官网也找不到这个标签，但是各大浏览器都支持非常好。</p>
+<h4 id="示例代码-12"><a href="#示例代码-12" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>    &lt;!--设置滚动方向--&gt;
+&lt;marquee&gt;随便写点内容&lt;/marquee&gt;
+&lt;marquee direction=&quot;right&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;marquee direction=&quot;up&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;marquee direction=&quot;down&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;hr/&gt;
+&lt;!--设置滚动速度--&gt;
+&lt;marquee scrollamount=&quot;1&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;marquee scrollamount=&quot;10&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;hr/&gt;
+&lt;!--设置滚动次数--&gt;
+&lt;marquee loop=&quot;1&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;hr/&gt;
+&lt;!--设置滚动类型--&gt;
+&lt;marquee behavior=&quot;slide&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;marquee behavior=&quot;alternate&quot;&gt;随便写点内容&lt;/marquee&gt;
+&lt;hr/&gt;
+&lt;!--图片滚动--&gt;
+&lt;marquee&gt;
+</code></pre><p><br><img src="http://upload-images.jianshu.io/upload_images/3359912-b67ec1519da2ed7f.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h2 id="HTML中被废弃的标签"><a href="#HTML中被废弃的标签" class="headerlink" title="HTML中被废弃的标签"></a>HTML中被废弃的标签</h2><p>为什么html中有一部分标签会被废弃<br>1.因为当前HTML中的标签只有一个作用，就是添加语义<br>2.而早期的HTML中的标签有一部分标签是没有语义的，所以这部分标签就被淘汰</p>
+<h4 id="示例代码-13"><a href="#示例代码-13" class="headerlink" title="示例代码"></a>示例代码</h4><pre><code>示例代码 :
+&lt;br&gt;&lt;hr&gt;&lt;font&gt;
+&lt;b&gt;&lt;u&gt;&lt;i&gt;&lt;s&gt;这些标签都是用来修改样式的
+b(bold) 加粗
+u(underlined) 下划线
+i(italic) 倾斜
+s(strikethrough) 删除线
+</code></pre><h4 id="注意点：-4"><a href="#注意点：-4" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.以后在开发中不到万不得已，不要用这些废弃的标签
+</code></pre><p>2.如果一定要使用，一般情况下都是用来作为css的钩子来使用<br>3.这些新增标签替代被废弃的</p>
+<h4 id="示例代码-14"><a href="#示例代码-14" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>strong == b 语义：定义重要性强调的文字
+   ins（inseted） == u    语义：定义插入的文字
+   em （emphasized）== i     语义：定义强调的文字
+   del（deleted） == s    语义：定义被删除的文字
+</code></pre><h2 id="字符实体"><a href="#字符实体" class="headerlink" title="字符实体"></a>字符实体</h2><p>1.在HTML中对空格/回车/tab不敏感，会把多个空格和回车和Tab都当作一个空格来处理<br>2.什么是字符实体<br>在HTML中有的字符是被HTML保留的，有的HTML字符在HTML中是有特殊含义的，在浏览器中不能直接显示出来，那么这些东西要想显示出来就必须通过字符实体来实现<br>    就是一个空格的意思，有几个 就有几个空格会显示出来，切记最后一定要加分号<br>    小于符号&lt;：&lt; (less than)的缩写<br>    大于符号&gt;：&gt; (greater than)的缩写<br>    版权符号：©</p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2014/11/28/html5(二) /"
+                     data-title="HTML5-知识点汇总二"
+                     data-url="https://Jingdan.github.io/2014/11/28/html5(二) /"
+                     data-images="https://Jingdan.github.io/2014/11/28/html5(二) /http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+表单标签专门用来搜集用户信息
+在HTML中，标签/标记元素都是指HTML中的标签例如：&lt... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/03/26/blog/" data-toggle="tooltip" data-placement="top"
+                           title="利用数组的reduce方法优化代码">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2014/11/11/html5(一)/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5-知识点汇总一">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2014/11/28/html5(二) /"
+                         data-title="HTML5-知识点汇总二"
+                         data-url="https://Jingdan.github.io/2014/11/28/html5(二) /">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#表单标签"><span class="toc-text">表单标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表单格式："><span class="toc-text">表单格式：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的表单元素"><span class="toc-text">常见的表单元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片展示"><span class="toc-text">图片展示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小Demo"><span class="toc-text">小Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Label标签"><span class="toc-text">Label标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Datalist标签"><span class="toc-text">Datalist标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#datalist标签"><span class="toc-text">datalist标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datalist格式"><span class="toc-text">datalist格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小Demo-1"><span class="toc-text">小Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片展示-1"><span class="toc-text">图片展示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单标签3"><span class="toc-text">表单标签3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select标签"><span class="toc-text">select标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式："><span class="toc-text">格式：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-7"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点："><span class="toc-text">注意点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#textarea标签"><span class="toc-text">textarea标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点：-1"><span class="toc-text">注意点：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实例代码"><span class="toc-text">实例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小Demo-2"><span class="toc-text">小Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-8"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#video和audio"><span class="toc-text">video和audio</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#video标签的属性"><span class="toc-text">video标签的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#video第二种格式"><span class="toc-text">video第二种格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-9"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-2"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-10"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#audio和video的用法相同"><span class="toc-text">audio和video的用法相同</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#格式：-1"><span class="toc-text">格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-11"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片展示-2"><span class="toc-text">图片展示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#marquee标签"><span class="toc-text">marquee标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性："><span class="toc-text">属性：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点：-3"><span class="toc-text">注意点：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-12"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML中被废弃的标签"><span class="toc-text">HTML中被废弃的标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-13"><span class="toc-text">示例代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-4"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-14"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符实体"><span class="toc-text">字符实体</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#html"
+                           title="html">html</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
