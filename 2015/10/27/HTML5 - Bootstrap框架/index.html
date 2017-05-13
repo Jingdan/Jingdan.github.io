@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        HTML5 - Bootstrap框架｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2015/10/27/HTML5 - Bootstrap框架/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTML5 - Bootstrap框架</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2015-10-27
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTML5 - Bootstrap框架
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<ul>
+<li>上一篇说到Less预处理语言,这节就着重讲下Bootstrap框架,这款框架应该是现在前端人手必备,就是那么的好用.不管是兼容性还是组建,都是无可挑剔的</li>
+<li>Bootstrap这种东西一定要学会,不然在前端开发中,你就好像是少了一只脚一样,现阶段我们只有拿来主义,先去用它,然后再慢慢的一点点的去研究它,超越它</li>
+<li>好处就是生态圈火，不断地更新迭代,提供一套美观大方地界面组件,提供一套优雅的 HTML+CSS 编码规范,让我们的 Web 开发更简单，更快捷；</li>
+<li>注意点就是使用Bootstrap 并不代表不用写 CSS 样式，而是不用写绝大多数大家都会用到的样式</li>
+</ul>
+<h2 id="下载Bootstrap"><a href="#下载Bootstrap" class="headerlink" title="下载Bootstrap"></a>下载Bootstrap</h2><p>下载3.3.6链接:<br><a href="https://github.com/twbs/bootstrap/releases/download/v3.3.6/bootstrap-3.3.6-dist.zip" target="_blank" rel="external">https://github.com/twbs/bootstrap/releases/download/v3.3.6/bootstrap-3.3.6-dist.zip</a><br>下载4.0链接:<br><a href="https://github.com/twbs/bootstrap/releases/download/v4.0.0-alpha.2/bootstrap-4.0.0-alpha.2-dist.zip" target="_blank" rel="external">https://github.com/twbs/bootstrap/releases/download/v4.0.0-alpha.2/bootstrap-4.0.0-alpha.2-dist.zip</a></p>
+<h2 id="在线自定义"><a href="#在线自定义" class="headerlink" title="在线自定义"></a>在线自定义</h2><ul>
+<li>官网在线</li>
+<li>中文网在线</li>
+</ul>
+<h2 id="源码编译-—-LESS语言"><a href="#源码编译-—-LESS语言" class="headerlink" title="源码编译 — LESS语言"></a>源码编译 — LESS语言</h2><ul>
+<li>官方文档</li>
+<li>中文文档</li>
+</ul>
+<h2 id="搭建-Bootstrap-页面骨架及项目目录结构"><a href="#搭建-Bootstrap-页面骨架及项目目录结构" class="headerlink" title="搭建 Bootstrap 页面骨架及项目目录结构"></a>搭建 Bootstrap 页面骨架及项目目录结构</h2><pre><code>├─ /project file/ ··················· 项目所在目录
+└─┬─ /css/ ······················· 我们自己的CSS文件
+  ├─ /font/ ······················ 使用到的字体文件
+  ├─ /img/ ······················· 使用到的图片文件
+  ├─ /js/ ························ 自己写的JS脚步
+  ├─ /lib/ ······················· 从第三方下载回来的库【只用不改】
+  ├─ /favicon.ico ················ 站点图标
+  └─ /index.html ················· 入口文件
+</code></pre><h2 id="约定编码规范"><a href="#约定编码规范" class="headerlink" title="约定编码规范"></a>约定编码规范</h2><h3 id="HTML约定"><a href="#HTML约定" class="headerlink" title="HTML约定"></a>HTML约定</h3><ul>
+<li>所有的CSS引用在HEAD中，按照第三方优先的顺序排列，我们自己的CSS肯定在最下面</li>
+<li>所有JS文件都引用在Body的最下面（加载的缘由），按照依赖顺序排序<br>如果只是使用bootstrap的样式的话，就不用引用js文件</li>
+<li>在head中引入必要的CSS文件，优先引用第三方的CSS，方便我们自己的样式覆盖</li>
+<li>在body末尾引入必要的JS文件，优先引用第三方的JS，注意JS文件之间的依赖关系，比如bootstrap.js依赖jQuery，那就应该先引用jquery.js 然后引用bootstrap.js</li>
+</ul>
+<h3 id="CSS约定"><a href="#CSS约定" class="headerlink" title="CSS约定"></a>CSS约定</h3><ul>
+<li>除了公共级别样式，其余样式全部由 模块前缀</li>
+<li>尽量使用 直接子代选择器， 少用间接子代 避免错杀</li>
+<li>CSS类名冲突 通过约定 给模块加上一个独一无二的名字</li>
+<li>使用子代选择器的方式</li>
+</ul>
+<h3 id="JS约定"><a href="#JS约定" class="headerlink" title="JS约定"></a>JS约定</h3><ul>
+<li>不允许使用onxxx = function(){}的方式注册事件</li>
+<li>原生JS统一使用addEventListener(‘xxx’, function(){});<br>HTML5文档结构</li>
+</ul>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;页面标题&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="视口Viewport设置"><a href="#视口Viewport设置" class="headerlink" title="视口Viewport设置"></a>视口Viewport设置</h2><h4 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0&quot;&gt;</code><br>1.html中插入视口设置，可以通过emmet meta:vp插入<br>2.此属性为移动端页面视口设置，当前值表示在移动端页面的宽度为设备的宽度，并且不缩放（缩放级别为1）<br>3.960px 内容 被套在一个宽度为980px(绝大多数设备的视口默认尺寸)的容器(视口)中，将视口缩放到414px的设备中展示<br>4.width:视口的宽度<br>5.initial-scale：初始化缩放<br>6.user-scalable:是否允许用户自行缩放（值：yes/no; 1/0）<br>7.minimum-scale:最小缩放，一般设置了用户不允许缩放，就没必要设置最小和最大缩放<br>8.maximum-scale:最大缩放</p>
+<h2 id="浏览器兼容模式"><a href="#浏览器兼容模式" class="headerlink" title="浏览器兼容模式"></a>浏览器兼容模式</h2><h4 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><p><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</code><br>html中插入兼容模式设置，可以通过emmet meta:compat插入<br>此属性为文档兼容模式声明，表示如果在IE浏览器下则使用最新的标准渲染当前文档</p>
+<h3 id="站点图标-favicon"><a href="#站点图标-favicon" class="headerlink" title="站点图标 favicon"></a>站点图标 favicon</h3><h5 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><p><code>&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;&gt;</code><br>html中插入图标链接，可以通过emmet link:favicon插入</p>
+<h3 id="引入相应的第三方文件"><a href="#引入相应的第三方文件" class="headerlink" title="引入相应的第三方文件"></a>引入相应的第三方文件</h3><h4 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;bootstrap.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;my.css&quot;&gt;
+...
+&lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;my.js&quot;&gt;&lt;/script&gt;
+</code></pre><h3 id="在我们默认的样式表中将默认字体设置为："><a href="#在我们默认的样式表中将默认字体设置为：" class="headerlink" title="在我们默认的样式表中将默认字体设置为："></a>在我们默认的样式表中将默认字体设置为：</h3><h4 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>body{
+  font-family: &quot;Helvetica Neue&quot;, 
+                Helvetica, 
+                Microsoft Yahei, 
+                Hiragino Sans GB, 
+                WenQuanYi Micro Hei, 
+                sans-serif;
+}
+</code></pre><h3 id="版心container类"><a href="#版心container类" class="headerlink" title="版心container类"></a>版心container类</h3><ul>
+<li>定义一个固定宽度且居中的版心</li>
+<li>container是具备响应式的能力</li>
+<li>四个档位 1170 - 970 - 750 - 100%</li>
+</ul>
+<h3 id="栅格系统-—-gt-核心部分"><a href="#栅格系统-—-gt-核心部分" class="headerlink" title="栅格系统 —-&gt; 核心部分"></a>栅格系统 —-&gt; 核心部分</h3><ul>
+<li>Bootstrap中的栅格系统就是将一行划分为12列</li>
+<li>我们通过col–的类名控制某个元素在某种屏幕的情况下展示几列</li>
+<li>col-md-6 在中等屏幕下 占1/2</li>
+<li>col-xs-12 在超小屏幕下 占全部</li>
+</ul>
+<h3 id="行排列-—-gt-row"><a href="#行排列-—-gt-row" class="headerlink" title="行排列 —-&gt; row"></a>行排列 —-&gt; row</h3><ul>
+<li>.row{ ml:-15px; mr:-15px }</li>
+<li>抵消掉container中定义的padding</li>
+</ul>
+<h3 id="列排列-—-gt-col-类"><a href="#列排列-—-gt-col-类" class="headerlink" title="列排列 —-&gt; col--类"></a>列排列 —-&gt; col-<em>-</em>类</h3><ul>
+<li>在某种屏幕尺寸下控制列的占比<br>1.col-xs-[列数]：在超小屏幕下展示几份<br>2.col-sm-[列数]：在小屏幕下展示几份<br>3.col-md-[列数]：在中等屏幕下展示几份<br>4.col-lg-[列数]：在大屏幕下展示几份<br>5.xs : 超小屏幕 手机 (&lt;768px)<br>6.sm : 小屏幕 平板 (≥768px)<br>7.md : 中等屏幕 桌面显示器 (≥992px)<br>8.lg: 大屏幕 大桌面显示器 (≥1200px)  </li>
+</ul>
+<h3 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h3><ul>
+<li>字体实际上就是记录一个字符对应的图形</li>
+<li>在CSS中为元素设置字体，以前只能设置客户端存在的字体</li>
+<li>webfont 在线字体</li>
+<li>自己做一套图形的字体,可以使用icomoon进行制作.</li>
+<li>如何定义一个web字体</li>
+</ul>
+<h4 id="示例代码-6"><a href="#示例代码-6" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>/* 定义一个叫做“xxx”字体 */
+@font-face {
+  font-family: &apos;xxx&apos;;
+  src: url(&apos;../font/MiFie-Web-Font.eot&apos;) format(&apos;embedded-opentype&apos;), 
+  url(&apos;../font/MiFie-Web-Font.svg&apos;) format(&apos;svg&apos;), 
+  url(&apos;../font/MiFie-Web-Font.ttf&apos;) format(&apos;truetype&apos;), 
+  url(&apos;../font/MiFie-Web-Font.woff&apos;) format(&apos;woff&apos;);
+}
+</code></pre><h3 id="字体文件格式"><a href="#字体文件格式" class="headerlink" title="字体文件格式"></a>字体文件格式</h3><ul>
+<li>eot : embedded-opentype</li>
+<li>svg : svg</li>
+<li>ttf : truetype</li>
+<li>woff : woff</li>
+</ul>
+<h3 id="自定义按钮样式生成"><a href="#自定义按钮样式生成" class="headerlink" title="自定义按钮样式生成"></a>自定义按钮样式生成</h3><ul>
+<li>链接 : <a href="http://blog.koalite.com/bbg/" target="_blank" rel="external">http://blog.koalite.com/bbg/</a></li>
+<li>可以通过界面生成一个新的按钮样式</li>
+<li>  .btn-xxx{<pre><code>  color: #ffffff;
+  background-color: #E92322;
+  border-color: #DB3B43;
+}
+.btn-xmg:hover,
+.btn-xmg:focus,
+.btn-xmg:active,
+.btn-xmg.active,
+.open .dropdown-toggle.btn-xmg {
+  color: #ffffff;
+  background-color: #E92322;
+  border-color: #DB3B43;
+}
+.btn-xmg:active,
+.btn-xmg.active,
+.open .dropdown-toggle.btn-xmg {
+  background-image: none;
+}
+.btn-xmg.disabled,
+.btn-xmg[disabled],
+fieldset[disabled] .btn-xmg,
+.btn-xmg.disabled:hover,
+.btn-xmg[disabled]:hover,
+fieldset[disabled] .btn-xmg:hover,
+.btn-xmg.disabled:focus,
+.btn-xmg[disabled]:focus,
+fieldset[disabled] .btn-xmg:focus,
+.btn-xmg.disabled:active,
+.btn-xmg[disabled]:active,
+fieldset[disabled] .btn-xmg:active,
+.btn-xmg.disabled.active,
+.btn-xmg[disabled].active,
+fieldset[disabled] .btn-xmg.active {
+  background-color: #E92322;
+  border-color: #DB3B43;
+}
+.btn-xmg .badge {
+  color: #E92322;
+  background-color: #ffffff;
+}
+</code></pre></li>
+</ul>
+<h2 id="3-5小屏幕隐藏"><a href="#3-5小屏幕隐藏" class="headerlink" title="3.5小屏幕隐藏"></a>3.5小屏幕隐藏</h2><h4 id="示例代码-7"><a href="#示例代码-7" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><p><code>&lt;div class=&quot;topbar hidden-xs hidden-sm&quot;&gt;&lt;/div&gt;</code><br><code>&lt;div class=&quot;topbar visible-md visible-lg&quot;&gt;&lt;/div&gt;</code></p>
+<ul>
+<li>hidden-xx : 在某种屏幕下隐藏</li>
+<li>visible-xx-xxx : 在某种屏幕尺寸下显示</li>
+<li>visible-md-xx：指的是中等屏幕可见，不是中等屏幕以上</li>
+<li>visible-md-block visible-lg-block == hidden-sm hidden-xs</li>
+</ul>
+<h3 id="自己实现一套相同的工具类"><a href="#自己实现一套相同的工具类" class="headerlink" title="自己实现一套相同的工具类"></a>自己实现一套相同的工具类</h3><ul>
+<li>根据hidden-xxx和visible-xxx的特点，通过媒体查询的方式</li>
+</ul>
+<h4 id="示例代码-8"><a href="#示例代码-8" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>@media (max-width:768px) {
+  /*-xs*/
+  .hidden-xs {
+    display: none;
+  }
+  .visible-xs-block {
+    display: block;
+  }
+  .visible-xs-inline {
+    display: inline;
+  }
+  .visible-xs-inline-block {
+    display: inline-block;
+  }
+}
+@media (max-width:992px) {
+  /*-sm*/
+  .hidden-sm {
+    display: none;
+  }
+  .visible-sm-block {
+    display: block;
+  }
+  .visible-sm-inline {
+    display: inline;
+  }
+  .visible-sm-inline-block {
+    display: inline-block;
+  }
+}
+@media (max-width:1200px) {
+  /*-md*/
+  .hidden-md {
+    display: none;
+  }
+  .visible-md-block {
+    display: block;
+  }
+  .visible-md-inline {
+    display: inline;
+  }
+  .visible-md-inline-block {
+    display: inline-block;
+  }
+}
+@media (min-width:1200px) {
+  /*-lg*/
+  .hidden-lg {
+    display: none;
+  }
+  .visible-lg-block {
+    display: block;
+  }
+  .visible-lg-inline {
+    display: inline;
+  }
+  .visible-lg-inline-block {
+    display: inline-block;
+  }
+}
+</code></pre><h3 id="使用一个第三方的jquery插件步骤"><a href="#使用一个第三方的jquery插件步骤" class="headerlink" title="使用一个第三方的jquery插件步骤"></a>使用一个第三方的jquery插件步骤</h3><ul>
+<li>下载包</li>
+<li>引用jquery</li>
+<li>引用包</li>
+<li>编写特定的HTML结构</li>
+<li>自己写一段JS调用一下这个插件</li>
+<li>Bootstrap框架中的所有JS组件都依赖于jQuery实现</li>
+<li>现在市面上很多插件的调用方式是不需要自己写JS</li>
+<li>其实这些插件都会根据HTML的特殊点自动执行</li>
+</ul>
+<h2 id="4-导航通栏"><a href="#4-导航通栏" class="headerlink" title="4.导航通栏"></a>4.导航通栏</h2><h5 id="在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来"><a href="#在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来" class="headerlink" title="在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来"></a>在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来</h5><pre><code>&lt;nav class=&quot;navbar navbar-default navbar-xmg navbar-static-top&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;
+        &lt;i class=&quot;icon-icon&quot;&gt;&lt;/i&gt;
+        &lt;i class=&quot;icon-logo&quot;&gt;&lt;/i&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul class=&quot;nav navbar-nav navbar-right hidden-sm&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;个人中心&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre><h2 id="Bootstrap扩展"><a href="#Bootstrap扩展" class="headerlink" title="Bootstrap扩展"></a>Bootstrap扩展</h2><ul>
+<li>通过bootstrap文档对导航条样式的设置发现，其实本身是有一个类似于主题的概念</li>
+<li>navbar-default：默认的外观</li>
+<li>navbar-inverse：暗色背景的样式</li>
+<li>所以我们希望可以通过</li>
+<li>一套完整的风格（继承navbar-default）：navbar-xxx</li>
+</ul>
+<h4 id="示例代码-9"><a href="#示例代码-9" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>.navbar-xxx{
+  ...
+}
+具体代码参考官网navbar-default实现即可
+</code></pre><p>菜单行高调整</p>
+<p>默认样式中菜单的行高为20px，我们可以调整为自己想要的高度<br>一般都是通过自己的样式去覆盖</p>
+<h2 id="响应式菜单"><a href="#响应式菜单" class="headerlink" title="响应式菜单"></a>响应式菜单</h2><ul>
+<li>默认菜单是不具备响应式的能力的，通过观察文档发现，响应式菜单是通过一个按钮控制的</li>
+</ul>
+<h4 id="示例代码-10"><a href="#示例代码-10" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;nav class=&quot;navbar navbar-default navbar-xmg navbar-static-top&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;!-- 点击该按钮会切换菜单的显示或隐藏 --&gt;
+      &lt;button id=&quot;btn&quot; type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#nav_list&quot; aria-expanded=&quot;false&quot;&gt;
+        &lt;span class=&quot;sr-only&quot;&gt;切换菜单&lt;/span&gt;
+        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;
+        &lt;i class=&quot;icon-icon&quot;&gt;&lt;/i&gt;
+        &lt;i class=&quot;icon-logo&quot;&gt;&lt;/i&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;nav_list&quot; class=&quot;collapse navbar-collapse&quot;&gt;
+      &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;导航列表&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ul class=&quot;nav navbar-nav navbar-right hidden-sm&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;更多信息&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre><h3 id="轮播图"><a href="#轮播图" class="headerlink" title="轮播图"></a>轮播图</h3><h4 id="Bootstrap-JS插件使用"><a href="#Bootstrap-JS插件使用" class="headerlink" title="Bootstrap JS插件使用"></a>Bootstrap JS插件使用</h4><ul>
+<li>对于Bootstrap的JS插件</li>
+<li>我们只需要将文档实例中的代码粘到我们</li>
+<li>自己的代码中</li>
+<li>让后作出相应的样式调整</li>
+</ul>
+<h4 id="Bootstrap中轮播图插件叫作Carousel"><a href="#Bootstrap中轮播图插件叫作Carousel" class="headerlink" title="Bootstrap中轮播图插件叫作Carousel"></a>Bootstrap中轮播图插件叫作Carousel</h4><h3 id="基本的轮播图实现"><a href="#基本的轮播图实现" class="headerlink" title="基本的轮播图实现"></a>基本的轮播图实现</h3><h4 id="示例代码-11"><a href="#示例代码-11" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;!-- 
+  以下容器就是整个轮播图组件的整体，
+  注意该盒子必须加上 class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot; 表示当前是一个轮播图
+  bootstrap.js会自动为当前元素添加图片轮播的特效
+--&gt;
+&lt;div id=&quot;轮播图的ID&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;
+  &lt;!-- ol标签是图片轮播的控制点 --&gt;
+  &lt;ol class=&quot;carousel-indicators&quot;&gt;
+    &lt;!-- 
+      每一个li就是一个单独的控制点
+        data-target属性就是指定当前控制点控制的是哪一个轮播图，其目的是如果界面上有多个轮播图，便于区分到底控制哪一个
+        data-slide-to属性是指当前的li元素绑定的是第几个轮播项
+      注意，默认必须给其中某个li加上active，展示的时候就是焦点项目
+    --&gt;
+    &lt;li data-target=&quot;#轮播图的ID&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;
+    &lt;li data-target=&quot;#轮播图的ID&quot; data-slide-to=&quot;1&quot;&gt;&lt;/li&gt;
+    &lt;!-- ...更多的 --&gt;
+  &lt;/ol&gt;
+  &lt;!-- 
+    .carousel-inner是所有轮播项的容器盒子，
+    注意role=&quot;listbox&quot;代表当前div是一个列表盒子，作用就是给当前div添加一个语义
+  --&gt;
+  &lt;div class=&quot;carousel-inner&quot; role=&quot;listbox&quot;&gt;
+    &lt;!-- 每一个.item就是单个轮播项目，注意默认要给第一个轮播项目加上active，表示为焦点 --&gt;
+    &lt;div class=&quot;item active&quot;&gt;
+      &lt;!-- 轮播项目中展示的图片 --&gt;
+      &lt;img src=&quot;example.jpg&quot; alt=&quot;示例图片&quot;&gt;
+      &lt;div class=&quot;carousel-caption&quot;&gt;
+        &lt;!-- 标题或说明性文字，如果不需要，直接删除当前div.carousel-caption --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+      &lt;!-- ... --&gt;
+    &lt;/div&gt;
+    &lt;!-- ... --&gt;
+  &lt;/div&gt;
+  &lt;!-- 图片轮播上左右两个控制按钮，分别点击可以滚动到上一张和下一张 --&gt;
+  &lt;!-- 此处需要注意的是 该a链接的href属性必须指向需要控制的轮播图ID --&gt;
+  &lt;!-- 另外a链接中的data-slide=&quot;prev&quot;代表点击该链接会滚到上一张，如果设置为next的话则相反 --&gt;
+  &lt;a class=&quot;left carousel-control&quot; href=&quot;#轮播图的ID&quot; role=&quot;button&quot; data-slide=&quot;prev&quot;&gt;
+    &lt;span class=&quot;glyphicon glyphicon-chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;sr-only&quot;&gt;上一张&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;right carousel-control&quot; href=&quot;#轮播图的ID&quot; role=&quot;button&quot; data-slide=&quot;next&quot;&gt;
+    &lt;span class=&quot;glyphicon glyphicon-chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;sr-only&quot;&gt;下一张&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+</code></pre><h4 id="由于轮播图片超宽造成的影响"><a href="#由于轮播图片超宽造成的影响" class="headerlink" title="由于轮播图片超宽造成的影响"></a>由于轮播图片超宽造成的影响</h4><ul>
+<li>一个超宽的图片在容器中居中显示：</li>
+<li>position方式</li>
+<li>background方式 通过背景图的定位方式</li>
+<li>美工为了在不同屏幕下更好地展示将图片两边做的非常宽，但是我们大多数情况的页面宽度都无法满足这样的图片宽度</li>
+<li>而且Bootstrap的样式中默认将图片的max-width设置为100%；</li>
+<li>造成界面图片缩放</li>
+<li>想在一个较小屏幕下展示一个超宽的图片，并让图片居中显示<br>  三种办法：<br>  1.换用背景图的方式，background-position: center center;<br>  2.使img元素绝对定位，left:50%，margin-left: -width/2<br>  3.translate方式</li>
+</ul>
+<h5 id="background使用"><a href="#background使用" class="headerlink" title="background使用"></a>background使用</h5><ul>
+<li>将容器的高度固定（比如 : 410px）</li>
+<li>将轮播图改为背景显示</li>
+<li>由于可能图片的高度不一定是410px</li>
+<li>所以需要设置css3中的background-size</li>
+</ul>
+<h5 id="background-size"><a href="#background-size" class="headerlink" title="background-size"></a>background-size</h5><ul>
+<li>length<br>如 background-size: 100px 100px，将背景图固定到多大尺寸</li>
+<li>percentage<br>如 background-size: 90% 90%，以百分比的形式设置背景大小</li>
+<li><p>cover</p>
+<p>  1.背景图片等比例缩放<br>  2.让背景图相对较小边放大到目标容器大小结束<br>  3.如：一张100<em>200的背景图放到一个300</em>400的盒子中，最终背景图片的大小是300<em>600<br>  4.因为背景图的较小边为100，将100放大到目标容器300的宽度，放大了3倍，最终结果300</em>600</p>
+</li>
+<li><p>contain</p>
+<p>  1.背景图片等比例缩放<br>  2.让背景图相对较大边放大到目标容器大小结束<br>  3.如：一张100<em>200的背景图放到一个300</em>400的盒子中，最终背景图片的大小是200<em>400<br>  4.因为背景图的较大边为200，将200放大到目标容器400的高度，放大了2倍，最终结果200</em>400</p>
+</li>
+</ul>
+<h5 id="图片响应式"><a href="#图片响应式" class="headerlink" title="图片响应式"></a>图片响应式</h5><ul>
+<li>各种终端都需要正常显示图片</li>
+<li>移动端应该使用更小（体积）的图片</li>
+<li>实现方式<br>  1.将元素中直接设置的图片背景删除，换成两个data-属性（如：data-img-sm=”小图路径”，data-img-lg=”大图路径”）<br>  2.通过JS的方式获取屏幕的宽度；<br>  3.判断屏幕宽度是否小于一定的值（如：768）<br>  4.根据判断情况决定使用具体的大图还是小图</li>
+</ul>
+<h4 id="示例代码-12"><a href="#示例代码-12" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>// 获取屏幕宽度
+var windowWidth = $(window).width();
+// 判断屏幕属于大还是小
+var isSmallScreen = windowWidth &lt; 768;
+// 根据大小为界面上的每一张轮播图设置背景
+// $(&apos;#main_ad &gt; .carousel-inner &gt; .item&apos;) // 获取到的是一个DOM数组（多个元素）
+$(&apos;#main_ad &gt; .carousel-inner &gt; .item&apos;).each(function(i, item) {
+  // 因为拿到是DOM对象 需要转换
+  var $item = $(item);
+  // var imgSrc = $item.data(isSmallScreen ? &apos;image-xs&apos; : &apos;image-lg&apos;);
+  var imgSrc =
+    isSmallScreen ? $item.data(&apos;image-xs&apos;) : $item.data(&apos;image-lg&apos;);
+  // 设置背景图片
+  $item.css(&apos;backgroundImage&apos;, &apos;url(&quot;&apos; + imgSrc + &apos;&quot;)&apos;);
+});
+</code></pre><h5 id="window-resize事件"><a href="#window-resize事件" class="headerlink" title="window resize事件"></a>window resize事件</h5><ul>
+<li>由于上一步我们实现的过程是指在页面加载完成判断一次，</li>
+<li>当用户手动调整页面宽度过后没有及时发生变化，</li>
+<li>所以我们可以通过window的resize事件中重新完成以上操作来解决这个问题</li>
+</ul>
+<h4 id="示例代码-13"><a href="#示例代码-13" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>function 窗口变化后执行的函数名(){
+  // 具体的操作
+}
+$(window).on(&apos;resize&apos;, 窗口变化后执行的函数名);
+</code></pre><ul>
+<li>这个事件只会在窗口尺寸发生变化后执行，但是我们需要一开始时执行一次</li>
+</ul>
+<h4 id="示例代码-14"><a href="#示例代码-14" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>...
+$(window).on(&apos;resize&apos;, 窗口变化后执行的函数名).trigger(&apos;resize&apos;);
+</code></pre><h5 id="小图片不需要使用背景的方式"><a href="#小图片不需要使用背景的方式" class="headerlink" title="小图片不需要使用背景的方式"></a>小图片不需要使用背景的方式</h5><ul>
+<li>小图如果还是使用背景的方式，当屏幕特别小时，效果很差</li>
+<li>所以当使用小图时，改用img的方式</li>
+</ul>
+<h4 id="示例代码-15"><a href="#示例代码-15" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>// 因为我们需要小图时 尺寸等比例变化，所以小图时我们使用img方式
+if (isSmallScreen) {
+  $item.html(&apos;&lt;img src=&quot;&apos; + imgSrc + &apos;&quot; alt=&quot;&quot; /&gt;&apos;);
+} else {
+  $item.empty();
+}
+</code></pre><ul>
+<li>按照目前的情况，如果是小图展示则不需要给容器加上410px的固定高度</li>
+<li>所以我们可以通过CSS媒体查询的方式解决</li>
+</ul>
+<h4 id="示例代码-16"><a href="#示例代码-16" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>main_ad &gt; .carousel-inner &gt; .item {
+ background-repeat: no-repeat;
+ background-position: center center;
+ background-size: cover;
+}
+@media (min-width: 768px) {
+ main_ad &gt; .carousel-inner &gt; .item {
+ height: 410px;
+ }
+}
+ main_ad &gt; .carousel-inner &gt; .item &gt; img {
+  width: 100%;
+}
+</code></pre><h5 id="响应式辅助类型"><a href="#响应式辅助类型" class="headerlink" title="响应式辅助类型"></a>响应式辅助类型</h5><ul>
+<li>整个板块在超小屏幕下是隐藏起来的</li>
+<li>只需要给当前板块加上hidden-xs的class</li>
+</ul>
+<h2 id="预置界面组件"><a href="#预置界面组件" class="headerlink" title="预置界面组件"></a>预置界面组件</h2><ul>
+<li>导航</li>
+<li>导航条</li>
+<li>面包屑导航</li>
+<li>下拉菜单</li>
+<li>按钮式下拉菜单</li>
+<li>按钮组</li>
+<li>输入框组</li>
+<li>警告框</li>
+<li>页头</li>
+<li>分页</li>
+<li>列表组</li>
+<li>面板</li>
+<li>媒体对象</li>
+<li>进度条</li>
+<li>Glyphicons</li>
+<li>标签</li>
+<li>徽章</li>
+<li>缩略图</li>
+<li>大屏幕</li>
+<li>嵌入内容</li>
+<li>内嵌</li>
+</ul>
+<h2 id="JavaScript插件-–-内置组件"><a href="#JavaScript插件-–-内置组件" class="headerlink" title="JavaScript插件 – 内置组件"></a>JavaScript插件 – 内置组件</h2><ul>
+<li>模态对话框</li>
+<li>下拉菜单</li>
+<li>滚动监听</li>
+<li>标签页</li>
+<li>工具提示</li>
+<li>弹出框</li>
+<li>警告框</li>
+<li>按钮</li>
+<li>折叠面板</li>
+<li>轮播图</li>
+<li>吸顶效果</li>
+<li>data-spy=”affix”</li>
+<li>data-offset-top=”什么位置出现”</li>
+<li>data-offset-bottom=”什么位置消失”<br>大致应用就是这样子的一个流程和方式,这些东西掌握,举一反三就会明白其他的一些东西,当然,如果后期发现什么好玩的,再来补充添加</li>
+</ul>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2015/10/27/HTML5 - Bootstrap框架/"
+                     data-title="HTML5 - Bootstrap框架"
+                     data-url="https://Jingdan.github.io/2015/10/27/HTML5 - Bootstrap框架/"
+                     data-images="https://Jingdan.github.io/2015/10/27/HTML5 - Bootstrap框架/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+
+上一篇说到Less预处理语言,这节就着重讲下Bootstrap框架,这款框架应该是现在前端... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/03/26/blog/" data-toggle="tooltip" data-placement="top"
+                           title="利用数组的reduce方法优化代码">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/08/05/HTML5 - LESS预处理语言/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - LESS预处理语言">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2015/10/27/HTML5 - Bootstrap框架/"
+                         data-title="HTML5 - Bootstrap框架"
+                         data-url="https://Jingdan.github.io/2015/10/27/HTML5 - Bootstrap框架/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载Bootstrap"><span class="toc-text">下载Bootstrap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在线自定义"><span class="toc-text">在线自定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码编译-—-LESS语言"><span class="toc-text">源码编译 — LESS语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建-Bootstrap-页面骨架及项目目录结构"><span class="toc-text">搭建 Bootstrap 页面骨架及项目目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#约定编码规范"><span class="toc-text">约定编码规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML约定"><span class="toc-text">HTML约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS约定"><span class="toc-text">CSS约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS约定"><span class="toc-text">JS约定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视口Viewport设置"><span class="toc-text">视口Viewport设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容模式"><span class="toc-text">浏览器兼容模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#站点图标-favicon"><span class="toc-text">站点图标 favicon</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引入相应的第三方文件"><span class="toc-text">引入相应的第三方文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在我们默认的样式表中将默认字体设置为："><span class="toc-text">在我们默认的样式表中将默认字体设置为：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版心container类"><span class="toc-text">版心container类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#栅格系统-—-gt-核心部分"><span class="toc-text">栅格系统 —-> 核心部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行排列-—-gt-row"><span class="toc-text">行排列 —-> row</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列排列-—-gt-col-类"><span class="toc-text">列排列 —-> col--类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体图标"><span class="toc-text">字体图标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体文件格式"><span class="toc-text">字体文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义按钮样式生成"><span class="toc-text">自定义按钮样式生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5小屏幕隐藏"><span class="toc-text">3.5小屏幕隐藏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-7"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己实现一套相同的工具类"><span class="toc-text">自己实现一套相同的工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-8"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一个第三方的jquery插件步骤"><span class="toc-text">使用一个第三方的jquery插件步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-导航通栏"><span class="toc-text">4.导航通栏</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来"><span class="toc-text">在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap扩展"><span class="toc-text">Bootstrap扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-9"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式菜单"><span class="toc-text">响应式菜单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-10"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#轮播图"><span class="toc-text">轮播图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bootstrap-JS插件使用"><span class="toc-text">Bootstrap JS插件使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bootstrap中轮播图插件叫作Carousel"><span class="toc-text">Bootstrap中轮播图插件叫作Carousel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本的轮播图实现"><span class="toc-text">基本的轮播图实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-11"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#由于轮播图片超宽造成的影响"><span class="toc-text">由于轮播图片超宽造成的影响</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#background使用"><span class="toc-text">background使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#background-size"><span class="toc-text">background-size</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#图片响应式"><span class="toc-text">图片响应式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-12"><span class="toc-text">示例代码 :</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#window-resize事件"><span class="toc-text">window resize事件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-13"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-14"><span class="toc-text">示例代码 :</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#小图片不需要使用背景的方式"><span class="toc-text">小图片不需要使用背景的方式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-15"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-16"><span class="toc-text">示例代码 :</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#响应式辅助类型"><span class="toc-text">响应式辅助类型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预置界面组件"><span class="toc-text">预置界面组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript插件-–-内置组件"><span class="toc-text">JavaScript插件 – 内置组件</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
