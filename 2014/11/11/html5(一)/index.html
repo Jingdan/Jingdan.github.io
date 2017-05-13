@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        HTML5-知识点汇总一｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2014/11/11/html5(一)/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTML5-知识点汇总一</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2014-11-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#html"
+                           title="html">html</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTML5-知识点汇总一
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-60bdc8c87535e3ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"> </p>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>服务器就是超级计算机，顶级配置。服务器是用来存储数据的，24小时不断电不关机的超级计算机</p>
+<h2 id="什么是URL"><a href="#什么是URL" class="headerlink" title="什么是URL"></a>什么是URL</h2><p><a href="http://127.0.0.1：80/index.html（完整的格式）" target="_blank" rel="external">http://127.0.0.1：80/index.html（完整的格式）</a><br><a href="http://URL协议类型" target="_blank" rel="external">http://URL协议类型</a><br>127.0.0.1服务器的IP地址<br>:80服务器的端口号<br>index.html需要访问的资源名称</p>
+<h2 id="认识HTML"><a href="#认识HTML" class="headerlink" title="认识HTML"></a>认识HTML</h2><p> HTML 由HyperText（超文本） Markup（标记） Language（语言）缩写而来。<br>HTML只有一个作用，它是专门用来给文本添加语义的。所以HTML被称作“超文本标记语言”。</p>
+<h2 id="认识HTML-1"><a href="#认识HTML-1" class="headerlink" title="认识HTML"></a>认识HTML</h2><p>字符集  </p>
+<pre><code>&lt;meta charset=&quot;GBK&quot;&gt;  GBK中文汉字 国标  纯中文网站
+&lt;meta charset=&quot;UTF-8&quot;&gt;   UTF-8 国际通用 字库很全
+</code></pre><h2 id="DTD文档声明"><a href="#DTD文档声明" class="headerlink" title="DTD文档声明"></a>DTD文档声明</h2><p><code>&lt;!DOCTYPE html&gt;     作用告诉浏览器  我是一个文档</code></p>
+<h2 id="H系列标签"><a href="#H系列标签" class="headerlink" title="H系列标签"></a>H系列标签</h2><pre><code>h1 h2 h3 h4 h5 h6 标签 只有h1到h6   主标题  字体依次变小                                      
+&lt; !--在浏览器上显示一条分割线-- &gt;  
+&lt; !--注意：独占一行-- &gt; 
+&lt; hr/ &gt;标签  
+&lt; !--注意：在浏览器中独占一行-- &gt;   
+&lt; p &gt;我是一段文本&lt; / p&gt;    
+&lt; !--快速添加前后标签--&gt;&lt;!--选中文字，然后快捷键：Ctrl+Alt+T-- &gt;
+</code></pre><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><pre><code>&lt;!--&lt;p&gt;我是段落&lt;/p&gt;--&gt;  工作中注释非常重要 注释的内容不会显示在页面上
+&lt;!--快捷键：Ctrl + / --&gt;
+</code></pre><h2 id="img标签和路径问题"><a href="#img标签和路径问题" class="headerlink" title="img标签和路径问题"></a>img标签和路径问题</h2><h3 id="img标签是英文的缩写，用来显示一张图片"><a href="#img标签是英文的缩写，用来显示一张图片" class="headerlink" title="img标签是英文的缩写，用来显示一张图片"></a>img标签是英文的缩写，用来显示一张图片</h3><h3 id="img标签的格式"><a href="#img标签的格式" class="headerlink" title="img标签的格式"></a>img标签的格式</h3><p><code>&lt; img src = &quot;&quot; &gt; src是英文 source 的缩写，source：资源，src是用来告诉img标签需要显示的图片。</code></p>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>和H系列的标签不一样，img标签不会独占一行- 如果我们手动指定图片的宽度和高度，会使图片变形 如果不想图片变形，只指定一个值，系统会自动自动高度，都是等比拉伸，不会变形</p>
+<h3 id="img包含的属性-："><a href="#img包含的属性-：" class="headerlink" title="img包含的属性 ："></a>img包含的属性 ：</h3><p>width：宽度<br> height：高度 width/height两个属性来控制图片的高度和宽度 如果没有指定宽度和高度，系统会默认显示<br>title：当鼠标悬停在图片上的时候，需要弹出的描述框中显示什么内容<br>alt：是英文alternate的缩写 作用是：当需要显示的图片找不到时，显示什么内容。</p>
+<h3 id="路径问题："><a href="#路径问题：" class="headerlink" title="路径问题："></a>路径问题：</h3><h4 id="给src赋值有两种方式"><a href="#给src赋值有两种方式" class="headerlink" title="给src赋值有两种方式"></a>给src赋值有两种方式</h4><pre><code>1.通过相对路径赋值相对路径就是每次从.html中查找
+2.同级就是图片和.html存储在同一个文件夹中格式：src=&quot;QRCode.jpg&quot;含义：在.html文件所在的文件夹中查找名称叫做QRCode.jpg的图片
+下级下级就是存储图片的文件夹和.html文件在同一个文件夹中格式：在.html文件所在的文件夹中找到名称教程images的文件夹
+上级上级就是存储图片的位置和存储代码的文件夹在同一个文件夹中格式：src=&quot;../QRCode.jpg&quot;../代表跳出现在的文件夹从上级文件夹中查找名称叫做QRCode.jpg的文件
+3.通过绝对路径赋值绝对路径每次都是从指定的硬盘开始查找
+4.注意：
+路径中不要出现中文，否则会导致无法显示图片
+通过相对路径指定，不能跨硬盘
+</code></pre><h3 id="换行标签"><a href="#换行标签" class="headerlink" title="换行标签"></a>换行标签</h3><p>如何在HTML中换行，可以用br标签<br>br标签的作用：换行<br>br标签的格式：<br>注意点：<br>多个br标签可以连续使用，使用了几个就会换几行<br>由于HTML的作用就是给文本添加语义，而br标签的语义是不另起一个段落换行，而在企业中开发一般需要另起一个段落换行，所以开发中很少使用br标签。</p>
+<h3 id="a标签"><a href="#a标签" class="headerlink" title="a标签"></a>a标签</h3><p>什么是a标签<br>a标签的作用:就是用于控制页面与玉面之间跳转的<br>a标签的格式：<a href="指定需要跳转的目标界面">需要给用户查看的内容</a><br>a标签中还有一个叫做target(目标)属性，这个属性的作用是来控制如何跳转页面<br>_self(当前):当前页面跳转，不新建选项卡<br>_blank(空白):重新打开一个新选项卡跳转<br>a标签中还有一个叫做title的属性，和img标签中的title属性是一样的，都是用来控制鼠标悬停时显示的提示文本的</p>
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.a标签不仅可以让文字可以点击跳转，还可以让图片跳转
+2.一个a标签必须有一个href属性，不然无法实现跳转
+3.如果通过a标签的href属性指定一个URL地址的时候，前面必须加上(http:)//或(https://)
+4.a标签除了可以指定网络地址以外，还可以指定本地地址
+</code></pre><h4 id="示例代码-跳转到另一页"><a href="#示例代码-跳转到另一页" class="headerlink" title="示例代码 : 跳转到另一页"></a>示例代码 : 跳转到另一页</h4><pre><code>&lt; a href=&quot;https://www.跳转地址&quot;&gt;内容页&lt; /a&gt;
+&lt; a href=&quot;https://www.跳转地址&quot;&gt;
+  ![](图片地址)
+&lt; /a&gt;    
+</code></pre><h4 id="示例代码-本地跳转"><a href="#示例代码-本地跳转" class="headerlink" title="示例代码 : 本地跳转"></a>示例代码 : 本地跳转</h4><p><code>&lt; a href=&quot;本地地址.html&quot;&gt;内容标题.html&lt; /a&gt;</code>    </p>
+<h4 id="示例代码-target"><a href="#示例代码-target" class="headerlink" title="示例代码 : target"></a>示例代码 : target</h4><pre><code>&lt;a href=&quot;https://www.链接地址&quot; target=&quot;_self&quot;&gt;地址页&lt; /a&gt;
+ &lt;a href=&quot;https://www.链接地址&quot; target=&quot;_blank&quot;&gt;地址页 &lt;/a&gt;
+</code></pre><h4 id="示例代码-title"><a href="#示例代码-title" class="headerlink" title="示例代码 : title"></a>示例代码 : title</h4><p><code>&lt;a href=&quot;https://www.nuomi.com/?cid=002540&quot; title=&quot;友情提示:会跳转到百度糯米首页&quot;&gt;糯米&lt;/a&gt;</code></p>
+<h2 id="base标签"><a href="#base标签" class="headerlink" title="base标签"></a>base标签</h2><p>base(基础)标签就是专门用来统一指定当前网页中所有的超链接（a标签）需要如何打开</p>
+<h4 id="注意点：-1"><a href="#注意点：-1" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.base标签必须写在head标签的开始标签和结尾标签中间
+2.如果既在base标签中指定了target，又在a标签中指定了target，那么浏览器会按照a标签中指定的方式打开
+</code></pre><h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt; base target=&quot;_blank&quot;&gt;   控制整个页面的跳转  插入在head标签之中
+&lt; a href=&quot;https://www.跳转地址&quot; target=&quot;_self&quot;&gt;比如百度糯米&lt; /a&gt;
+&lt; a href=&quot;http://news.跳转地址&quot;&gt;比如百度新闻&lt; /a&gt;
+&lt; a href=&quot;https://www.跳转地址&quot;&gt;比如hao123&lt; /a&gt;
+&lt; a href=&quot;http://跳转地址&quot;&gt;比如百度地图&lt; /a&gt;
+&lt; a href=&quot;http://跳转地址&quot;&gt;比如百度贴吧&lt; /a&gt;
+&lt; a href=&quot;http://跳转地址&quot;&gt;比如百度视频&lt; /a&gt;
+</code></pre><h2 id="假链接"><a href="#假链接" class="headerlink" title="假链接"></a>假链接</h2><p>1假链接就是点击之后不会跳转页面意义：在企业开前期，其他界面都没有写出来，所以不知道该往那里跳，所以用假链接来代替。<br>2开发到后期之后把假链接替换成真链接假链接的格式：1.#：点击之后会自动回到页面顶部2.javascript：点击之后不会自动回到顶部    </p>
+<h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>要想a标签跳转到指定的位置，必须告诉a标签一个独一无二的身份证号码，这样才能找到<br>如果给HTML中的标签绑定一个独一无二的身份号码呢？ 在html中都有一个叫做id的属性，id属性是独一无二的<br>想要跳转到指定的位置分两步<br>给目标位置添加一个id属性，然后指定一个独一无二的值<br>告诉a标签需要跳转到的目标标签对用的独一无二的身份证号码是多少格  式：<br><code>&lt; a href=&quot;#center&quot;&gt;跳转到中部&lt; /a&gt;&lt; h2 id=&quot;center&quot;&gt;我是中部&lt; /h2&gt;</code></p>
+<h4 id="注意点：-2"><a href="#注意点：-2" class="headerlink" title="注意点："></a>注意点：</h4><p>1.通过a标签跳转到指定位置的时候，是没有过度动画效果的，直接一下就跳到指定位置<br>2.a标签除了可以跳转到当前界面的指定位置以后，还可以跳转到其他界面的时候直接跳转到指定位置格式：<br><code>&lt; a href=&quot;13-锚点的测试界面.html#bottom&quot; target=&quot;_blank&quot;&gt;跳转到锚点测试界面&lt; /a&gt;</code><br><code>&lt; h2 id=&quot;bottom&quot;&gt;我是锚点测试界面3333&lt; /h2&gt;</code>  </p>
+<h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><p>1.什么是列表标签列表标签就是用来给一对数据添加列表语义，告诉浏览器这堆数据是一个整体<br>2.HTML中列表标签的分类<br>2.1无序列表（最多）（unordered list）(ul的缩写)<br>2.2有序列表（最少）（ordered list）<br>2.3定义列表（其次）（definition list）<br>3.无序列表的作用给一堆数据添加列表语义，并且这一堆数据中所有的数据没有先后之分先后之分：例如排行榜没有先后之分：例如城市<br>4.无序列表格式:<br><code>&lt; ul&gt; 
+      &lt; li&gt;需要显示的内容&lt; /li&gt;
+&lt; /ul&gt;</code></p>
+<p>li其实就是list item（列表条目）的缩写  list：（列表） item：（条目）</p>
+<h4 id="注意点：-3"><a href="#注意点：-3" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.ul标签是用来给一堆数据添加语义的，而不是给用来给它们前面添加小圆点的
+2.ul标签和li标签是一个组合，一般情况同时出现，不会单个出现
+3.ul标签和li标签是一个组合，所以ul标签中不推荐包含其他标签无序列表的
+</code></pre><h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><pre><code>1.新闻列表
+2.商品列表
+3.导航条
+</code></pre><h4 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;h2&gt;中国的城市有那些&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;北京&lt;/li&gt;
+        &lt;li&gt;上海&lt;/li&gt;
+        &lt;li&gt;武汉&lt;/li&gt;
+        &lt;li&gt;天津&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre><h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><pre><code>&lt;hr width=&quot;500px&quot; align=&quot;left&quot;&gt;
+&lt;ul type=&quot;circle&quot;&gt;
+    &lt;li&gt;男子帮前车拆穿碰瓷 遭&quot;碰瓷党&quot;砸穿车窗&lt;/li&gt;
+    &lt;li&gt;老鼠咬坏天然气胶管 户主点火做饭气灶闪爆&lt;/li&gt;
+    &lt;li&gt;小区业主和物业激战多年 老师被逼成“泼妇”&lt;/li&gt;
+    &lt;li&gt;体操美女不幸爆菊身亡！下体血肉模糊&lt;/li&gt;
+    &lt;li&gt;小伙陷传销欲骗家人钱 PS剁手指照被识破(图)&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h4 id="图片展示"><a href="#图片展示" class="headerlink" title="图片展示"></a>图片展示</h4><p><img src="http://upload-images.jianshu.io/upload_images/3359912-6325cfd55e07df5b.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt="图二"><br>ul标签中最好只放li标签，但是在企业开发中，li标签的内容可能会很复杂，所以我们可以继续在li标签中添加其他的标签，来丰富界面</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><pre><code>1.一定记住ul标签中最好只放li标签
+2.但是li标签中还可以继续添加其他的标签
+3.无序列表中的li标签除了可以添加别的标签丰富界面以后，还可以添加ul标签ul中可以有li，li中又可以有ul
+</code></pre><p><code>&lt;!--快速简写ul方式--&gt;  &lt;!--ul&gt;li*1++--&gt;</code></p>
+<h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>1.无序列表的作用<br>2,给一堆数据添加列表语义，并且这一堆数据中所有的数据有先后之分<br>有序列表格式：<br><code>&lt; ol&gt;(ordered list缩写)
+            &lt; li&gt;需要显示的内容&lt; /li&gt;</code> &lt; /ol&gt;</p>
+<p>注意点和应用场景都和ul的差不多</p>
+<h2 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h2><h4 id="定义列表的格式："><a href="#定义列表的格式：" class="headerlink" title="定义列表的格式："></a>定义列表的格式：</h4><pre><code>&lt;dl&gt;
+    &lt;dt&gt;&lt;/dt&gt;
+    &lt;dd&gt;&lt;/dd&gt;
+    &lt;dt&gt;&lt;/dt&gt;
+    &lt;dd&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre><h4 id="dt和dd都是英文缩写"><a href="#dt和dd都是英文缩写" class="headerlink" title="dt和dd都是英文缩写"></a>dt和dd都是英文缩写</h4><pre><code>1.dt是英文definition title的缩写，所以dt的含义就是用来定义列表
+2.dd是英文definition description的缩写，所以dd的含义就是用来定义标题对应的描述
+</code></pre><h4 id="定义列表的作用："><a href="#定义列表的作用：" class="headerlink" title="定义列表的作用："></a>定义列表的作用：</h4><pre><code>1.定义列表的作用
+2.给一堆数据添加列表语义
+3.先通过dt标签定义列表中的所有标题，然后通过dd标签给每个标题添加描述信息
+</code></pre><h4 id="定义列表的应用场景"><a href="#定义列表的应用场景" class="headerlink" title="定义列表的应用场景"></a>定义列表的应用场景</h4><pre><code>1.做网页底部的相关信息
+2.图文混排
+</code></pre><h4 id="注意点：-4"><a href="#注意点：-4" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.和ul和ol一样，dl和dt/dd是一个整体，所以他们一般都是同时出现的，不会单独出现
+2.和ul和ol一样，由于dl和dt/dd是一组合标签，所以dl中建议只放dt和dd标签
+3.一个dt可以没有对应的dd，也可以有多个对应的dd，但无论有或者没有dd都不推荐使用，只推荐一个dt对应一个dd
+4.和li标签一样，需要丰富界面时，我们可以在dt和dd标签中继续添加其他标签    
+</code></pre><p>##表格标签基本使用<br>1以前很多网站都用表格标签做的，表格标签是一个时代的代表<br>2作用：用来给一堆数据添加表格语义<br>表格是一种数据的展现形式，当数据量特别大的时候，用表格来展示的时候就会非常清晰</p>
+<h4 id="表格标签的格式："><a href="#表格标签的格式：" class="headerlink" title="表格标签的格式："></a>表格标签的格式：</h4><h4 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码"></a>示例代码</h4><pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;需要显示的内容&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+table代表整个表格，一对table标签就是一个表格
+tr标签代表表格中的一行数据，一对tr标签就是一行数据
+td标签代表表格中一行的一个单元格，一对td标签就是一行中的一个单元格
+</code></pre><h4 id="注意点-1"><a href="#注意点-1" class="headerlink" title="注意点"></a>注意点</h4><pre><code>1.表格标签中有一个边框属性，这个属性决定了边框的宽度，默认情况下属性值是0，所以看不到
+2.表格标签和列表标签一样，是一个组合标签，所以table/tr/td同时出现，不会单独出现
+</code></pre><h3 id="表格标签的属性"><a href="#表格标签的属性" class="headerlink" title="表格标签的属性"></a>表格标签的属性</h3><h4 id="宽度和高度的属性"><a href="#宽度和高度的属性" class="headerlink" title="宽度和高度的属性"></a>宽度和高度的属性</h4><pre><code>1.可以给td标签和table标签使用
+2.表格的宽度和高度默认按照内容的尺寸来调整，也可以给table标签设置width和height来手动指定
+2.如果给td标签设置width和height属性，会修改当前单元格一行的宽度和高度，不会影响整个表格
+</code></pre><h4 id="水平对齐和垂直对齐属性"><a href="#水平对齐和垂直对齐属性" class="headerlink" title="水平对齐和垂直对齐属性"></a>水平对齐和垂直对齐属性</h4><pre><code>1.其中水平对齐可以给table和tr和td标签使用
+2.垂直对齐只能对tr和td标签使用
+3.给table标签设置align属性，可以控制表格在水平方向的对齐
+4.给tr标签设置align属性，可以控制当前行中单元格内容的水平方向对齐
+5.给td标签设置align属性，可以控制当前单元格内容在水平方向的对齐方式    
+</code></pre><h4 id="注意点：-5"><a href="#注意点：-5" class="headerlink" title="注意点："></a>注意点：</h4><pre><code>1.如果td和tr中都设置了align属性，那么单元格中的内容会按照td中设置的来对齐
+2.给tr标签设置valign属性，可以控制当前行中所有单元格的内容，在垂直方向的对齐方式
+3.外边距和内边距属性 只能对table标签使用
+4.外边距就是单元格和单元格之间的距离 默认情况下，外边距的距离是2px
+5.内边距就是表格中的内容和单元格边框之间的距离 默认情况下内边距是1
+</code></pre><h3 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h3><pre><code>&lt;table border=&quot;1&quot; width=&quot;500px&quot; height=&quot;300px&quot; align=&quot;center&quot; cellspacing=&quot;12&quot; cellpadding=&quot;20&quot;&gt;
+    &lt;tr valign=&quot;bottom&quot;&gt;
+        &lt;td width=&quot;150px&quot; height=&quot;50px&quot;&gt;11&lt;/td&gt;
+        &lt;td valign=&quot;top&quot;&gt;22&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr align=&quot;center&quot;&gt;
+        &lt;td align=&quot;right&quot;&gt;33&lt;/td&gt;
+        &lt;td&gt;44&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre><h2 id="细线表格"><a href="#细线表格" class="headerlink" title="细线表格"></a>细线表格</h2><p>在表格标签中想通过指定外边距为0来实现细线表格是不行的，<br>其实他是2条线合并成一条线，看起来很不舒服的<br>细线表格的制作方式：<br>    1.给table标签设置backgroundcolor为黑色<br>    2.给tr标签设置backgroundcolor为白色<br>    3.给table标签设置cellspacing = “1px”</p>
+<h4 id="注意点：-6"><a href="#注意点：-6" class="headerlink" title="注意点："></a>注意点：</h4><p>table标签和tr标签以及td标签都支持bgcolor属性</p>
+<h4 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;table bgcolor=&quot;black&quot; cellspacing=&quot;1&quot;&gt;
+    &lt;tr bgcolor=&quot;white&quot;&gt;
+        &lt;td&gt;1.1&lt;/td&gt;
+        &lt;td&gt;1.2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr bgcolor=&quot;white&quot;&gt;
+        &lt;td&gt;2.1&lt;/td&gt;
+        &lt;td&gt;2.2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre><h4 id="图片展示-1"><a href="#图片展示-1" class="headerlink" title="图片展示"></a>图片展示</h4><p><img src="http://upload-images.jianshu.io/upload_images/3359912-4596a00e08ba254c.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<h2 id="表格标签的其他标签"><a href="#表格标签的其他标签" class="headerlink" title="表格标签的其他标签"></a>表格标签的其他标签</h2><h4 id="表格的标题"><a href="#表格的标题" class="headerlink" title="表格的标题"></a>表格的标题</h4><p>在表格标签中提供了一个专门用来设置表格标题的标签，叫caption<br>只要将这个标签写入表格当中，它就会自动居中<br>caption标签一定要写在table中，否则无效<br>caption标签一定要跟在table标签后面</p>
+<h3 id="标题单元格标签"><a href="#标题单元格标签" class="headerlink" title="标题单元格标签"></a>标题单元格标签</h3><p>在表格标签中提供了一个专门用来存储每一列标题的标签，这个标签叫做th标签，只要将当前列的标题存 储在这个标签当中就会自动居中+加粗<br>到此为止我们发现，表格中有两种单元格一种是td标签，一种th标签，th标签就是专门用来存储当前列 标题的</p>
+<h2 id="单元格合并"><a href="#单元格合并" class="headerlink" title="单元格合并"></a>单元格合并</h2><pre><code>&lt;table bgcolor=&quot;black&quot; cellspacing=&quot;1px&quot; width=&quot;500px&quot; height=&quot;300px&quot; align=&quot;center&quot;&gt;
+    &lt;tr bgcolor=&quot;white&quot;&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr bgcolor=&quot;white&quot;&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td colspan=&quot;2&quot; rowspan=&quot;2&quot;&gt;&lt;/td&gt;
+        &lt;!--&lt;td&gt;&lt;/td&gt;--&gt;
+    &lt;/tr&gt;
+    &lt;tr bgcolor=&quot;white&quot;&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;!--&lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;--&gt;
+        &lt;!--&lt;td&gt;&lt;/td&gt;--&gt;
+    &lt;/tr&gt;
+    &lt;tr bgcolor=&quot;white&quot;&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+</code></pre><h4 id="图片展示-2"><a href="#图片展示-2" class="headerlink" title="图片展示"></a>图片展示</h4><p><img src="http://upload-images.jianshu.io/upload_images/3359912-548093bcd16505d8.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2014/11/11/html5(一)/"
+                     data-title="HTML5-知识点汇总一"
+                     data-url="https://Jingdan.github.io/2014/11/11/html5(一)/"
+                     data-images="https://Jingdan.github.io/2014/11/11/html5(一)/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+ 
+服务器服务器就是超级计算机，顶级配置。服务器是用来存储数据的，24小时不断电不关机的超级... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/03/26/my-first-blog/" data-toggle="tooltip" data-placement="top"
+                           title="利用数组的reduce方法优化代码">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2014/11/11/html5(一)/"
+                         data-title="HTML5-知识点汇总一"
+                         data-url="https://Jingdan.github.io/2014/11/11/html5(一)/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器"><span class="toc-text">服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是URL"><span class="toc-text">什么是URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#认识HTML"><span class="toc-text">认识HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#认识HTML-1"><span class="toc-text">认识HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DTD文档声明"><span class="toc-text">DTD文档声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#H系列标签"><span class="toc-text">H系列标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#img标签和路径问题"><span class="toc-text">img标签和路径问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#img标签是英文的缩写，用来显示一张图片"><span class="toc-text">img标签是英文的缩写，用来显示一张图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#img标签的格式"><span class="toc-text">img标签的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#img包含的属性-："><span class="toc-text">img包含的属性 ：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路径问题："><span class="toc-text">路径问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#给src赋值有两种方式"><span class="toc-text">给src赋值有两种方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#换行标签"><span class="toc-text">换行标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a标签"><span class="toc-text">a标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点："><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-跳转到另一页"><span class="toc-text">示例代码 : 跳转到另一页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-本地跳转"><span class="toc-text">示例代码 : 本地跳转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-target"><span class="toc-text">示例代码 : target</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-title"><span class="toc-text">示例代码 : title</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#base标签"><span class="toc-text">base标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-1"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#假链接"><span class="toc-text">假链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#锚点"><span class="toc-text">锚点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-2"><span class="toc-text">注意点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无序列表"><span class="toc-text">无序列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-3"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用场景"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#练习"><span class="toc-text">练习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片展示"><span class="toc-text">图片展示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结："><span class="toc-text">总结：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有序列表"><span class="toc-text">有序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义列表"><span class="toc-text">定义列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义列表的格式："><span class="toc-text">定义列表的格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dt和dd都是英文缩写"><span class="toc-text">dt和dd都是英文缩写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义列表的作用："><span class="toc-text">定义列表的作用：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义列表的应用场景"><span class="toc-text">定义列表的应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-4"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表格标签的格式："><span class="toc-text">表格标签的格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-1"><span class="toc-text">注意点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格标签的属性"><span class="toc-text">表格标签的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宽度和高度的属性"><span class="toc-text">宽度和高度的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#水平对齐和垂直对齐属性"><span class="toc-text">水平对齐和垂直对齐属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-5"><span class="toc-text">注意点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#细线表格"><span class="toc-text">细线表格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-6"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片展示-1"><span class="toc-text">图片展示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格标签的其他标签"><span class="toc-text">表格标签的其他标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#表格的标题"><span class="toc-text">表格的标题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标题单元格标签"><span class="toc-text">标题单元格标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单元格合并"><span class="toc-text">单元格合并</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#图片展示-2"><span class="toc-text">图片展示</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#html"
+                           title="html">html</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
