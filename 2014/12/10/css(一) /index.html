@@ -260,10 +260,11 @@ p{    /* p标签 就是一个标签选择器 */
 6.id名称不能是HTML标签的名称（a，img，h1…）
 7.在开发中一般情况下如果只是为了设置样式，我们不会用id，因为在前端开发中id是留给js使
 </code></pre><h4 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;p id=&quot;identity1&quot;&gt;迟到毁一生&lt;/p&gt;
-</code></pre><p></p><p id="identity2">早退穷三代</p><p></p>
-<p></p><p id="identity3">按时上下班</p><p></p>
-<p></p><p id="identity4">必成高富帅</p><br>    <style></p>
-<pre><code>    #identity1{
+&lt;p id=&quot;identity2&quot;&gt;早退穷三代&lt;/p&gt;
+&lt;p id=&quot;identity3&quot;&gt;按时上下班&lt;/p&gt;
+&lt;p id=&quot;identity4&quot;&gt;必成高富帅&lt;/p&gt;
+&lt;style&gt;
+    #identity1{
         color: red;
     }
     #identity2{
@@ -443,15 +444,28 @@ p.para1#identity{    color: red;}
 &lt;input type=&quot;password&quot; name=&quot;&quot; id=&quot;&quot;&gt;
 &lt;input type=&quot;checkbox&quot; name=&quot;&quot; id=&quot;&quot;&gt;
 &lt;input type=&quot;radio&quot; name=&quot;&quot; id=&quot;&quot;&gt;
-</code></pre><p>####示例代码 :<br>    <p id="identity1">我是段落1</p><br>    <p id="identity2" class="cc">我是段落2</p><br>    <p class="cc">我是段落3</p><br>    <p id="identity3" class="para">我是段落4</p><br>    <p>我是段落5</p><br>        <style><br>            /<em><br>            p[id]{<br>                color: red;<br>            }
-            </em>/<br>            p[class=cc]{<br>                color: blue;<br>            }<br>        </style><p></p>
-<h3 id="属性选择器2"><a href="#属性选择器2" class="headerlink" title="属性选择器2"></a>属性选择器2</h3><p>属性取值是以什么开头的  </p>
+</code></pre><h4 id="示例代码-11"><a href="#示例代码-11" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;p id=&quot;identity1&quot;&gt;我是段落1&lt;/p&gt;
+&lt;p id=&quot;identity2&quot; class=&quot;cc&quot;&gt;我是段落2&lt;/p&gt;
+&lt;p class=&quot;cc&quot;&gt;我是段落3&lt;/p&gt;
+&lt;p id=&quot;identity3&quot; class=&quot;para&quot;&gt;我是段落4&lt;/p&gt;
+&lt;p&gt;我是段落5&lt;/p&gt;
+    &lt;style&gt;
+        /*
+        p[id]{
+            color: red;
+        }
+        */
+        p[class=cc]{
+            color: blue;
+        }
+    &lt;/style&gt;
+</code></pre><h3 id="属性选择器2"><a href="#属性选择器2" class="headerlink" title="属性选择器2"></a>属性选择器2</h3><p>属性取值是以什么开头的  </p>
 <pre><code>[attribute^=value] CSS3
 [attribute|=value] CSS2
 </code></pre><p>区别:<br>1.CSS2中的只能找到value开头 value是被-和其他内容隔开的<br>2.CSS中只要是以value开头的都可以找到,无论它是不是被隔开<br>3.属性的取值是以什么结尾的<br><code>[attribute$=value] CSS3</code><br>4.属性的取值是否包含某个特定的值 </p>
 <pre><code>[attribute~=value] CSS2 
 [attribute*=value] CSS3    
-</code></pre><h4 id="示例代码-11"><a href="#示例代码-11" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;img src=&quot;&quot; alt=&quot;abcwwwmmm&quot;&gt;
+</code></pre><h4 id="示例代码-12"><a href="#示例代码-12" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;img src=&quot;&quot; alt=&quot;abcwwwmmm&quot;&gt;
 &lt;img src=&quot;&quot; alt=&quot;wwwmmmabc&quot;&gt;
 &lt;img src=&quot;&quot; alt=&quot;wwwabcmmm&quot;&gt;
 &lt;img src=&quot;&quot; alt=&quot;def abc&quot;&gt;
@@ -475,7 +489,7 @@ p.para1#identity{    color: red;}
         }
     &lt;/style&gt;
 </code></pre><h2 id="通配符选择器"><a href="#通配符选择器" class="headerlink" title="通配符选择器"></a>通配符选择器</h2><p>由于通配符选择器是设置界面上所有的标签属性 所以在设置之前会遍历所有的标签 如果当前界面的标签比较多 那么性能就会比较差 所以在企业开发中一般不会使用通配符选择器</p>
-<h4 id="示例代码-12"><a href="#示例代码-12" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;style&gt;
+<h4 id="示例代码-13"><a href="#示例代码-13" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;style&gt;
     /* 不推荐使用 */
     *{
         margin:0;
@@ -490,7 +504,7 @@ a标签的文字颜色和下划线是不能继承的
 h标签的文字大小是不能继承的
 </code></pre><p>应用场景:</p>
 <p>一般用于设置网页上的一些共性信息 例如网页的文字颜色 字体 字体大小等内容 body{}  </p>
-<h4 id="示例代码-13"><a href="#示例代码-13" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div&gt;
+<h4 id="示例代码-14"><a href="#示例代码-14" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div&gt;
     &lt;p&gt;我是段落&lt;/p&gt;
 &lt;/div&gt;
 &lt;div&gt;
@@ -514,7 +528,7 @@ h标签的文字大小是不能继承的
     &lt;/style&gt;
 </code></pre><h2 id="CSS三大特性之层叠性"><a href="#CSS三大特性之层叠性" class="headerlink" title="CSS三大特性之层叠性"></a>CSS三大特性之层叠性</h2><p>什么是层叠性</p>
 <p>作用:层叠性就是CSS处理冲突的一种能力<br>注意点:<br>层叠性只有在多个选择器选中”同一个标签” 然后又设置了”相同的属性” 才会发生层叠性<br>CSS全称 Cascading StyleSheet  </p>
-<h4 id="示例代码-14"><a href="#示例代码-14" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;p id=&quot;identity&quot; class=&quot;para&quot;&gt;我是段落&lt;/p&gt;
+<h4 id="示例代码-15"><a href="#示例代码-15" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;p id=&quot;identity&quot; class=&quot;para&quot;&gt;我是段落&lt;/p&gt;
     &lt;style&gt;
         p{
             color: red;
@@ -525,7 +539,7 @@ h标签的文字大小是不能继承的
     &lt;/style&gt;
 </code></pre><h2 id="CSS三大特性之优先级"><a href="#CSS三大特性之优先级" class="headerlink" title="CSS三大特性之优先级"></a>CSS三大特性之优先级</h2><p>什么是优先级</p>
 <p>作用:当多个选择器选中同一个标签 并且给同一个标签设置相同属性时 如何层叠就由优先级来确定<br>优先级判断的三种方式<br>1.是否是直接选中(间接选中就是继承) 遵循就近原则 谁离的近 就层叠谁的样式<br>2.相同的选择器 如果都是直接选中 都是同类型的选择器 谁写在后面就层叠谁的样式<br>3.不同的选择器 如果都是直接选中 但是是不同类型的选择器<br>id&gt;类&gt;标签&gt;通配符&gt;继承&gt;浏览器默认  </p>
-<h4 id="示例代码-15"><a href="#示例代码-15" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;ul&gt;
+<h4 id="示例代码-16"><a href="#示例代码-16" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;ul&gt;
     &lt;lu&gt;
         &lt;li&gt;
             &lt;p id=&quot;identity&quot; class=&quot;para&quot;&gt;我是段落&lt;/p&gt;
@@ -546,7 +560,7 @@ h标签的文字大小是不能继承的
 </code></pre><p>优先级之 important</p>
 <p>作用:用于提升某个标签直接选中标签的选择器的某个属性的优先级的 可以将被指定的属性的优先级提升为最高  </p>
 <h4 id="注意点-8"><a href="#注意点-8" class="headerlink" title="注意点:"></a>注意点:</h4><p>1.important只能用于直接选中 不能用与间接选中<br>2.通配符选择器选中的标签也是直接选中的<br>3.!important只能提升被指定的属性的优先级 其他属性的优先级不会被提升<br>4.!important必须写在属性值的后面 感叹号不能省略 必须写在分号里面  </p>
-<h4 id="示例代码-16"><a href="#示例代码-16" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;ul&gt;
+<h4 id="示例代码-17"><a href="#示例代码-17" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;ul&gt;
     &lt;lu&gt;
         &lt;li&gt;
             &lt;p id=&quot;identity&quot; class=&quot;para&quot;&gt;我是段落&lt;/p&gt;
@@ -567,7 +581,7 @@ h标签的文字大小是不能继承的
 </code></pre><h2 id="优先级之权重问题"><a href="#优先级之权重问题" class="headerlink" title="优先级之权重问题"></a>优先级之权重问题</h2><p>作用:当多个选择器混合在一起使用时 我们可以通过计算权重来判断谁的优先级最高<br>权重的计算规则  </p>
 <p>首选计算选择器中谁的id最多<br>如果id的个数一样 那么再看类名的个数 类名个数多的优先级别高<br>如果类名的个数一样 那么再看标签名的个数 标签名个数多的优先级别高<br>如果id/类名/标签名的个数都一样 那么谁写在最后面就层叠谁的样式  </p>
 <h4 id="注意点-9"><a href="#注意点-9" class="headerlink" title="注意点:"></a>注意点:</h4><p>只有选择器是直接选中标签的 才需要计算权重  </p>
-<h4 id="示例代码-17"><a href="#示例代码-17" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div id=&quot;identity&quot; class=&quot;box1&quot;&gt;
+<h4 id="示例代码-18"><a href="#示例代码-18" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div id=&quot;identity&quot; class=&quot;box1&quot;&gt;
     &lt;ul&gt;
         &lt;li&gt;
             &lt;p id=&quot;identity1&quot; class=&quot;box2&quot;&gt;我是段落&lt;/p&gt;
@@ -601,7 +615,7 @@ h标签的文字大小是不能继承的
 2.如果没有设置宽度 默认和字体宽度一样
 3.行内标签是不可以设置宽度和高度**
 </code></pre><h3 id="行内块级标签"><a href="#行内块级标签" class="headerlink" title="行内块级标签"></a>行内块级标签</h3><p>为了能够让标签既能够不独占一行 又可以设置宽度和高度 就出现了行内块级标签</p>
-<h4 id="示例代码-18"><a href="#示例代码-18" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div&gt;我是div&lt;/div&gt;
+<h4 id="示例代码-19"><a href="#示例代码-19" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div&gt;我是div&lt;/div&gt;
 &lt;p&gt;我是段落&lt;/p&gt;
 &lt;h1&gt;我是标题&lt;/h1&gt;
 &lt;hr&gt;
@@ -625,7 +639,7 @@ h标签的文字大小是不能继承的
 &lt;/style&gt;
 </code></pre><h2 id="显示模式"><a href="#显示模式" class="headerlink" title="显示模式"></a><strong>显示模式</strong></h2><p>CSS显示模式转换</p>
 <p>转换CSS中元素的显示模式<br>通过display属性来转换<br>display取值:<br>inline —– &gt; 行内<br>block —— &gt; 块级<br>inline-block —–&gt; 行内块级</p>
-<h4 id="示例代码-19"><a href="#示例代码-19" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div&gt;我是div&lt;/div&gt;
+<h4 id="示例代码-20"><a href="#示例代码-20" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>&lt;div&gt;我是div&lt;/div&gt;
 &lt;div&gt;我是div&lt;/div&gt;
 &lt;span&gt;我是span&lt;/span&gt;
 &lt;span&gt;我是span&lt;/span&gt;
@@ -688,8 +702,8 @@ CSS格式一定要用一对style标签包裹起来 而且必须要写在head标�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/03/26/blog/" data-toggle="tooltip" data-placement="top"
-                           title="利用数组的reduce方法优化代码">&larr; Previous Post</a>
+                        <a href="/2015/03/18/HTML5-Animate和Wow框架/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - Animate和Wow框架">&larr; Previous Post</a>
                     </li>
                     
                     
@@ -718,7 +732,7 @@ CSS格式一定要用一对style标签包裹起来 而且必须要写在head标�
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS格式"><span class="toc-text">CSS格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文字属性"><span class="toc-text">文字属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文字属性的缩写"><span class="toc-text">文字属性的缩写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本属性"><span class="toc-text">文本属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色的属性"><span class="toc-text">颜色的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签选择器"><span class="toc-text">标签选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点："><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#id选择器"><span class="toc-text">id选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-1"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性选择器2"><span class="toc-text">属性选择器2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-11"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通配符选择器"><span class="toc-text">通配符选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-12"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS三大特性之继承性"><span class="toc-text">CSS三大特性之继承性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是继承性"><span class="toc-text">什么是继承性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-7"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-13"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS三大特性之层叠性"><span class="toc-text">CSS三大特性之层叠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-14"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS三大特性之优先级"><span class="toc-text">CSS三大特性之优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-15"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-8"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-16"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先级之权重问题"><span class="toc-text">优先级之权重问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-9"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-17"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div"><span class="toc-text">div</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#span"><span class="toc-text">span</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div和span有什么区别"><span class="toc-text">div和span有什么区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器级的标签"><span class="toc-text">容器级的标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本级的标签"><span class="toc-text">文本级的标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级标签和行内标签的区别"><span class="toc-text">块级标签和行内标签的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块级标签"><span class="toc-text">块级标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行内标签"><span class="toc-text">行内标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行内块级标签"><span class="toc-text">行内块级标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-18"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示模式"><span class="toc-text">显示模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-19"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS格式"><span class="toc-text">CSS格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文字属性"><span class="toc-text">文字属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文字属性的缩写"><span class="toc-text">文字属性的缩写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本属性"><span class="toc-text">文本属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色的属性"><span class="toc-text">颜色的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签选择器"><span class="toc-text">标签选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点："><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#id选择器"><span class="toc-text">id选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点：-1"><span class="toc-text">注意点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类选择器"><span class="toc-text">类选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点"><span class="toc-text">注意点:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#id选择器和class选择器的区别"><span class="toc-text">id选择器和class选择器的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后代选择器"><span class="toc-text">后代选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-1"><span class="toc-text">注意点:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子元素选择器"><span class="toc-text">子元素选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-2"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后代选择器和子元素选择器"><span class="toc-text">后代选择器和子元素选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#区别"><span class="toc-text">区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#共同点"><span class="toc-text">共同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交集选择器"><span class="toc-text">交集选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-3"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-7"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并集选择器"><span class="toc-text">并集选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-4"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-8"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#兄弟选择器"><span class="toc-text">兄弟选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相邻兄弟选择器-CSS2"><span class="toc-text">相邻兄弟选择器 CSS2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-5"><span class="toc-text">注意点:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通用兄弟选择器"><span class="toc-text">通用兄弟选择器=</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-6"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-9"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#序选择器"><span class="toc-text">序选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-这几个都不区分类型"><span class="toc-text">注意点:这几个都不区分类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性选择器"><span class="toc-text">属性选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-10"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-11"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性选择器2"><span class="toc-text">属性选择器2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-12"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通配符选择器"><span class="toc-text">通配符选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-13"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS三大特性之继承性"><span class="toc-text">CSS三大特性之继承性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是继承性"><span class="toc-text">什么是继承性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-7"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-14"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS三大特性之层叠性"><span class="toc-text">CSS三大特性之层叠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-15"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS三大特性之优先级"><span class="toc-text">CSS三大特性之优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-16"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-8"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-17"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先级之权重问题"><span class="toc-text">优先级之权重问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点-9"><span class="toc-text">注意点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-18"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div"><span class="toc-text">div</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#span"><span class="toc-text">span</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div和span有什么区别"><span class="toc-text">div和span有什么区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器级的标签"><span class="toc-text">容器级的标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本级的标签"><span class="toc-text">文本级的标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级标签和行内标签的区别"><span class="toc-text">块级标签和行内标签的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块级标签"><span class="toc-text">块级标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行内标签"><span class="toc-text">行内标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行内块级标签"><span class="toc-text">行内块级标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-19"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示模式"><span class="toc-text">显示模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-20"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        HTML5 - ScrollReveal框架｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2015/04/26/HTML5 - ScrollReveal框架/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTML5 - ScrollReveal框架</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2015-04-26
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTML5 - ScrollReveal框架
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="框架三-—-gt-scrollReveal"><a href="#框架三-—-gt-scrollReveal" class="headerlink" title="框架三 —-&gt; scrollReveal"></a>框架三 —-&gt; scrollReveal</h2><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>scrollReveal是一个兼容PC端和移动设备的滚动动画库。不同的是WOW.js 的动画只播放一次，而 scrollReveal.js 的动画可以播放一次或无限次；</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><p>scrollReveal同时兼容PC端和移动端；<br>0依赖（不依赖于jQuery，也不依赖于animate.css）;<br>定制性高，使用简单方便快捷。</p>
+<h5 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h5><p>虽然scrollReveal.js不依赖于animate.css,但是它也是用CSS3的动画创建的,所以需要对H5和C3支持比较好的浏览器,比如: IE10+、Firefox、Chrome、Opera、Safari。</p>
+<p>官网下载链接：<a href="https://scrollrevealjs.org/" target="_blank" rel="external">https://scrollrevealjs.org/</a></p>
+<h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><p>引入文件</p>
+<pre><code>&lt;script src=&quot;js/scrollReveal.js&quot;&gt;&lt;/script&gt;
+&lt;!-- HTML --&gt;
+&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
+// JavaScript
+window.onload = function () {
+    window.sr = ScrollReveal();
+    sr.reveal(&apos;.box&apos;);
+}
+</code></pre><p>常用参数 - 可以自己手动修改参数</p>
+<pre><code>var config = {
+               reset: false,   // 滚动鼠标时，动画开关
+               origin: &apos;bottom&apos;, // 动画开始的方向
+               duration: 500,   // 动画持续时间
+               delay: 0, // 延迟
+               rotate: {x:0, y:0, z:0},  // 过度到0的初始角度
+               opacity: 0, // 初始透明度
+               scale: 0.9, //缩放
+               // 缓动&apos;ease&apos;, &apos;ease-in-out&apos;，&apos;linear&apos;
+               easing: &apos;cubic-bezier(0.6, 0.2, 0.2, 1)&apos;, 
+               // 回调函数
+               beforeReveal: function(domEl){},
+               beforeReset: function(domEl){},
+               afterReveal: function(domEl){},
+               afterReset: function(domEl){}
+ };
+ window.sr = ScrollReveal();
+ sr.reveal(&apos;.sr&apos;, config);
+</code></pre><h6 id="附两个Demo-方便理解和使用"><a href="#附两个Demo-方便理解和使用" class="headerlink" title="附两个Demo,方便理解和使用 !"></a>附两个Demo,方便理解和使用 !</h6><p>Demo1<br>&lt; ! ———- HTML ———— &gt;  </p>
+<pre><code>&lt;div class=&quot;center&quot;&gt;
+    &lt;ul&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/01.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/02.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/03.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/04.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr self&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/05.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/06.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/07.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/08.jpg)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/05.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/06.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/07.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/08.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/01.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/02.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/03.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr self&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/04.jpg)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/09.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/10.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr self&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/11.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/12.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/13.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/14.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/15.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/16.jpg)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/13.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/14.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/15.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/16.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/09.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/10.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/11.jpg)&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;sr self&quot;&gt;&lt;a href=&quot;javascript:;&quot;&gt;![](images/12.jpg)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><p>&lt; ! ——— Style ————– &gt;</p>
+<pre><code>&lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style-type: none;
+        }
+        div.center {
+            width: 1230px;
+            margin: 0 auto;
+        }
+        ul {
+            float: left;
+        }
+        ul {
+            margin-right: 10px;
+        }
+        ul:last-child {
+            margin-right: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+&lt;/style&gt;
+</code></pre><p>&lt; ! ——— JavaScript ——- &gt;</p>
+<pre><code>&lt;script&gt;
+    window.onload = function () {
+        // 如果需要上下滚动每次都做动画 reset的值必须为true 默认为false
+        // 如果只需要做一次滚动动画的话,可以不要这句代码
+        var config = {
+            reset: true
+        }
+        // 自定义参数配置,让每一个动画多样化
+        var self = {
+            reset: true, // 滚动鼠标时，动画开关
+            origin: &apos;left&apos;, // 动画开始的方向
+            duration: 500, // 动画持续时间
+            delay: 0, // 延迟
+            rotate: {x: 100, y: 200, z: 300}, // 过度到0的初始角度
+            opacity: 0, // 初始透明度
+            scale: 0.2, //缩放
+            easing: &apos;linear&apos;, // 缓动&apos;ease&apos;, &apos;ease-in-out&apos;，&apos;linear&apos;
+        }
+        window.sr = ScrollReveal();
+        sr.reveal(&apos;.sr&apos;, config);
+        sr.reveal(&apos;.self&apos;, self);
+    }
+&lt;/script&gt;
+</code></pre><p>&lt; ! ——— 效果展示 ———- &gt;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-97bd565c29dda0e7.gif?imageMogr2/auto-orient/strip" alt=""><br>Demo2<br>&lt; ! ———- HTML ———— &gt;</p>
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;sr&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>&lt; ! ——— Style ————– &gt;</p>
+<pre><code>&lt;style&gt;
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        list-style-type: none;
+    }
+    body {
+        padding-top: 100px;
+        background-color: #000;
+    }
+    ul {
+        width: 980px;
+        margin: 0 auto;
+    }
+    ul .sr {
+        float: left;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    }
+&lt;/style&gt;
+</code></pre><p>&lt; ! ——— JavaScript ——- &gt;</p>
+<pre><code>&lt;script&gt;
+    window.onload = function () {
+        // 设置参数
+        var config = {
+            reset: true, // 滚动鼠标时，动画开关
+            origin: &apos;left&apos;, // 动画开始的方向
+            duration: 1000, // 动画持续时间
+            delay: 0, // 延迟
+            rotate: {x: 0, y: 0, z: 0}, // 过度到0的初始角度
+            opacity: 0, // 初始透明度
+            scale: 0.2, //缩放
+            easing: &apos;linear&apos;, // 缓动&apos;ease&apos;, &apos;ease-in-out&apos;，&apos;linear&apos;
+        }
+        var lis = document.getElementsByTagName(&apos;li&apos;);
+        var r = 0, g = 0, b = 0;
+        function randomColor() {
+            for (var i = 0; i &lt; lis.length; i++) {
+                r = parseInt(Math.random() * 255);
+                g = parseInt(Math.random() * 240);
+                b = parseInt(Math.random() * 245);
+                lis[i].style.background = &apos;rgb(&apos; + r + &apos;,&apos; + g + &apos;,&apos; + b + &apos;)&apos;;
+            }
+        }
+        // 引用
+        window.sr = ScrollReveal();
+        // 后面的50那个参数是代表每隔50毫米出现一个li,最后一个参数是调用随机颜色函数
+        sr.reveal(&apos;.sr&apos;, config, 50, randomColor());
+    }
+&lt;/script&gt;
+</code></pre><p>&lt; ! ——— 效果展示 ———- &gt;  </p>
+<h6 id="这个小案例是结合前面给大家分享的那个随机颜色一起实现的"><a href="#这个小案例是结合前面给大家分享的那个随机颜色一起实现的" class="headerlink" title="这个小案例是结合前面给大家分享的那个随机颜色一起实现的"></a>这个小案例是结合前面给大家分享的那个随机颜色一起实现的</h6><p>ScrollReveal 和 WOW的区别和联系</p>
+<p>1.他们都不依赖jQuery;<br>2.wow依赖于animate.css ，ScrollReveal不依赖任何其他插件或者库；<br>3.wow的释放动画，只能够实现一次，而ScrollReveal可以无限次使用；<br>4.ScrollReveal 参数相对比较多，比较复杂些；<br>5.实际工作中，用wow比较多。</p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2015/04/26/HTML5 - ScrollReveal框架/"
+                     data-title="HTML5 - ScrollReveal框架"
+                     data-url="https://Jingdan.github.io/2015/04/26/HTML5 - ScrollReveal框架/"
+                     data-images="https://Jingdan.github.io/2015/04/26/HTML5 - ScrollReveal框架/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+框架三 —-&gt; scrollReveal介绍scrollReveal是一个兼容PC端和... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/05/18/HTML5 - Zepto框架/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - Zepto框架">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/03/18/HTML5-Animate和Wow框架/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - Animate和Wow框架">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2015/04/26/HTML5 - ScrollReveal框架/"
+                         data-title="HTML5 - ScrollReveal框架"
+                         data-url="https://Jingdan.github.io/2015/04/26/HTML5 - ScrollReveal框架/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#框架三-—-gt-scrollReveal"><span class="toc-text">框架三 —-> scrollReveal</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#浏览器兼容"><span class="toc-text">浏览器兼容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#附两个Demo-方便理解和使用"><span class="toc-text">附两个Demo,方便理解和使用 !</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#这个小案例是结合前面给大家分享的那个随机颜色一起实现的"><span class="toc-text">这个小案例是结合前面给大家分享的那个随机颜色一起实现的</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        HTML5 - Animate和Wow框架｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2015/03/18/HTML5-Animate和Wow框架/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTML5 - Animate和Wow框架</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2015-03-18
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTML5 - Animate和Wow框架
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="框架一-—-gt-Animate-css"><a href="#框架一-—-gt-Animate-css" class="headerlink" title="框架一 —-&gt; Animate.css"></a>框架一 —-&gt; Animate.css</h2><p>1.Animate.css是一个css动画样式库,可以减少我们的开发时间.它预设了抖动（shake）、闪烁（flash）、弹跳（bounce）、翻转（flip）、旋转（rotateIn/rotateOut）、淡入淡出 (fadeIn/fadeOut）等多达70多种动画特效，几乎包含了所有常用的动画特效。<br>2.重点: 主要是兼容各种浏览器,Animate的底层是靠css实现的,当然只兼容支持CSS3animate属性的浏览器: IE10+、Firefox、Chrome、Opera、Safari。<br>3.下载文件包链接：<a href="https://daneden.github.io/animate.css/" target="_blank" rel="external">https://daneden.github.io/animate.css/</a></p>
+<h2 id="Animate-css的具体使用"><a href="#Animate-css的具体使用" class="headerlink" title="Animate.css的具体使用"></a>Animate.css的具体使用</h2><h5 id="引入文件"><a href="#引入文件" class="headerlink" title="引入文件"></a>引入文件</h5><p><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;animate.min.css&quot;&gt;</code></p>
+<h5 id="给做动画的标签添加类名"><a href="#给做动画的标签添加类名" class="headerlink" title="给做动画的标签添加类名"></a>给做动画的标签添加类名</h5><p><code>&lt;div class=&quot;box myAnimated flip&quot;&gt;&lt;/div&gt;</code></p>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h5><p>类 animated 的作用是控制动画的持续时间，是所有动画的前提条件， 在其后面的类则为动画的效果类。</p>
+<p><hr></p>
+<h2 id="框架二-—-gt-WOW-js"><a href="#框架二-—-gt-WOW-js" class="headerlink" title="框架二 —-&gt; WOW.js"></a>框架二 —-&gt; WOW.js</h2><h5 id="核心作用：让我们的页面滚动更有质感，更酷炫"><a href="#核心作用：让我们的页面滚动更有质感，更酷炫" class="headerlink" title="核心作用：让我们的页面滚动更有质感，更酷炫"></a>核心作用：让我们的页面滚动更有质感，更酷炫</h5><p>通过WOW.js，可以在页面逐渐向下滚动的过程中逐渐释放这些动画效果。也就是说：当我们向下滚动页面时，可以省去很多判断条件，让CSS动画逐渐展示出来。</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><p>轻量级类库， 不依赖jQuery，超简单的安装和使用，与animate.css配合，只需要短短几行代码就可以实现很多特效。<br>容易定制，我们可以改变动画去设置喜欢的风格、延迟、长度、偏移和迭代等等。</p>
+<h5 id="兼容性问题"><a href="#兼容性问题" class="headerlink" title="兼容性问题"></a>兼容性问题</h5><p>因为，WOW.js要和animate.css配合使用，所有其也只兼容支持CSS3 animate属性的浏览器：IE10+、Firefox、Chrome、Opera、Safari。</p>
+<h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><h6 id="引入文件-1"><a href="#引入文件-1" class="headerlink" title="引入文件"></a>引入文件</h6><pre><code>&lt;!-- Css文件 必须有这个animate文件的支持才能使用WOW --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;animate.min.css&quot;&gt;
+&lt;script src=&quot;wow.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><h6 id="在相对的HTML标签中通过类名进行绑定"><a href="#在相对的HTML标签中通过类名进行绑定" class="headerlink" title="在相对的HTML标签中通过类名进行绑定"></a>在相对的HTML标签中通过类名进行绑定</h6><pre><code>&lt;div class=&quot;wow slideInLeft&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wow slideInRight&quot;&gt;&lt;/div&gt;
+</code></pre><h6 id="然后在JavaScript文件中只需要一行初始化代码就搞定咯"><a href="#然后在JavaScript文件中只需要一行初始化代码就搞定咯" class="headerlink" title="然后在JavaScript文件中只需要一行初始化代码就搞定咯"></a>然后在JavaScript文件中只需要一行初始化代码就搞定咯</h6><pre><code>new WOW().init();
+</code></pre><h2 id="WOW-js常用的属性"><a href="#WOW-js常用的属性" class="headerlink" title="WOW.js常用的属性"></a>WOW.js常用的属性</h2><p>1.data-wow-delay: 动画开始前延迟<br>2.data-wow-duration: 动画持续时间<br>3.data-wow-iteration: 动画重复次数<br>4.data-wow-offset: 距离浏览器底部到隐藏框顶部的距离（偏移量）  </p>
+<h5 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h5><h6 id="可以加入-data-wow-duration-动画持续时间-和-data-wow-delay-（动画延迟时间）等属性。"><a href="#可以加入-data-wow-duration-动画持续时间-和-data-wow-delay-（动画延迟时间）等属性。" class="headerlink" title="可以加入 data-wow-duration (动画持续时间)和 data-wow-delay （动画延迟时间）等属性。"></a>可以加入 data-wow-duration (动画持续时间)和 data-wow-delay （动画延迟时间）等属性。</h6><pre><code>&lt;div class=&quot;wow slideInLeft&quot; data-wow-duration=&quot;3s&quot; data-wow-delay=&quot;1s&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wow slideInRight&quot; data-wow-iteration=&quot;5&quot;&gt;&lt;/div&gt;
+</code></pre><h6 id="data-wow-offset-图解"><a href="#data-wow-offset-图解" class="headerlink" title="data-wow-offset 图解"></a>data-wow-offset 图解</h6><p><img src="http://upload-images.jianshu.io/upload_images/3359912-697f0eda4f6fd51f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h6 id="WOW的默认配置参数-如果需要自定义配置-可手动修改"><a href="#WOW的默认配置参数-如果需要自定义配置-可手动修改" class="headerlink" title="WOW的默认配置参数,如果需要自定义配置,可手动修改"></a>WOW的默认配置参数,如果需要自定义配置,可手动修改</h6><pre><code>var wow = new WOW({
+boxClass: &apos;wow&apos;, // 动画元素的CSS类（默认类名wow）
+animateClass:&apos;animated&apos;, // 动画CSS类 （默认类名animated）
+offset: 0, // 距离可视区域多少开始执行动画（默认为0）
+mobile: true, // 是否在移动设备上执行动画 （默认是true）
+});
+wow.init();
+</code></pre><p>附Demo一个, 帮助更好的理解和使用 !<br>&lt; ! ———- HTML ———— &gt;</p>
+<pre><code>&lt;div class=&quot;door&quot;&gt;
+    &lt;div class=&quot;left wow slideInLeft&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right wow slideInRight&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>&lt; ! ——— Style ————– &gt;</p>
+<pre><code>&lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style-type: none;
+        }
+        .door {
+            width: 980px;
+            margin: 100px auto;
+            overflow: hidden;
+            background: #fff;
+        }
+        div {
+            width: 450px;
+            height: 300px;
+            background: #cccccc;
+        }
+        .left {
+            float: left;
+        }
+        .right {
+            float: right;
+        }
+&lt;/style&gt;
+</code></pre><p>&lt; ! ——— JavaScript ——- &gt;</p>
+<pre><code>// 两行代码轻松实现
+&lt;script src=&quot;js/wow.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        new WOW().init();
+    }
+&lt;/script&gt;
+</code></pre><p>&lt; ! ——— 效果展示 ———- &gt;<br><img src="http://upload-images.jianshu.io/upload_images/3359912-6311680a5b8f5b6d.gif?imageMogr2/auto-orient/strip" alt=""><br>但是WOW.js实例的动画只能加载一次，如果要重新执行动画必须要进行刷新。</p>
+<p>为了更好的解决这个问题,所以在下一次更新会引出第三个框架</p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2015/03/18/HTML5-Animate和Wow框架/"
+                     data-title="HTML5 - Animate和Wow框架"
+                     data-url="https://Jingdan.github.io/2015/03/18/HTML5-Animate和Wow框架/"
+                     data-images="https://Jingdan.github.io/2015/03/18/HTML5-Animate和Wow框架/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+框架一 —-&gt; Animate.css1.Animate.css是一个css动画样式库... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/04/26/HTML5 - ScrollReveal框架/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - ScrollReveal框架">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2014/12/10/css(一) /" data-toggle="tooltip" data-placement="top"
+                           title="CSS-知识点汇总一">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2015/03/18/HTML5-Animate和Wow框架/"
+                         data-title="HTML5 - Animate和Wow框架"
+                         data-url="https://Jingdan.github.io/2015/03/18/HTML5-Animate和Wow框架/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#框架一-—-gt-Animate-css"><span class="toc-text">框架一 —-> Animate.css</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Animate-css的具体使用"><span class="toc-text">Animate.css的具体使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#引入文件"><span class="toc-text">引入文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#给做动画的标签添加类名"><span class="toc-text">给做动画的标签添加类名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#注意"><span class="toc-text">注意:</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#框架二-—-gt-WOW-js"><span class="toc-text">框架二 —-> WOW.js</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#核心作用：让我们的页面滚动更有质感，更酷炫"><span class="toc-text">核心作用：让我们的页面滚动更有质感，更酷炫</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#兼容性问题"><span class="toc-text">兼容性问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#引入文件-1"><span class="toc-text">引入文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#在相对的HTML标签中通过类名进行绑定"><span class="toc-text">在相对的HTML标签中通过类名进行绑定</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#然后在JavaScript文件中只需要一行初始化代码就搞定咯"><span class="toc-text">然后在JavaScript文件中只需要一行初始化代码就搞定咯</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WOW-js常用的属性"><span class="toc-text">WOW.js常用的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用方法-1"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#可以加入-data-wow-duration-动画持续时间-和-data-wow-delay-（动画延迟时间）等属性。"><span class="toc-text">可以加入 data-wow-duration (动画持续时间)和 data-wow-delay （动画延迟时间）等属性。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#data-wow-offset-图解"><span class="toc-text">data-wow-offset 图解</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#WOW的默认配置参数-如果需要自定义配置-可手动修改"><span class="toc-text">WOW的默认配置参数,如果需要自定义配置,可手动修改</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

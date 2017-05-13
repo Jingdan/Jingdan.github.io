@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        HTML5 - Swiper框架｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2015/06/22/HTML5 - Swiper框架/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTML5 - Swiper框架</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2015-06-22
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTML5 - Swiper框架
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="框架五-—-gt-swiper-js"><a href="#框架五-—-gt-swiper-js" class="headerlink" title="框架五 —-&gt; swiper.js"></a>框架五 —-&gt; swiper.js</h2><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>Swiper是一款免费以及轻量级的移动设备触控滑块的js框架，主要是为iOS设计，同时，在Android、WP系统和其他PC浏览器上也有着良好的体验。</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ol>
+<li>轻量级，简洁高效，可定制性非常高；  </li>
+<li>横跨各种设备，兼容IOS、Android、WP、PC端设备；</li>
+<li>提供多种版本支持（可自由选择jQuery/zepto版或原生js）;</li>
+</ol>
+<h6 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h6><h6 id="Swiper从3-0开始不再全面支持PC端。因此，如需要在PC上兼容更多浏览器，可以选择swiper-2-x-支持IE7"><a href="#Swiper从3-0开始不再全面支持PC端。因此，如需要在PC上兼容更多浏览器，可以选择swiper-2-x-支持IE7" class="headerlink" title="Swiper从3.0开始不再全面支持PC端。因此，如需要在PC上兼容更多浏览器，可以选择swiper 2.x(支持IE7)"></a>Swiper从3.0开始不再全面支持PC端。因此，如需要在PC上兼容更多浏览器，可以选择swiper 2.x(支持IE7)</h6><h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><h6 id="引入方法"><a href="#引入方法" class="headerlink" title="引入方法"></a>引入方法</h6><pre><code>&lt;link rel=&quot;stylesheet&quot; href=“css/swiper.min.css&quot;&gt;
+&lt;script src=“js/swiper.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><h6 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h6><pre><code>&lt;div class=&quot;swiper-container&quot;&gt;
+        &lt;div class=&quot;swiper-wrapper&quot;&gt;
+             &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;
+             &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;
+             &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h6 id="Js文件调用"><a href="#Js文件调用" class="headerlink" title="Js文件调用"></a>Js文件调用</h6><pre><code>var swiper = new Swiper(&apos;.swiper-container&apos;);
+</code></pre><h5 id="高级效果和参数设置"><a href="#高级效果和参数设置" class="headerlink" title="高级效果和参数设置"></a>高级效果和参数设置</h5><p>HTML</p>
+<pre><code>&lt;div class=&quot;swiper-container&quot;&gt;
+         &lt;div class=&quot;swiper-wrapper&quot;&gt;
+             &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;
+             &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;
+             &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;
+         &lt;/div&gt;
+          &lt;!-- 如果需要分页器 --&gt;
+          &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+          &lt;!-- 如果需要导航按钮 --&gt;
+          &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+          &lt;!-- 如果需要滚动条 --&gt;
+          &lt;div class=&quot;swiper-scrollbar&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>js部分</p>
+<pre><code>var mySwiper = new Swiper (&apos;.swiper-container&apos;, {
+               // 如果需要分页器
+               pagination: &apos;.swiper-pagination&apos;,
+               // 如果需要前进后退按钮
+               nextButton: &apos;.swiper-button-next&apos;,
+               prevButton: &apos;.swiper-button-prev&apos;,
+               // 如果需要滚动条
+              scrollbar: &apos;.swiper-scrollbar&apos;,
+});
+</code></pre><p>其他参数 根据自己项目的需求可以手动设置 </p>
+<pre><code>loop: true, //循环开关
+autoplay: 3000, //⾃动播放间隔时间（单位：毫秒）默认不⾃动播放
+direction: &apos;vertical&apos;, //切换⽅向 ⽔平(horizontal)或垂直(vertical)
+speed:300, //切换速度（单位：毫秒）
+keyboardControl:true, //键盘控制开关
+paginationType:‘bullets’, //分⻚器外观 bullets 、 fraction 、 progress
+effect: &apos;fade&apos;, //切换效果 fade、cube、coverflow、flip    
+</code></pre><p>swiper animate</p>
+<h6 id="引入文件-比之前多了animate-css-和swiper-animate-js"><a href="#引入文件-比之前多了animate-css-和swiper-animate-js" class="headerlink" title="引入文件(比之前多了animate.css 和swiper.animate.js)"></a>引入文件(比之前多了animate.css 和swiper.animate.js)</h6><pre><code>&lt;link rel=&quot;stylesheet&quot; href=“css/swiper.min.css&quot;&gt;
+ &lt;link rel=&quot;stylesheet&quot; href=“css/animate.min.css&quot;&gt;
+ &lt;script src=“js/swiper.min.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=“js/swiper.animate.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><ol>
+<li>HTML  </li>
+<li>在需要运动的元素上面增加类名 ani, 然后添加swiper animate 参数  </li>
+<li>swiper-animate-effect：切换效果，例如 fadeInUp    </li>
+<li>swiper-animate-duration：动画持续时间（单位秒），例如 0.5s  </li>
+<li>swiper-animate-delay: 延迟时间（单位秒） </li>
+<li><p>   <div class="swiper-container"></div></p>
+<pre><code>&lt;div class=&quot;swiper-wrapper&quot;&gt;
+    &lt;div class=&quot;swiper-slide&quot;&gt;
+       &lt;p class=&quot;ani&quot; swiper-animate-effect=&quot;fadeInUp&quot; swiper-animate-duration=&quot;0.5s&quot; swiper-animate-delay=&quot;0.3s&quot;&gt;Slider 1&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>   <br>js调用</p>
+<p>   var mySwiper = new Swiper (‘.swiper-container’, {</p>
+<pre><code>onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+swiperAnimateCache(swiper); //隐藏动画元素
+swiperAnimate(swiper); //初始化完成开始动画
+},
+onSlideChangeEnd: function(swiper){
+    swiperAnimate(swiper); //每个slide切换结束时也运⾏当前slide动画
+}
+</code></pre><p>   });</p>
+</li>
+</ol>
+<p>附一个Demo 帮助更好的理解和使用 !<br>&lt; ! ———- HTML ———– &gt;</p>
+<pre><code>&lt;div class=&quot;swiper-container box&quot;&gt;
+    &lt;div class=&quot;swiper-wrapper slider&quot;&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/01.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/02.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/10.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/13.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/14.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/16.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/19.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;&lt;img src=&quot;images/35.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 如果需要分页器 --&gt;
+    &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+    &lt;!-- 如果需要导航按钮 --&gt;
+    &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+    &lt;!-- 如果需要滚动条 --&gt;
+    &lt;div class=&quot;swiper-scrollbar&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>&lt; ! ——— Style ————— &gt;</p>
+<pre><code>&lt;style&gt;
+    .box {
+        width: 300px;
+        height: 433px;
+        margin: 100px auto;
+    }
+    .slider img{
+        width: 300px;
+        height: 433px;
+    }
+&lt;/style&gt;
+</code></pre><p>&lt; ! ——— JavaScript ——- &gt;</p>
+<pre><code>&lt;script&gt;
+    var swiper = new Swiper(&apos;.swiper-container&apos;, {
+        // 如果需要分页器器
+        pagination: &apos;.swiper-pagination&apos;,
+        // 如果需要前进后退按钮
+        nextButton: &apos;.swiper-button-next&apos;,
+        prevButton: &apos;.swiper-button-prev&apos;,
+        // 如果需要滚动条
+        scrollbar: &apos;.swiper-scrollbar&apos;,
+        loop: true,
+        autoplay: 1000,
+        direction: &apos;horizontal&apos;, //切换方向 水平(horizontal)或垂直(vertical)
+        speed: 400,
+        keyboardControl: true,
+        paginationType: &quot;fraction&quot;,
+        effect: &apos;flip&apos;,
+    });
+&lt;/script&gt;
+</code></pre><p>&lt; ! ——— 效果展示 ———- &gt;<br><img src="http://upload-images.jianshu.io/upload_images/3359912-d47ed22f8adf2560.gif?imageMogr2/auto-orient/strip" alt=""></p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2015/06/22/HTML5 - Swiper框架/"
+                     data-title="HTML5 - Swiper框架"
+                     data-url="https://Jingdan.github.io/2015/06/22/HTML5 - Swiper框架/"
+                     data-images="https://Jingdan.github.io/2015/06/22/HTML5 - Swiper框架/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+框架五 —-&gt; swiper.js介绍Swiper是一款免费以及轻量级的移动设备触控滑... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/08/05/HTML5 - LESS预处理语言/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - LESS预处理语言">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/05/18/HTML5 - Zepto框架/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - Zepto框架">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2015/06/22/HTML5 - Swiper框架/"
+                         data-title="HTML5 - Swiper框架"
+                         data-url="https://Jingdan.github.io/2015/06/22/HTML5 - Swiper框架/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#框架五-—-gt-swiper-js"><span class="toc-text">框架五 —-> swiper.js</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#注意"><span class="toc-text">注意:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Swiper从3-0开始不再全面支持PC端。因此，如需要在PC上兼容更多浏览器，可以选择swiper-2-x-支持IE7"><span class="toc-text">Swiper从3.0开始不再全面支持PC端。因此，如需要在PC上兼容更多浏览器，可以选择swiper 2.x(支持IE7)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#引入方法"><span class="toc-text">引入方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#HTML结构"><span class="toc-text">HTML结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Js文件调用"><span class="toc-text">Js文件调用</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高级效果和参数设置"><span class="toc-text">高级效果和参数设置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#引入文件-比之前多了animate-css-和swiper-animate-js"><span class="toc-text">引入文件(比之前多了animate.css 和swiper.animate.js)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#框架"
+                           title="框架">框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
