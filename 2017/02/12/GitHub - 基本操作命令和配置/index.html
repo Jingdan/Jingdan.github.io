@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        GitHub - 基本操作命令和配置｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2017/02/12/GitHub - 基本操作命令和配置/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>GitHub - 基本操作命令和配置</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2017-02-12
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#GitHub"
+                           title="GitHub">GitHub</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            GitHub - 基本操作命令和配置
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="认识Shell"><a href="#认识Shell" class="headerlink" title="认识Shell"></a>认识Shell</h2><ul>
+<li><p>在计算机科学中，Shell俗称壳，用来区别于Kernel（核），是指“提供使用者使用界面”的软件（命令解析器）。它类似于DOS下的command和后来的cmd.exe。它接收用户命令，然后调用相应的应用程序。</p>
+</li>
+<li><p>图形界面shell：通过提供友好的可视化界面，调用相应应用程序，如windows系列操作系统，Linux系统上的图形化应用程序GNOME、KDE等。</p>
+</li>
+<li><p>Linux 默认使用 bash 所以我们要学习的就是以Bash为基础的。<br>首先安装Git软件。它内置了bash.(百度搜索git,下载跟自己电脑匹配的git版本,比如32位操作系统,64位操作系统)<br>我们可以直接在里面进行命令操作。</p>
+</li>
+<li><p>命令行shell：通过键盘输入特定命令的方式，调用相应的应用程序，如windows系统的cmd.exe、Windows PowerShell，Linux系统的Bourne shell ( sh)、Bourne Again shell ( bash)等。</p>
+</li>
+</ul>
+<p>图解1<br><img src="http://upload-images.jianshu.io/upload_images/3359912-9b625b091fba1d41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>图解2 –&gt; 这种黑框框就是所谓的命令行shell<br><img src="http://upload-images.jianshu.io/upload_images/3359912-64fe540231dfaa37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="bash常用命令"><a href="#bash常用命令" class="headerlink" title="bash常用命令"></a>bash常用命令</h3><p>常见命令格式：命令 [-options] [参数]<br>pwd (Print Working Directory) 查看当前目录<br>cd (Change Directory) 切换目录，如 cd /etc<br>ls (List) 查看当前目录下内容，如 ls -al<br>mkdir (Make Directory) 创建目录，如 mkdir blog<br>touch 创建文件，如 touch index.html<br>wc (Word Count) 字数信息统计，如 wc index.html<br>cat 查看文件全部内容，如 cat index.html<br>more less 查看文件，如more /etc/passwd、less /etc/passwd<br>rm (remove) 删除文件，如 rm index.html、rm -rf blog<br>rmdir (Remove Directory) 删除文件夹，只能删除空文件夹，不常用<br>mv (move) 移动文件或重命名，如 mv index.html ./demo/index.html<br>cp (copy) 复制文件，cp index.html ./demo/index.html<br>head 查看文件前几行，如 head -5 index.html<br>tail 查看文件后几行 –n –f，如 tail index.html、tail -5 index.html<br>tab 自动补全，连按两次会将所有匹配内容显示出来<br>history 查看操作历史<br>ssh 远程登录，如ssh root@gitlab.study.com<br>(&gt; 和 &gt;&gt;)重定向，如echo hello world! &gt; README.md，&gt;覆盖 &gt;&gt;追加<br>wget 下载，如wget 要下载的文件地址<br>tar 解压缩，如tar zxvf node-v4.4.0.tar.gz<br>curl 网络请求，如curl ‘网络地址’<br>who am i 查看当前用户<br>| 管道符<br>grep 匹配内容，一般结合管道符使用**  </p>
+<h2 id="vi-编辑器"><a href="#vi-编辑器" class="headerlink" title="vi 编辑器"></a>vi 编辑器</h2><p>vi编辑器是Linux和Unix上最基本的文本编辑器，工作在字符模式下。由于不需要图形界面，vi是效率很高的文本编辑器。尽管在Linux上也有很多图形界面的编辑器可用，但vi在系统和服务器管理中的功能是那些图形编辑器所无法比拟的。</p>
+<h3 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h3><p>命令模式<br>插入模式<br>底行模式<br>它们每一种模式下，操作的命令都是不一样的。各个模式可以进行切换。<br>图解<br><img src="http://upload-images.jianshu.io/upload_images/3359912-f56fd69f833f5631.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="命令行模式命令"><a href="#命令行模式命令" class="headerlink" title="命令行模式命令"></a>命令行模式命令</h3><p>通过上图我们发现，输入模式是不能直接切换到末行模式的，必须要先切回到命令模式（按ESC键）<br>ZZ（大写）保存并退出<br>u辙销操作，可多次使用<br>dd删除当前行<br>yy复制当前行<br>p 粘贴内容<br>ctrl+f向前翻页<br>ctrl+b向后翻页<br>i进入编辑模式，当前光标处插入<br>a进入编辑模式，当前光标后插入<br>A进入编辑模式，光标移动到行尾<br>o进入编辑模式，当前行下面插入新行<br>O进入编辑模式，当前行上面插入新行  </p>
+<h3 id="底行模式命令"><a href="#底行模式命令" class="headerlink" title="底行模式命令"></a>底行模式命令</h3><p>:w保存，:w filenme另存为<br>:q退出<br>:wq保存并退出<br>:q! 不保存强制退出<br>:e! 撤销更改，返回到上一次保存的状态<br>:set nu 设置行号  </p>
+<h2 id="SSH介绍"><a href="#SSH介绍" class="headerlink" title="SSH介绍"></a>SSH介绍</h2><p>SSH是一种网络协议，用于计算机之间的加密登录。<br>利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。<br>SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。<br>SSH在正确使用时可弥补网络中的漏洞。SSH客户端适用于多种平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。<br>图解 – &gt; 加密和解密使用的是一样的密钥。<br><img src="http://upload-images.jianshu.io/upload_images/3359912-8c4de09f8d2f1895.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="加密方式"><a href="#加密方式" class="headerlink" title="加密方式"></a>加密方式</h2><p>对称加密<br>非对称加密<br>图解 – &gt; 为什么要加密<br><img src="http://upload-images.jianshu.io/upload_images/3359912-f7c03719c57dafd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>图解 – &gt; 对称加密<br>原理:就是在用户的密码后面再添加一个串,然后把串加密成一堆乱码.但是发送给服务器,服务器要想解密,必须拿到对应的那个串,但是在传输串的过程中,又有可能被拦截,只要有了这个串,就可以破解,所以对称加密并不是很安全<br><img src="http://upload-images.jianshu.io/upload_images/3359912-2bde48f6704ae19c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>图解 – &gt; 非对称加密<br>原理:每台电脑中,公钥和私钥是不同的,但是一台电脑只有一对互相对应的公钥和私钥,只有自己电脑对应的那个公钥和私钥,才能解开.我们把自己的公钥发送给服务器,然后服务器再把自己的公钥发给我们,这样就可以免密登录了<br><img src="http://upload-images.jianshu.io/upload_images/3359912-e5ae27c92ffd0d73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/3359912-939a04f8add0535a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><p>版本控制（Version Control Systems）版本控制(Revision control)是一种软体工程技巧，在开发的过程中，确保由不同人所编辑的同一档案都得到更新。<br>举例：我们通常都是手动的重命名一个文件进行备份的，index.html改成index1.html或者index.html.bak等形式，然后这种方式对于单个文件我们还能够管理，但是对于整个项目而言，就会成为噩梦了！！！<br>版本控制分为两种：</p>
+<pre><code>集中式管理 
+分布式管理
+</code></pre><h3 id="集中式管理"><a href="#集中式管理" class="headerlink" title="集中式管理"></a>集中式管理</h3><p>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。中央服务器就好比是一个图书馆，你要改一本书，必须先从图书馆借出来，然后回到家自己改，改完了，再放回图书馆。<br>图解：<br><img src="http://upload-images.jianshu.io/upload_images/3359912-86666952643fdf77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>弊端</p>
+<p>集中式版本控制系统最大的毛病就是必须联网才能工作。所有的版本都在一个服务器上面。 如果服务挂了， 所有记录的版本都了。</p>
+<h3 id="分布式管理"><a href="#分布式管理" class="headerlink" title="分布式管理"></a>分布式管理</h3><p>分布式版本控制系统，则不需要中央服务器，每个协同开发者都拥有一个完整的版本库，这么一来，任何协同开发者用的服务器发生故障，事后都可以用其它协同开发者本地仓库恢复。<br>图解<br><img src="http://upload-images.jianshu.io/upload_images/3359912-4171950b81222c6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>在实际使用分布式版本控制系统的时候，其实很少在两人之间的电脑上推送版本库的修改，因为可能你们俩不在一个局域网内，两台电脑互相访问不了，也可能今天你的同事病了，他的电脑压根没有开机。因此，分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。<br>分布式版本控制系统弥补了前面两种版本控制系统的缺陷,成为了版本控制的首选方案,其代表就是Git.</p>
+<h2 id="Git工作原理"><a href="#Git工作原理" class="headerlink" title="Git工作原理"></a>Git工作原理</h2><p>为了更好的学习git,我们必须了解Git管理我们文件的三种状态</p>
+<h4 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h4><p>已提交（committed）<br>已修改（modified）<br>已暂存（staged）</p>
+<h4 id="Git项目的三个工作区域"><a href="#Git项目的三个工作区域" class="headerlink" title="Git项目的三个工作区域"></a>Git项目的三个工作区域</h4><p>Git 的工作目录<br>暂存区域<br>以及本地仓库。  </p>
+<p>Git仓库: 目录是Git用来保护项目的原数据和对象数据库的地方,这是Git中最重要的部分,从其他计算机拷贝仓库时,拷贝的就是这里的数据  </p>
+<p>工作目录: 是对项目的某个版本独立提取出来的内容,这些从Git仓库的压缩数据库中提取出来的文件信息,放在本地供你使用和修改  </p>
+<p>暂存区域 : 是一个文件,保存了下次提交的文件列表信息,一般在Git仓库目录中,有时候也被称作’索引’,不过一般还是叫做”暂存区域”  </p>
+<h4 id="Git的工作流程"><a href="#Git的工作流程" class="headerlink" title="Git的工作流程"></a>Git的工作流程</h4><pre><code>在工作目录中修改文件。
+暂存文件，将文件的快照放入暂存区域。
+提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。
+</code></pre><p>图解<br><img src="http://upload-images.jianshu.io/upload_images/3359912-c1b868569bd1b922.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="Git新用户配置"><a href="#Git新用户配置" class="headerlink" title="Git新用户配置"></a>Git新用户配置</h3><p>1.配置用户名，邮箱(不重要)<br>git config –global user.name/user.email<br>图解<br><img src="http://upload-images.jianshu.io/upload_images/3359912-4a601e3cbca25f7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>2.初始化仓库<br><code>git init</code><br><img src="http://upload-images.jianshu.io/upload_images/3359912-c8dccaffc94857f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>3.查看文件状态<br><code>git status</code><br><img src="http://upload-images.jianshu.io/upload_images/3359912-c4aec048cfee8fa6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>4.添加文件到暂存区<br><code>git add */-A</code><br><img src="http://upload-images.jianshu.io/upload_images/3359912-45168693eab8c6dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>5.提交文件到仓库当中<br><code>git commit -m&quot;备注信息&quot;</code><br><img src="http://upload-images.jianshu.io/upload_images/3359912-52f251fef3fcd765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>6.查看所有版本信息<br><code>git log</code><br><img src="http://upload-images.jianshu.io/upload_images/3359912-f2f88c5fda93b745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>7.对文件进行修改时,再去查看状态会出现modified状态,此时需要再次把它提交到暂存区<br><code>git log</code><br><img src="http://upload-images.jianshu.io/upload_images/3359912-2c9d8fe3182c158c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>8.修改完毕之后再次添加到暂存区,当再次提交到仓库时会生成一个新的sha值<br><img src="http://upload-images.jianshu.io/upload_images/3359912-a1f3ab5198cb857d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>9.恢复历史<br><img src="http://upload-images.jianshu.io/upload_images/3359912-721a48efa0ba5767.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/3359912-870d003f1b81827c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>10.每一次提交都会对应一个sha值<br>sha:589738e18edf818142854a50c3efe82c5cf34a1b 该版本是谁提交，提交日期。  </p>
+<p>到这里先把自己的Git帐号注册好,电脑上把基本配置设置好!下次更新的时候教大家怎么使用Git.Git是全世界最大的开源社区,这种东西是一定,必须要会的</p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2017/02/12/GitHub - 基本操作命令和配置/"
+                     data-title="GitHub - 基本操作命令和配置"
+                     data-url="https://Jingdan.github.io/2017/02/12/GitHub - 基本操作命令和配置/"
+                     data-images="https://Jingdan.github.io/2017/02/12/GitHub - 基本操作命令和配置/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+认识Shell
+在计算机科学中，Shell俗称壳，用来区别于Kernel（核），是指“提供使... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/03/26/blog/" data-toggle="tooltip" data-placement="top"
+                           title="利用数组的reduce方法优化代码">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/02/08/CSS3 - 新增重要属性/" data-toggle="tooltip" data-placement="top"
+                           title="CSS3 - 新增重要属性">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2017/02/12/GitHub - 基本操作命令和配置/"
+                         data-title="GitHub - 基本操作命令和配置"
+                         data-url="https://Jingdan.github.io/2017/02/12/GitHub - 基本操作命令和配置/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#认识Shell"><span class="toc-text">认识Shell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bash常用命令"><span class="toc-text">bash常用命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-编辑器"><span class="toc-text">vi 编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三种模式"><span class="toc-text">三种模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行模式命令"><span class="toc-text">命令行模式命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#底行模式命令"><span class="toc-text">底行模式命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH介绍"><span class="toc-text">SSH介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密方式"><span class="toc-text">加密方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本控制"><span class="toc-text">版本控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集中式管理"><span class="toc-text">集中式管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式管理"><span class="toc-text">分布式管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git工作原理"><span class="toc-text">Git工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#三种状态"><span class="toc-text">三种状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git项目的三个工作区域"><span class="toc-text">Git项目的三个工作区域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git的工作流程"><span class="toc-text">Git的工作流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git新用户配置"><span class="toc-text">Git新用户配置</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#GitHub"
+                           title="GitHub">GitHub</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
