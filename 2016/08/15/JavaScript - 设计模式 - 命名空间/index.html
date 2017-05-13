@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        JavaScript - 设计模式 - 命名空间｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2016/08/15/JavaScript - 设计模式 - 命名空间/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>JavaScript - 设计模式 - 命名空间</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2016-08-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            JavaScript - 设计模式 - 命名空间
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h4 id="设计模式概述"><a href="#设计模式概述" class="headerlink" title="设计模式概述"></a>设计模式概述</h4><p>是为了解决在开发中可能遇到的需求(相似),而提出的一套解决方法.</p>
+<h4 id="设计模式要求："><a href="#设计模式要求：" class="headerlink" title="设计模式要求："></a>设计模式要求：</h4><p>在开发中整个系统需要一套设计模式（架构师）<br>来源：建筑（建房子）领域<br>设计模式的四人帮： Erich Gamma、Richard Helm、Ralph Johnson 和 John Vlissides<br>设计模式：总共有23种．<br>设计模式类型：单利（例）模式　｜观察者模式　｜　代理模式　｜工厂模式　｜适配器模式　｜桥接模式 | ….<br>设计模式的书：＜设计模式＞＜大话设计模式｜大话数据结构＞＜23种常见的设计模式＞ </p>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>批量创建大量的同类型的对象</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点 :"></a>优点 :</h5><p>可以通过统一的借口来创建对象,根据传入的参数不同来创建不同的对象,易于扩展和维护,稳定性更好</p>
+<h5 id="核心过程"><a href="#核心过程" class="headerlink" title="核心过程 :"></a>核心过程 :</h5><p>提供一个父构造函数<br>设置这个父构造函数的原型对象(属性|方法)<br>在父构造函数身上添加静态工厂方法<br>1.需要接收传入的参数(要生产的产品的类型)<br>2.判断 是否支持生产<br>3.设置子构造函数的原型对象<br>4.把新创建的对象返回  </p>
+<p>定制合作伙伴<br>直接使用父构造函数的静态工厂方法来创建指定的产品对象  </p>
+<p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    //1. 提供一个父构造函数
+    function PhoneMake(){};
+    //2. 设置这个父构造函数的原型对象(属性|方法)
+    PhoneMake.prototype.logDes = function(){
+        console.log(&quot;我们的口号是:&quot; + this.des);
+    }
+    //3. 在父构造函数身上添加静态工厂方法
+    PhoneMake.factory = function(typeStr){
+        // 3.1 需要接收传入的参数(要生产的产品的类型)
+        var productType =  typeStr;
+        //var Dog = PhoneMake[productType];
+        //3.2 判断 是否支持生产
+        if (typeof PhoneMake[productType]  != &quot;function&quot;)
+        {
+            //抛出一个异常
+            throw &quot;对不起,我们工厂和这个品牌没有商务合作,不能生产!&quot;
+        }
+        //3.3 设置子构造函数的原型对象
+         //为了获得构造函数原型对象的方法
+        PhoneMake[productType].prototype = new PhoneMake(); 
+        //3.4 设置子构造函数的原型对象
+       var newProduct = new PhoneMake[productType]();
+        //3.5 把新创建的对象返回
+        return newProduct;
+    }
+    //4. 定制合作伙伴
+    PhoneMake.iphone = function(){
+        this.des = &quot;最安全最稳定的系统,最垃圾的体验&quot;
+    }
+    PhoneMake.oppo = function(){
+        this.des = &quot;充电两小时,通话五分钟&quot;
+    }
+    PhoneMake.vivo = function(){
+        this.des = &quot;照亮你的美,你本来就很美&quot;
+    }
+    PhoneMake.meizu = function(){
+        this.des = &quot;我就是我,不一样的魅族&quot;
+    }
+    //5. 直接使用父构造函数的静态工厂方法来创建指定的产品对象
+    var iphone = PhoneMake.factory(&quot;iphone&quot;);
+    var vivo = PhoneMake.factory(&quot;vivo&quot;);
+    var oppo = PhoneMake.factory(&quot;oppo&quot;);
+    var meizu = PhoneMake.factory(&quot;meizu&quot;);
+    var xiaomi = PhoneMake.factory(&quot;xiaomi&quot;);
+    iphone.logDes();
+    vivo.logDes();
+    oppo.logDes();
+    meizu.logDes();
+&lt;/script&gt;
+</code></pre><h5 id="单利模式"><a href="#单利模式" class="headerlink" title="单利模式"></a>单利模式</h5><h6 id="在整个程序的运行过程中-一个类只有一个实例对象"><a href="#在整个程序的运行过程中-一个类只有一个实例对象" class="headerlink" title="在整个程序的运行过程中,一个类只有一个实例对象"></a>在整个程序的运行过程中,一个类只有一个实例对象</h6><h6 id="js中的单利模式"><a href="#js中的单利模式" class="headerlink" title="js中的单利模式"></a>js中的单利模式</h6><p>js没有类(ES6才有的) ,js实现单利模式(限定讨论的范围)<br>1.字面量<br>2.内置构造函数(Array Date Function Object)<br>3.工厂函数<br>4.自定义构造函数(单利模式)  </p>
+<p>js是什么样的语言<br>1.弱类型,脚本,轻量级,面向对象,基于原型(对象),解释行语言.函数式.<br>2.js到底是不是一门面向对象(类)的语言?<br>3.js是一门支持面向对象的语言.(封装|继承|多态)  </p>
+<p>单利模式实现之后的表现<br><code>var p1 = new 构造函数()</code><br><code>var p2 = new 构造函数()</code><br><code>p1 == p2</code></p>
+<p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    function Person(){
+        //首先创建一个空的对象
+        //默认把新的对象赋值给this
+        //把新对象返回
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+    console.log(p1 == p2);
+&lt;/script&gt;
+</code></pre><h5 id="单利模式的实现方式01-—-gt-全局变量"><a href="#单利模式的实现方式01-—-gt-全局变量" class="headerlink" title="单利模式的实现方式01 —-&gt; 全局变量"></a>单利模式的实现方式01 —-&gt; 全局变量</h5><h6 id="全局变量来保存对象实现单利模式"><a href="#全局变量来保存对象实现单利模式" class="headerlink" title="全局变量来保存对象实现单利模式"></a>全局变量来保存对象实现单利模式</h6><p>提供一个全局的变量<br>提供一个构造函数Person<br>在构造函数内部先判断全局变量是否有值,如果有那么就直接返回<br>如果没有,那么就把this赋值给全局变量<br>通过this设置属性和方法  </p>
+<h6 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h6><p>使用一个全局变量来保存单利对象,该全局变量在整个作用域中都可以被访问或者是修改,可能会轻易的被覆盖或者是修改.<br>修改之后,创建出来的实例对象就不再是之前的那个单利对象了.<br>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    var instance;
+    function Person(){
+        if(instance)
+        {
+            console.log(&quot;对象已经被创建,直接把之前创建好的对象返回&quot;);
+            return instance;
+        }
+        instance = this;
+        this.name = &quot;奥特曼&quot;;
+        this.age = 1000;
+        console.log(&quot;第一次创建对象,创建对象之后并返回&quot;);
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+    console.log(p1 == p2);
+    var p3 = new Person();
+    instance = &quot;demo&quot;;
+    var p4 = new Person();
+    console.log(p4);
+    console.log(p4 == p1);
+&lt;/script&gt;
+</code></pre><h5 id="单利模式的实现方式02-—-gt-静态属性"><a href="#单利模式的实现方式02-—-gt-静态属性" class="headerlink" title="单利模式的实现方式02 —-&gt; 静态属性"></a>单利模式的实现方式02 —-&gt; 静态属性</h5><h6 id="静态成员-直接添加到构造函数身上的属性或者是方法"><a href="#静态成员-直接添加到构造函数身上的属性或者是方法" class="headerlink" title="静态成员:直接添加到构造函数身上的属性或者是方法"></a>静态成员:直接添加到构造函数身上的属性或者是方法</h6><h6 id="存在的问题-1"><a href="#存在的问题-1" class="headerlink" title="存在的问题"></a>存在的问题</h6><ol>
+<li><p>构造函数的静态属性其实也可能被修改,因此这种方法也不安全  </p>
+</li>
+<li><p>示例代码 :</p>
+</li>
+</ol>
+<pre><code>&lt;script&gt;
+    function Person(){
+        //判断对象是否已经被创建
+        if (Person.instance)
+        {
+            console.log(&quot;之前已经创建过对象,直接返回&quot;);
+            return Person.instance;
+        }
+        this.name = &quot;大黄蜂&quot;
+        Person.instance  = this;
+        console.log(&quot;第一次创建&quot;);
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+    console.log(p1 == p2);
+    instance = &quot;demo&quot;;
+    var p3 = new Person();
+    console.log(p1 == p3);
+    Person.instance = &quot;123&quot;;
+    var p4 = new Person();
+    console.log(p4 == p1);
+&lt;/script&gt;
+</code></pre><h5 id="单利模式的实现方式03-—-gt-惰性函数"><a href="#单利模式的实现方式03-—-gt-惰性函数" class="headerlink" title="单利模式的实现方式03 —-&gt; 惰性函数"></a>单利模式的实现方式03 —-&gt; 惰性函数</h5><h5 id="核心过程-1"><a href="#核心过程-1" class="headerlink" title="核心过程"></a>核心过程</h5><p>提供一个构造函数<br>在构造函数内部声明一个私有的变量<br>使用惰性函数定义更新构造函数的实现(直接把instance返回)<br>设置原型对象[新构造函数的原型对象 = 旧构造函数的原型对象]<br>构造函数,prototype == 对象.proto<br>使用新的构造函数创建实例对象,并且赋值给instance<br>修正对象的构造函数指向<br>通过instance设置实例属性和方法  </p>
+<p>示例代码 :  </p>
+<pre><code>&lt;script&gt;
+    // 01 提供一个构造函数
+    function Person(){
+        //this01
+        //02 在构造函数内部声明一个私有的变量
+        var instance;
+        //03 使用惰性函数定义更新构造函数的实现(直接把instance返回)
+        Person = function(){
+            //内部默认会创建一个空的对象 this02
+            return instance;
+        }
+        //04 设置原型对象[新构造函数的原型对象 = 旧构造函数的原型对象]
+        //原型链继承:Man.prototype = new Person();
+        //原型式继承:Man.prototype = Person.prototype;
+        //Person.prototype = this.__proto__;  //非标准(代码中不要出现)
+        Person.prototype = this;
+        //05 使用新的构造函数创建实例对象,并且赋值给instance
+        instance = new Person();
+        //instance = this;
+        //06 修正对象的构造函数指向
+        instance.constructor = Person;
+        // 07 通过instance设置实例属性和方法
+        instance.name = &quot;我很好听&quot;;
+        // 08 把instance返回
+        return instance;
+    }
+    Person.prototype.des = &quot;描述信息&quot;;
+    var p1 = new Person();
+    Person.prototype.hi = &quot;hi&quot;;
+    var p2 = new Person();
+    console.log(p1 == p2);
+    console.log(p1.constructor == Person);  //true
+    console.log(p1.des);
+    console.log(p1.hi);
+&lt;/script&gt;
+</code></pre><h5 id="单利模式的实现方式04-—-gt-全局变量-即时函数"><a href="#单利模式的实现方式04-—-gt-全局变量-即时函数" class="headerlink" title="单利模式的实现方式04 —-&gt; 全局变量 + 即时函数"></a>单利模式的实现方式04 —-&gt; 全局变量 + 即时函数</h5><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    var Person;
+    (function(){
+        var instance;
+        Person = function (){
+            if(instance)
+            {
+                return instance;
+            }
+            this.name = &quot;momo&quot;;
+            instance = this;
+        }
+    })();
+    var p1 = new Person();
+    var p2 = new Person();
+    console.log(p1 == p2);
+&lt;/script&gt;
+</code></pre><h5 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h5><p>观察者模式举例说明</p>
+<h6 id="男生A和男生B同时都喜欢女生C-他们想时时监视女生C的动向-动态-所以他们找了女生C的闺蜜作为观察者帮他们监视实时动态-这样不管女生C有什么最新的动态都会被男生A和男生B监听到-开发中就是男生多了点-动态多了点-核心内容就是这样"><a href="#男生A和男生B同时都喜欢女生C-他们想时时监视女生C的动向-动态-所以他们找了女生C的闺蜜作为观察者帮他们监视实时动态-这样不管女生C有什么最新的动态都会被男生A和男生B监听到-开发中就是男生多了点-动态多了点-核心内容就是这样" class="headerlink" title="男生A和男生B同时都喜欢女生C,他们想时时监视女生C的动向,动态,所以他们找了女生C的闺蜜作为观察者帮他们监视实时动态.这样不管女生C有什么最新的动态都会被男生A和男生B监听到,开发中就是男生多了点,动态多了点,核心内容就是这样"></a>男生A和男生B同时都喜欢女生C,他们想时时监视女生C的动向,动态,所以他们找了女生C的闺蜜作为观察者帮他们监视实时动态.这样不管女生C有什么最新的动态都会被男生A和男生B监听到,开发中就是男生多了点,动态多了点,核心内容就是这样</h6><h6 id="要求"><a href="#要求" class="headerlink" title="要求:"></a>要求:</h6><ol>
+<li>女神:rose(发布者)  </li>
+<li>男生:jack(订阅者)  </li>
+<li>男生:tom(订阅者)  </li>
+</ol>
+<h6 id="过程"><a href="#过程" class="headerlink" title="过程:"></a>过程:</h6><ol>
+<li>创建或者是设置一个发布者  </li>
+<li>创建订阅者对象  </li>
+<li>注册订阅者  </li>
+<li>测试(发状态)  </li>
+</ol>
+<h6 id="示例代码1-一个发布者-两个订阅者-关注的是一个状态"><a href="#示例代码1-一个发布者-两个订阅者-关注的是一个状态" class="headerlink" title="示例代码1 : 一个发布者,两个订阅者,关注的是一个状态"></a>示例代码1 : 一个发布者,两个订阅者,关注的是一个状态</h6><pre><code>&lt;script&gt;
+    //01 创建或者是设置一个发布者
+    var rose = {
+        user:[],
+        addUser:function(fn){
+            if (typeof fn != &quot;function&quot;)
+            {
+                throw &quot;不支持该操作!&quot;;
+            }
+            this.user.push(fn);
+        },
+        removeUser:function(fn){
+            for (var i = 0; i &lt; this.user.length; i++) {
+                if(this.user[i] == fn)
+                {
+                    console.log(fn + &quot;取消了订阅&quot;);
+                    this.user.splice(i,1);
+                }
+            }
+        },
+        eat:function(){
+            for (var i = 0; i &lt; this.user.length; i++) {
+               this.user[i]();
+            }
+        }
+    }
+    // 02 创建订阅者对象
+    var jack = {
+        eat_jack:function(){
+            console.log(&quot;我陪你去吃拉面吧  ---jack&quot;);
+        }
+    }
+    var tom = {
+        eat_tom:function(){
+            console.log(&quot;我陪你去吃寿司吧  ---tom&quot;);
+        }
+    }
+    // 03 注册订阅者
+    rose.addUser(jack.eat_jack);
+    rose.addUser(tom.eat_tom);
+    //04 发布者状态改变
+    rose.eat();
+    rose.removeUser(jack.eat_jack);
+    rose.eat();
+&lt;/script&gt;
+</code></pre><p>示例代码2 : 多个状态</p>
+<pre><code>&lt;script&gt;
+    //01 创建或者是设置一个发布者
+    var publisher = {
+        addUser:function(fn,type){
+            var type = type || &quot;eat&quot;;
+            if (typeof fn != &quot;function&quot;)
+            {
+                throw &quot;不支持该操作!&quot;;
+            }
+            this.user[type].push(fn);
+        },
+        removeUser:function(fn,type){
+            var type = type || &quot;eat&quot;;
+            for (var i = 0; i &lt; this.user[type].length; i++) {
+                if(this.user[type][i] == fn)
+                {
+                    console.log(fn + &quot;取消了订阅&quot;);
+                    this.user[type].splice(i,1);
+                }
+            }
+        },
+        eat:function(){
+            for (var i = 0; i &lt; this.user[&quot;eat&quot;].length; i++) {
+               this.user[&quot;eat&quot;][i]();
+            }
+        },
+        sleep:function(){
+            for (var i = 0; i &lt; this.user[&quot;sleep&quot;].length; i++) {
+                //console.log(this.user,&quot;++++&quot;);
+                this.user[&quot;sleep&quot;][i]();
+            }
+        }
+    }
+    var rose = {};
+    //封装一个函数用来快速的让某个指定对象成为发布者
+    function makePublisher(o){
+        for(var i in publisher)
+        {
+            if (publisher.hasOwnProperty(i) &amp;&amp; typeof publisher[i] == &quot;function&quot; ){
+                o[i] = publisher[i];
+            }
+        }
+        o.user = {
+            eat:[],
+            sleep:[]
+        };
+    }
+    makePublisher(rose);
+    // 02 创建订阅者对象
+    var jack = {
+        eat_jack:function(){
+            console.log(&quot;我陪你去吃拉面吧  ---jack&quot;);
+        },
+        sleep_jack:function(){
+            console.log(&quot;晚安 rose  ---jack&quot;);
+        }
+    }
+    // 03 注册订阅者
+    rose.addUser(jack.eat_jack,&quot;eat&quot;);        //关注rose肚子饿不饿
+    rose.addUser(jack.sleep_jack,&quot;sleep&quot;);     //关注rose困不困
+    rose.eat();
+    rose.sleep();
+</code></pre><p>示例代码3 : 通用性处理</p>
+<pre><code>&lt;script&gt;
+    //01 创建或者是设置一个发布者
+    var publisher = {
+        addUser:function(fn,type){
+            var type = type || &quot;eat&quot;;
+            if (this.user[type] == undefined)
+            {
+                this.user[type] = [];
+            }
+            if (typeof fn != &quot;function&quot;)
+            {
+                throw &quot;不支持该操作!&quot;;
+            }
+            this.user[type].push(fn);
+        },
+        removeUser:function(fn,type){
+            this.publish(type,fn);
+        },
+        publish:function(type,fn){
+            var type = type || &quot;eat&quot;;
+            for (var i = 0; i &lt; this.user[type].length; i++) {
+                //判断当前是要取消订阅还是要发布状态
+                if (typeof fn == &quot;function&quot;)
+                {
+                    if(this.user[type][i] == fn)
+                    {
+                        console.log(fn + &quot;取消了订阅&quot;);
+                        this.user[type].splice(i,1);
+                    }
+                }else
+                {
+                    this.user[type][i]();
+                }
+            }
+        }
+    }
+    var rose = {
+        eat:function(){
+            this.publish(&quot;eat&quot;);
+        },
+        sleep:function(){
+            this.publish(&quot;sleep&quot;);
+        },
+        read:function(){
+            this.publish(&quot;read&quot;);
+        }
+    };
+    function makePublisher(o){
+        for(var i in publisher)
+        {
+            if (publisher.hasOwnProperty(i) &amp;&amp; typeof publisher[i] == &quot;function&quot; ){
+                o[i] = publisher[i];
+            }
+        }
+        o.user = {
+            eat:[],
+            sleep:[]
+        };
+    }
+    makePublisher(rose);
+    var jack = {
+        eat_jack:function(){
+            console.log(&quot;我陪你去吃拉面吧  ---jack&quot;);
+        },
+        sleep_jack:function(){
+            console.log(&quot;晚安 rose  ---jack&quot;);
+        }
+    }
+    var tom = {
+        eat_tom:function(){
+            console.log(&quot;我买给你吧  ---tom&quot;);
+        },
+        sleep_tom:function(){
+            console.log(&quot;今晚的太阳很好看 ---tom&quot;);
+        },
+        read_tom:function(){
+            console.log(&quot;你也在学习js吗?&quot;);
+        }
+    }
+    rose.addUser(jack.eat_jack,&quot;eat&quot;);
+    rose.addUser(tom.sleep_tom,&quot;sleep&quot;);
+    rose.addUser(tom.read_tom,&quot;read&quot;);
+    rose.eat();
+    rose.sleep();
+    rose.read();
+&lt;/script&gt;
+</code></pre><p>示例代码4 : 订阅者成为发布者</p>
+<pre><code>&lt;script&gt;
+    //01 创建或者是设置一个发布者
+    var publisher = {
+        addUser:function(fn,type){
+            var type = type || &quot;eat&quot;;
+            if (this.user[type] == undefined)
+            {
+                this.user[type] = [];
+            }
+            if (typeof fn != &quot;function&quot;)
+            {
+                throw &quot;不支持该操作!&quot;;
+            }
+            this.user[type].push(fn);
+        },
+        removeUser:function(fn,type){
+            this.publish(type,fn);
+        },
+        publish:function(type,fn){
+            var type = type || &quot;eat&quot;;
+            for (var i = 0; i &lt; this.user[type].length; i++) {
+                //判断当前是要取消订阅还是要发布状态
+                if (typeof fn == &quot;function&quot;)
+                {
+                    if(this.user[type][i] == fn)
+                    {
+                        console.log(fn + &quot;取消了订阅&quot;);
+                        this.user[type].splice(i,1);
+                    }
+                }else
+                {
+                    this.user[type][i]();
+                }
+            }
+        }
+    }
+    var rose = {
+        eat:function(){
+            this.publish(&quot;eat&quot;);
+        },
+        sleep:function(){
+            this.publish(&quot;sleep&quot;);
+        },
+        read:function(){
+            this.publish(&quot;read&quot;);
+        },
+        lol_rose:function(){
+            console.log(&quot;你怎么又在打游戏?还是游戏比较重要一些?&quot;)
+        }
+    };
+    function makePublisher(o){
+        for(var i in publisher)
+        {
+            if (publisher.hasOwnProperty(i) &amp;&amp; typeof publisher[i] == &quot;function&quot; ){
+                o[i] = publisher[i];
+            }
+        }
+        o.user = {
+            eat:[],
+            sleep:[]
+        };
+    }
+    makePublisher(rose);
+    var jack = {
+        eat_jack:function(){
+            console.log(&quot;我陪你去吃拉面吧  ---jack&quot;);
+        },
+        sleep_jack:function(){
+            console.log(&quot;晚安 rose  ---jack&quot;);
+        },
+        statusLol:function(){
+            this.publish(&quot;lol&quot;);
+        }
+    }
+    var tom = {
+        eat_tom:function(){
+            console.log(&quot;我买给你吧  ---tom&quot;);
+        },
+        sleep_tom:function(){
+            console.log(&quot;今晚的太阳很好看 ---tom&quot;);
+        },
+        read_tom:function(){
+            console.log(&quot;你也在学习js吗?&quot;);
+        },
+        lol_rose:function(){
+            console.log(&quot;好兄弟,终于来啦&quot;);
+        }
+    }
+    rose.addUser(jack.eat_jack,&quot;eat&quot;);
+    rose.addUser(tom.sleep_tom,&quot;sleep&quot;);
+    rose.addUser(tom.read_tom,&quot;read&quot;);
+    rose.eat();
+    rose.sleep();
+    rose.read();
+    //设置jack成为发布者,状态(lol)
+    makePublisher(jack);
+    jack.addUser(rose.lol_rose,&quot;lol&quot;);
+    jack.addUser(tom.lol_rose,&quot;lol&quot;);
+    jack.statusLol();
+&lt;/script&gt;
+</code></pre><h4 id="备忘模式-函数结构缓存"><a href="#备忘模式-函数结构缓存" class="headerlink" title="备忘模式(函数结构缓存)"></a>备忘模式(函数结构缓存)</h4><h5 id="特定场合"><a href="#特定场合" class="headerlink" title="特定场合:"></a>特定场合:</h5><p>计算的函数f()<br>某些参数需要进行大规模反复的计算,可以考虑</p>
+<pre><code>f(n) ..... =&gt;1000m
+代码中某些参数可能会反复计算
+f(10) ===&gt;ssddd
+f(10) ===&gt;ssddd
+</code></pre><h5 id="使用一个缓存对象cacheObj-key-value"><a href="#使用一个缓存对象cacheObj-key-value" class="headerlink" title="使用一个缓存对象cacheObj{key-value}"></a>使用一个缓存对象cacheObj{key-value}</h5><p>思路:</p>
+<p>1.提供一个全局的对象(缓存对象),key-value<br>2.当我们传递参数需要进行计算(逻辑)的时候,先检查缓存对象中是否有对应的结果<br>3.如果有缓存数据,那么就直接使用(可以节省时间,提高效率)<br>4.如果没有缓存数据,那么这个时候再执行计算操作,处理得到结果之后,把这个数据保存起来<br>5.函数的参数作为缓存对象的key,把函数计算的结果作为这个key对应的值  </p>
+<p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    var cache = {};
+    function f1(str){
+        //.....
+        if (cache[str] != undefined)
+        {
+            console.log(&quot;已经存在缓存数据,直接返回&quot;);
+            return cache[str];
+        }
+        //....如果缓存中有数据,那么函数体后面的代码就不再执行(节省时间)
+        //执行耗时操作...
+        var result = str + &quot; hello world!&quot;;
+        cache[str] = result;
+        console.log(&quot;第一次调用函数传入参数,返回结果&quot;);
+        return result;
+    }
+    console.log(f1(&quot;demo&quot;));   //
+    console.log(f1(&quot;demo&quot;));   //
+    console.log(f1(&quot;demo&quot;));
+&lt;/script&gt;
+</code></pre><p>2<br>    <script><br>        function f1(str){<br>            //…..<br>            if (f1.cache[str] != undefined)<br>            {<br>                console.log(“已经存在缓存数据,直接返回”);<br>                return f1.cache[str];<br>            }<br>            //….如果缓存中有数据,那么函数体后面的代码就不再执行(节省时间)<br>            //执行耗时操作…<br>            var result = str + “ hello world!”;<br>            f1.cache[str] = result;<br>            console.log(“第一次调用函数传入参数,返回结果”);<br>            return result;<br>        }<br>        f1.cache = {};<br>        console.log(f1(“test”));  //<br>        console.log(f1(“test”));   //<br>        console.log(f1(“test”));<br>    </script></p>
+<h5 id="命名空间模式"><a href="#命名空间模式" class="headerlink" title="命名空间模式:"></a>命名空间模式:</h5><p>写法:就是把所有的东西都写在一个对象里面.  </p>
+<p>命名:命名空间的名称一般是项目的名称或者是简写,要求所有的字符都大写  </p>
+<p>示例代码 :  </p>
+<pre><code>&lt;script&gt;
+    //01 普通的变量
+    var a = &quot;a&quot;;
+    var b = &quot;b&quot;;
+    //02 对象
+    var obj = {
+        name:&quot;xxx&quot;
+    }
+    function func (){
+        console.log(&quot;func&quot;);
+    }
+    function Person(){
+        this.name = &quot;默认的名称&quot;;
+    }
+    function func (){
+        console.log(&quot;func&quot;);
+    }
+&lt;/script&gt;
+</code></pre><p>2</p>
+<pre><code>&lt;script&gt;
+    var MOMO = {};
+    //01 普通的变量
+    MOMO.a = &quot;a&quot;;
+    MOMO.b = &quot;b&quot;;
+    //02 对象
+    MOMO.obj = {
+        name:&quot;zahngsan&quot;
+    }
+    MOMO.func = function(){
+        console.log(&quot;func&quot;);
+    }
+    MOMO.Person = function(){
+        this.name = &quot;默认的名称&quot;;
+    }
+    console.log(new  MOMO.Person());
+&lt;/script&gt;
+</code></pre><p>3</p>
+<pre><code>&lt;script&gt;
+//    var MOMO ={};
+//    MOMO.obj = {
+//        name:&quot;张三&quot;
+//    };
+//
+//    MOMO.obj = &quot;demodede&quot;;
+    //在使用或者是对属性进行赋值之前,会先做一个检查(检查改属性或者是方法是否存在)
+    //var MOMO = {};  不推荐
+    //02 更安全的处理方式:麻烦
+//    if (MOMO == undefined)
+//    {
+//        var MOMO = {};
+//    }
+    var MOMO = MOMO || {};      //逻辑或 如果MOMO为真那么返回MOMO,否则就返回{}
+    //if (MOMO.name == undefined)
+    if ( typeof MOMO.name == &apos;undefined&apos;)
+{
+    MOMO.name = &quot;测试的名称&quot;;
+}
+    if ( typeof MOMO.age == &apos;undefined&apos;)
+    {
+        MOMO.age = 20;
+    }
+    //100属性
+&lt;/script&gt;
+</code></pre><h5 id="通用的命名空间函数"><a href="#通用的命名空间函数" class="headerlink" title="通用的命名空间函数"></a>通用的命名空间函数</h5><p>在命名空间上面提供一个方法(nameSpace)</p>
+<ol>
+<li>得到调用函数传入的字符串  </li>
+<li>把字符串转换为字符串数组  </li>
+<li>把MOMO最外层去掉(删除)  </li>
+<li>遍历  </li>
+<li><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    var MOMO = MOMO || {};
+    MOMO.namespace = function(stringParam){
+        var str = stringParam;
+        var parts = str.split(&quot;.&quot;);   //根据字符串切割字符串变成一个数组
+        var parent = MOMO;
+        console.log(parts);
+        if(parts[0] == &quot;MOMO&quot;)
+        {
+            parts = parts.slice(1)    //作用:删除第一个元素返回一个新的数组
+        }
+        for (var i = 0; i &lt; parts.length; i++) {
+            //MOMO.name
+            //name.des
+            //des.abc
+            if (parent[parts[i]] == undefined)
+            {
+                parent[parts[i]] = {};
+            }
+            //更新父节点
+            parent = parent[parts[i]];
+        }
+    }
+    MOMO.namespace(&quot;MOMO.name.des.abc&quot;);
+    console.log(MOMO);
+    MOMO.namespace(&quot;MOMO.a.b.c.d.e.f.d.g.h.j.k.s.d.g.h.j.a.s.d.f.we.r&quot;);
+    console.log(MOMO);
+    MOMO.namespace(&quot;abc.des.abc&quot;);
+    console.log(MOMO);
+&lt;/script&gt;
+</code></pre></li>
+</ol>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/08/15/JavaScript - 设计模式 - 命名空间/"
+                     data-title="JavaScript - 设计模式 - 命名空间"
+                     data-url="https://Jingdan.github.io/2016/08/15/JavaScript - 设计模式 - 命名空间/"
+                     data-images="https://Jingdan.github.io/2016/08/15/JavaScript - 设计模式 - 命名空间/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+设计模式概述是为了解决在开发中可能遇到的需求(相似),而提出的一套解决方法.
+设计模式要求：... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/02/08/CSS3 - 新增重要属性/" data-toggle="tooltip" data-placement="top"
+                           title="CSS3 - 新增重要属性">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 闭包 - 函数回调 - 即时函数">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2016/08/15/JavaScript - 设计模式 - 命名空间/"
+                         data-title="JavaScript - 设计模式 - 命名空间"
+                         data-url="https://Jingdan.github.io/2016/08/15/JavaScript - 设计模式 - 命名空间/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#设计模式概述"><span class="toc-text">设计模式概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设计模式要求："><span class="toc-text">设计模式要求：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂模式"><span class="toc-text">工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点"><span class="toc-text">优点 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#核心过程"><span class="toc-text">核心过程 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#单利模式"><span class="toc-text">单利模式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#在整个程序的运行过程中-一个类只有一个实例对象"><span class="toc-text">在整个程序的运行过程中,一个类只有一个实例对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#js中的单利模式"><span class="toc-text">js中的单利模式</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#单利模式的实现方式01-—-gt-全局变量"><span class="toc-text">单利模式的实现方式01 —-> 全局变量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#全局变量来保存对象实现单利模式"><span class="toc-text">全局变量来保存对象实现单利模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#存在的问题"><span class="toc-text">存在的问题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#单利模式的实现方式02-—-gt-静态属性"><span class="toc-text">单利模式的实现方式02 —-> 静态属性</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#静态成员-直接添加到构造函数身上的属性或者是方法"><span class="toc-text">静态成员:直接添加到构造函数身上的属性或者是方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#存在的问题-1"><span class="toc-text">存在的问题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#单利模式的实现方式03-—-gt-惰性函数"><span class="toc-text">单利模式的实现方式03 —-> 惰性函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#核心过程-1"><span class="toc-text">核心过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#单利模式的实现方式04-—-gt-全局变量-即时函数"><span class="toc-text">单利模式的实现方式04 —-> 全局变量 + 即时函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#观察者模式"><span class="toc-text">观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#男生A和男生B同时都喜欢女生C-他们想时时监视女生C的动向-动态-所以他们找了女生C的闺蜜作为观察者帮他们监视实时动态-这样不管女生C有什么最新的动态都会被男生A和男生B监听到-开发中就是男生多了点-动态多了点-核心内容就是这样"><span class="toc-text">男生A和男生B同时都喜欢女生C,他们想时时监视女生C的动向,动态,所以他们找了女生C的闺蜜作为观察者帮他们监视实时动态.这样不管女生C有什么最新的动态都会被男生A和男生B监听到,开发中就是男生多了点,动态多了点,核心内容就是这样</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#要求"><span class="toc-text">要求:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#过程"><span class="toc-text">过程:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#示例代码1-一个发布者-两个订阅者-关注的是一个状态"><span class="toc-text">示例代码1 : 一个发布者,两个订阅者,关注的是一个状态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#备忘模式-函数结构缓存"><span class="toc-text">备忘模式(函数结构缓存)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#特定场合"><span class="toc-text">特定场合:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用一个缓存对象cacheObj-key-value"><span class="toc-text">使用一个缓存对象cacheObj{key-value}</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#命名空间模式"><span class="toc-text">命名空间模式:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通用的命名空间函数"><span class="toc-text">通用的命名空间函数</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

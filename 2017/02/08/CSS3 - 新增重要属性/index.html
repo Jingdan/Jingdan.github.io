@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        CSS3 - 新增重要属性｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2017/02/08/CSS3 - 新增重要属性/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>CSS3 - 新增重要属性</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2017-02-08
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#css"
+                           title="css">css</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            CSS3 - 新增重要属性
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h4 id="本篇内容只要主要讲解CSS3新增属性-主要有伪类-动画-背景-边框-阴影等效果-CSS3学的好-不用js也一样能做好动画-C3很强大-逼格很高-现在很多前卫的企业都在用C3做动画"><a href="#本篇内容只要主要讲解CSS3新增属性-主要有伪类-动画-背景-边框-阴影等效果-CSS3学的好-不用js也一样能做好动画-C3很强大-逼格很高-现在很多前卫的企业都在用C3做动画" class="headerlink" title="本篇内容只要主要讲解CSS3新增属性,主要有伪类,动画,背景,边框,阴影等效果.CSS3学的好,不用js也一样能做好动画,C3很强大,逼格很高,现在很多前卫的企业都在用C3做动画."></a>本篇内容只要主要讲解CSS3新增属性,主要有伪类,动画,背景,边框,阴影等效果.CSS3学的好,不用js也一样能做好动画,C3很强大,逼格很高,现在很多前卫的企业都在用C3做动画.</h4><h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><h5 id="伪类选择器就是专门用于修改a标签不同状态样式的"><a href="#伪类选择器就是专门用于修改a标签不同状态样式的" class="headerlink" title="伪类选择器就是专门用于修改a标签不同状态样式的"></a>伪类选择器就是专门用于修改a标签不同状态样式的</h5><p>a标签有哪些状态</p>
+<p>默认状态, 从未被点击过 :link<br>被访问过状态 :visited<br>长按状态 :active<br>鼠标悬浮状态 :hover  </p>
+<h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><p>众多伪类选择器可以单独的存在, 也可以一起存在<br>如果多个伪类选择器一起出现, 那么有严格的顺序要求<br>编写的顺序要严格的按照爱恨原则 love hate</p>
+<h3 id="超链接美化"><a href="#超链接美化" class="headerlink" title="超链接美化"></a>超链接美化</h3><h5 id="注意点-1"><a href="#注意点-1" class="headerlink" title="注意点"></a>注意点</h5><p>由于鼠标悬浮是从默认状态过度过来的, 所以不用再次设置删除下划线  </p>
+<p>由于长按式从鼠标悬浮过度过来的, 所以在长按仲不用再次设置背景颜色  </p>
+<h5 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h5><p>设置a标签盒子相关的属性写在标签选择器中(显示模式/尺寸), 设置a标签内容样式/背景写在伪类选择器中  </p>
+<p>如果默认状态和点击之后状态的样式一样, 可以简写到a标签选择器中  </p>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code> &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;我是导航&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>2</p>
+<pre><code>&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        width: 960px;
+        height: 30px;
+        background-color: red;
+        margin: 50px auto;
+    }
+    ul li{
+        list-style: none;
+        float: left;
+        background-color: pink;
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+    }
+    ul li a{
+        display: inline-block;
+        width: 120px;
+        height: 30px;
+        color: white;
+        text-decoration: none;
+    }
+    /*
+    ul li a:link{
+        color: white;
+        text-decoration: none;
+    }
+    ul li a:visited{
+        color: white;
+        text-decoration: none;
+    }
+    */
+    ul li a:hover{
+        color: red;
+        background-color: #ccc;
+    }
+    ul li a:active{
+        color: yellow;
+    }
+&lt;/style&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/3359912-8605a470e6710ee6.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="过度模块"><a href="#过度模块" class="headerlink" title="过度模块"></a>过度模块</h3><h5 id="过渡三要素"><a href="#过渡三要素" class="headerlink" title="过渡三要素"></a>过渡三要素</h5><p>有属性发生改变</p>
+<p>必须告诉系统哪个属性需要添加过渡</p>
+<p>必须告诉系统过渡效果持续时间</p>
+<h5 id="如何给多个属性添加过渡效果"><a href="#如何给多个属性添加过渡效果" class="headerlink" title="如何给多个属性添加过渡效果"></a>如何给多个属性添加过渡效果</h5><p>通过逗号将多个属性和多个过渡时间隔开即可<br>transition-property: </p>
+<p>width,background-color;</p>
+<p>transition-duration: 3s, 3s;</p>
+<h5 id="过渡属性连写格式"><a href="#过渡属性连写格式" class="headerlink" title="过渡属性连写格式"></a>过渡属性连写格式</h5><p>transition: property duration timing-function delay;</p>
+<p>transition: 过渡属性 过渡时间 过渡运动曲线 延迟时间</p>
+<p>其中运动曲线和延迟时间是可以省略的</p>
+<h5 id="浏览器的私有前缀"><a href="#浏览器的私有前缀" class="headerlink" title="浏览器的私有前缀"></a>浏览器的私有前缀</h5><p>每个版本的标准发布之前都会有一个草案, 浏览器厂商为了能够不影响正式版所以会给草案中的属性添加私有前缀, 当正式版发布之后如果新增的属性可以使用, 那么浏览器厂商会逐步去掉私有前缀, 如果正式版发布之后属性不可以使用, 但是由于过去添加了私有前缀所以对正式版也没有影响</p>
+<h5 id="私有前缀"><a href="#私有前缀" class="headerlink" title="私有前缀"></a>私有前缀</h5><p>-webkit-transition: 谷歌/苹果</p>
+<p>-moz-transition: 火狐</p>
+<p>-ms-transition: 微软</p>
+<p>-o-transition: 欧朋</p>
+<h5 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><p>1</p>
+<pre><code>&lt;div&gt;
+    &lt;span&gt;让&lt;/span&gt;
+    &lt;span&gt;我&lt;/span&gt;
+    &lt;span&gt;掉&lt;/span&gt;
+    &lt;span&gt;下&lt;/span&gt;
+    &lt;span&gt;眼&lt;/span&gt;
+    &lt;span&gt;泪&lt;/span&gt;
+    &lt;span&gt;的&lt;/span&gt;
+    &lt;span&gt;不&lt;/span&gt;
+    &lt;span&gt;止&lt;/span&gt;
+    &lt;span&gt;昨&lt;/span&gt;
+    &lt;span&gt;夜&lt;/span&gt;
+    &lt;span&gt;的&lt;/span&gt;
+    &lt;span&gt;酒&lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>2</p>
+<pre><code>&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        height: 150px;
+        background-color: red;
+        text-align: center;
+        line-height: 150px;
+        margin-top: 100px;
+    }
+    span{
+        font-size: 50px;
+        transition: margin 1s;
+    }
+    div:hover span{
+        margin:0 20px;
+    }
+&lt;/style&gt;
+</code></pre><p>效果展示<br><img src="http://upload-images.jianshu.io/upload_images/3359912-51f442a08d202633.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>附小Demo一个 以前这种效果都得用Js来实现 现在用C3轻松实现<br>&lt; ! ———- HTML ———– &gt;</p>
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;![](../素材/ad1.jpg)&lt;/li&gt;
+   &lt;li&gt;![](../素材/ad2.jpg)&lt;/li&gt;
+   &lt;li&gt;![](../素材/ad3.jpg)&lt;/li&gt;
+   &lt;li&gt;![](../素材/ad4.jpg)&lt;/li&gt;
+   &lt;li&gt;![](../素材/ad5.jpg)&lt;/li&gt;
+   &lt;li&gt;![](../素材/ad6.jpg)&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>&lt; ! ——— Style ————— &gt;</p>
+<pre><code>&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        width: 960px;
+        height: 300px;
+        border: 1px solid #000;
+        margin: 100px auto;
+    }
+    ul li{
+        list-style: none;
+        float: left;
+        width: 160px;
+        height: 300px;
+        background-color: blue;
+        /*box-sizing: border-box;*/
+        /*border: 1px solid #000;*/
+        overflow: hidden;
+        transition: width 0.2s;
+    }
+    ul:hover li{
+        width: 100px;
+    }
+    ul li:hover{
+        width: 460px;
+    }
+&lt;/style&gt;
+</code></pre><p>&lt; ! ——— 效果展示 ———- &gt;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-5d418b0d451ba8ae.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="2D维度模块"><a href="#2D维度模块" class="headerlink" title="2D维度模块"></a>2D维度模块</h3><h5 id="2D维度模块可以让元素旋转-缩放-平移等操作"><a href="#2D维度模块可以让元素旋转-缩放-平移等操作" class="headerlink" title="2D维度模块可以让元素旋转/缩放/平移等操作"></a>2D维度模块可以让元素旋转/缩放/平移等操作</h5><p><code>transform: scale(缩放值) rotate(旋转度) translate(水平平移, 垂直平移);</code></p>
+<h5 id="2D维度模块-形变中心点"><a href="#2D维度模块-形变中心点" class="headerlink" title="2D维度模块 - 形变中心点"></a>2D维度模块 - 形变中心点</h5><p>默认情况下形变重点点是50% 50%, 宽度的一半和高度的一半</p>
+<p>我们可以通过transform-origin属性修改形变中心点</p>
+<p><code>格式: transform-origin: 水平方向 垂直方向;</code></p>
+<p>注意点:</p>
+<ol>
+<li>水平方向和垂直方向的取值有三种</li>
+<li>特殊关键字 left right center bottom top</li>
+<li>具体的像素点 0px</li>
+<li>百分比</li>
+</ol>
+<p>形变中心点会影响旋转和缩放, 但是不会影响平移以及倾斜, 但是不会影响平移</p>
+<pre><code>/*transform-origin:50px 50px;*/
+/*transform-origin:0px 0px;*/
+/*transform-origin:100px 0px;*/
+/*transform-origin:right top;*/
+transform-origin:100% 0%;
+</code></pre><p>###2D维度模块 - 透视</p>
+<h5 id="透视-就是近大远小"><a href="#透视-就是近大远小" class="headerlink" title="透视 就是近大远小"></a>透视 就是近大远小</h5><h5 id="添加透视效果-perspective-0px"><a href="#添加透视效果-perspective-0px" class="headerlink" title="添加透视效果 : perspective: 0px;"></a>添加透视效果 : perspective: 0px;</h5><h5 id="注意点-2"><a href="#注意点-2" class="headerlink" title="注意点"></a>注意点</h5><p>透视属性需要添加到父元素上</p>
+<h5 id="灭点"><a href="#灭点" class="headerlink" title="灭点"></a>灭点</h5><p>灭点就是近大远小延伸线的相交点, 默认是父元素宽度高度的一半, 可以通过perspective-origin: 0px 0px;指定</p>
+<p>附小Demo一个,可视化近大远小效果</p>
+<p>&lt; ! ———- HTML ———– &gt;</p>
+<pre><code>&lt;div class=&quot;box&quot;&gt;
+    ![](../素材/pk1.png)
+&lt;/div&gt;
+</code></pre><p>&lt; ! ——— Style ————— &gt;</p>
+<pre><code>&lt;style&gt;
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width:310px;
+            height: 438px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            background-color: skyblue;
+            perspective: 500px;
+        }
+        .box img{
+            /*推荐写法*/
+            transform-origin: center bottom;
+            transition: all 1s;
+        }
+        .box:hover img{
+            /*不推荐*/
+            /*transform-origin: center bottom;*/
+            transform: rotateX(70deg);
+        }
+    &lt;/style&gt;
+</code></pre><p>&lt; ! ——— 效果展示 ———- &gt;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-85ea14236174594f.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>内附Demo一个 照片墙旋转 点击跳转到案例页面</p>
+<h3 id="动画模块"><a href="#动画模块" class="headerlink" title="动画模块"></a>动画模块</h3><h5 id="动画三要素"><a href="#动画三要素" class="headerlink" title="动画三要素"></a>动画三要素</h5><p>指定动画名称  </p>
+<p>创建自定义动画  </p>
+<p>指定动画时长  </p>
+<p>示例代码 :</p>
+<pre><code>&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 100px;
+        height: 50px;
+        background-color: red;
+        /*告诉系统当前元素需要执行动画, 动画的名称叫做nj*/
+        animation-name: nj;
+        /*告诉系统当前元素执行动画的时长*/
+        animation-duration: 5s;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    /*告诉系统我们需要自己创建一个叫做nj的动画*/
+    @keyframes nj {
+        /*
+        from{
+            margin-left: 0;
+        }
+        to{
+            margin-left: 500px;
+        }
+        */
+        /*
+        0%{
+            left: 0;
+            top: 0;
+        }
+        25%{
+            left: 300px;
+            top: 0;
+        }
+        50%{
+            left: 300px;
+            top: 300px;
+        }
+        75%{
+            left: 0;
+            top: 300px;
+        }
+        100%{
+            left: 0;
+            top: 0;
+        }
+        */
+        0%{
+            left: 0;
+            top: 0;
+        }
+        30%{
+            left: 300px;
+            top: 0;
+        }
+        60%{
+            left: 300px;
+            top: 300px;
+        }
+        100%{
+            left: 0;
+            top: 300px;
+        }
+    }
+&lt;/style&gt;
+</code></pre><h3 id="动画模块其它属性"><a href="#动画模块其它属性" class="headerlink" title="动画模块其它属性"></a>动画模块其它属性</h3><p>示例代码 :</p>
+<pre><code>&lt;style&gt;
+    &lt;div class=&quot;box1&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box1{
+        width: 100px;
+        height: 50px;
+        background-color: red;
+        animation-name: sport;
+        animation-duration: 2s;
+        /*动画延迟时间*/
+        /*animation-delay: 2s;*/
+        /*动画运动曲线*/
+        animation-timing-function: linear;
+        /*指定动画重复次数*/
+        animation-iteration-count: 3;
+        /*指定动画时候需要往返, alternate往返 normal默认*/
+        animation-direction: alternate;
+    }
+    .box1:hover{
+        /*默认值是running, 如果设置为paused那么动画会暂停*/
+        animation-play-state: paused;
+    }
+    @keyframes sport {
+        from{
+            margin-left: 0;
+        }
+        to{
+            margin-left: 400px;
+        }
+    }
+    .box2{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        margin: 100px auto;
+        animation-name: xxoo;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-delay: 2s;
+        /*
+        动画其实有三种状态, 分别是等待状态/运动状态/结束状态
+        none:默认值，　不做任何操作
+        backwards: 设置动画等待状态的样式为动画的第一个
+        forwards: 设置动画结束状态的样式为动画的最后一个
+        both:是backwards和forwards的结合
+        */
+        animation-fill-mode: both;
+    }
+    @keyframes xxoo {
+        0%{
+            transform: rotate(10deg);
+        }
+        50%{
+            transform: rotate(30deg);
+        }
+        100%{
+            transform: rotate(80deg);
+        }
+    }
+&lt;/style&gt;
+</code></pre><h5 id="连写格式"><a href="#连写格式" class="headerlink" title="连写格式"></a>连写格式</h5><p>animation: 动画名称 动画时间 运动曲线 延迟时间 动画次数 往返动画;</p>
+<p>连写格式简写 : animation: 动画名称 动画时间;</p>
+<p>附Demo1一个 云层特效 点击跳转到案例页面</p>
+<p>附Demo2一个 无限轮播 点击跳转到案例页面</p>
+<h3 id="3D维度模块"><a href="#3D维度模块" class="headerlink" title="3D维度模块"></a>3D维度模块</h3><p>示例代码 :</p>
+<pre><code>&lt;style&gt;
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .father{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 100px auto;
+            border: 1px solid #000;
+            perspective: 300px;
+            /*
+            1.2D和3D
+            默认情况下一个元素的transform-style等于flat, 也就是2D
+            如果将transform-style设置为preserve-3d, 那么这个元素所有的子元素都会变成3D的
+            2.注意点:
+            和透视一样, 如果想看到某个元素的3D效果, 那么就给这个元素的父元素设置 transform-style: preserve-3d;
+            */
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+        }
+        .father .son{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 0 auto;
+            margin-top: 50px;
+            transform: rotateY(45deg);
+        }
+    &lt;/style&gt;
+</code></pre><p>附Demo一个 3D立方体效果 点击跳转到案例页面</p>
+<h3 id="背景新增属性"><a href="#背景新增属性" class="headerlink" title="背景新增属性"></a>背景新增属性</h3><h5 id="背景尺寸属性"><a href="#背景尺寸属性" class="headerlink" title="背景尺寸属性"></a>背景尺寸属性</h5><p>在CSS3以前背景图片是不支持设置大小的, 从CSS3开始我们可以通过background-size的属性来修改背景图片的大小</p>
+<p>background-size取值:</p>
+<p>固定像素: 指定多少就是多少, 例如:background-size:100px 100px;</p>
+<p>百分比: 指定多少就是多少, 例如:background-size:50% 20%;</p>
+<p>auto: 如果宽度是auto, 那么就等比拉伸宽度. 如果高度是auto,那么久等比拉伸高度</p>
+<p>conver: 等比拉伸图片, 保证图片的宽度”和”高度都填满盒子</p>
+<p>contain: 等比拉伸图片, 保证图片的宽度”或”高度填满盒子</p>
+<h5 id="背景绘制位置属性"><a href="#背景绘制位置属性" class="headerlink" title="背景绘制位置属性"></a>背景绘制位置属性</h5><p>background-origin 属性<br>可以用于指定”背景图片”从什么地方开始绘制</p>
+<p>取值:</p>
+<p>border-box: 背景图片从border开始绘制<br>padding-box: 背景图片从padding开始绘制, 默认<br>content-box: 背景图片从content开始绘制</p>
+<p>注意点:<br>background-origin只对背景图片有效, 对背景颜色无效的</p>
+<p>图解</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-45cfd8648430cfb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="背景裁剪属性"><a href="#背景裁剪属性" class="headerlink" title="背景裁剪属性"></a>背景裁剪属性</h5><p>1 background-clip<br>background-clip 可以设置背景哪些部分需要显示</p>
+<p>2 取值</p>
+<p>border-box: 盒子的所有背景都需要显示<br>padding-box: 盒子padding和content的部分背景需要显示<br>content-box: 盒子content部分的背景需要显示</p>
+<p>3 background-origin和background-clip<br>background-origin是用于指定背景图片从什么地方开始绘制<br>background-clip是用于指定显示哪些区域的背景需要  </p>
+<p>图解</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-c5fe0de9bf05cd8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="多重背景"><a href="#多重背景" class="headerlink" title="多重背景"></a>多重背景</h5><p>只需要在连写格式后面通过逗号隔开即可</p>
+<pre><code>background: url(&quot;../素材/animal1.png&quot;) left top no-repeat,
+url(&quot;../地址&quot;) right top no-repeat;
+</code></pre><p>注意点</p>
+<p>除了连写可以设置多重背景以外, 分开写也可以设置多重背景<br>background-image: url(“../图片地址2”),url(“../图片地址2”);<br>background-repeat:no-repeat, no-repeat;<br>background-position: left top, right top;  </p>
+<p>图解</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3359912-16a4c8af46392e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>多重背景动画</p>
+<p>示例代码 :</p>
+<pre><code>&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
+&lt;style&gt;
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            height: 190px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            /*添加背景*/
+            background-image: url(&quot;../素材/bg-plane.png&quot;), url(&quot;../素材/bg-sun.png&quot;),url(&quot;../素材/bg-clouds.png&quot;);
+            background-repeat:no-repeat, no-repeat,no-repeat;
+            background-position: 50px 150px,300px 50px ,left top;
+            background-size:50px 50px, 50px 50px,auto auto;
+            /*添加动画*/
+            animation: sport 10s linear 0s infinite normal;
+        }
+        @keyframes sport {
+            from{
+                background-position: 50px 150px,300px 50px ,left top;
+            }
+            to{
+                background-position: 450px -100px,300px 50px ,-1123px top;
+            }
+        }
+    &lt;/style&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/3359912-1fd84f4e483d8f98.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="边框圆角"><a href="#边框圆角" class="headerlink" title="边框圆角"></a>边框圆角</h3><p>边框圆角可以将边框从直角转换为圆角</p>
+<h5 id="格式"><a href="#格式" class="headerlink" title="格式:"></a>格式:</h5><p>border-radius: 左上 右上 右下 左下;</p>
+<p>当省略某个取值之后, 被省略的取值是它对角的取值, 如果只有一个取值代表四个角都是这个值</p>
+<h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><pre><code>/*第一个参数是水平方向, 第二个参数是垂直方向*/
+border-top-left-radius: 100px 50px;
+border-top-right-radius: 100px 50px;
+border-bottom-left-radius: 100px 50px;
+border-bottom-right-radius: 100px 50px;
+/*斜杠前面的是设置四个角水平方向的, 斜杠后面的是设置四个角垂直方向的*/
+border-radius: 100px 100px 100px 100px/50px 50px 50px 50px;
+border-radius: 100px/50px;
+</code></pre><p>如果border-radius的取值大于边框的宽度, 那么内边框就会有圆角效果, 如果border-radius的取值小鱼边框的宽度, 那么内边框不会有圆角的效果</p>
+<h3 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h3><h5 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        width: 300px;
+        height: 300px;
+        margin: 100px auto;
+        border: 10px solid #000;
+        /*指定边框图片*/
+        border-image-source: url(&quot;../素材/border.jpg&quot;);
+        /*slice告诉系统, 如果将边框图片切割为九宫格*/
+        border-image-slice: 70 70 70 70;
+        /*指定边框图片的宽度, 注意点: 优先级比直接给border添加要大*/
+        border-image-width: 70px;
+        /*指定除边框四个角以外的图片如何显示*/
+        /*border-image-repeat: repeat;*/
+        /*border-image-repeat: stretch;*/
+        border-image-repeat: round;
+        /*让边框图片向外移动多少*/
+        border-image-outset: 10px 30px 60px 100px;
+        box-sizing: border-box;
+        background-color: red;
+    }
+&lt;/style&gt;
+</code></pre><h3 id="vertical-align属性"><a href="#vertical-align属性" class="headerlink" title="vertical-align属性"></a>vertical-align属性</h3><p>元素默认情况下是和文字的基线对其的</p>
+<pre><code>/* 默认值 */
+vertical-align: baseline;
+/* 让元素和父元素的底部对齐 */
+vertical-align: bottom;
+/* 让元素和文字的底部对齐 */
+vertical-align: text-bottom;
+/* 让元素和文字的顶部对齐 */
+vertical-align: text-top;
+/* 让元素和父元素的顶部对齐 */
+vertical-align: top;
+/* 让元素和文字的中线对齐  */
+vertical-align: middle;
+</code></pre><h3 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h3><pre><code>background: linear-gradient(red, blue);
+background: linear-gradient(to right,red, blue);
+background: linear-gradient(to top right,red, blue);
+background: linear-gradient(0deg, red, blue);
+/*默认情况下系统会等分宽度给渐变的颜色, 如果不想等分, 可以直接在颜色后面添加百分比*/
+background: linear-gradient(red, blue);
+background: linear-gradient(red 50%, blue 60%);
+/*注意: 这里指定的百分之多少是用于计算过渡的距离
+例如 red 30%, blue 40%, 那么40-30=10, 所有显示完红色之后会有10%的距离用于从红色过渡到蓝色
+*/
+background: linear-gradient(red 30%, blue 40%, green 60%);
+</code></pre><h3 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h3><pre><code>/*background-image: radial-gradient(red, blue);*/
+/*
+第一个参数: 指定扩散范围
+第二个参数: 指定从什么地方开始扩散
+*/
+/*background-image: radial-gradient(150px at center center, red, blue);*/
+background-image: radial-gradient(150px at 50px 50px, red, blue);
+/*background-image: radial-gradient(150px at 50px 50px, red 50%, blue 50%);*/
+</code></pre><h3 id="重复渐变"><a href="#重复渐变" class="headerlink" title="重复渐变"></a>重复渐变</h3><pre><code>&lt;div class=&quot;box1&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
+&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box1{
+        width: 300px;
+        height: 100px;
+        border: 1px solid #000;
+        margin: 100px auto;
+        background: repeating-linear-gradient(to right,red, blue);
+        background-size:100px 100px;
+    }
+    .box2{
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        margin: 0px auto;
+        /*background: repeating-radial-gradient(red, blue, yellow);*/
+        background: repeating-radial-gradient(red 10%, blue 20%, yellow 30%);
+        /*background-size:100px 100px;*/
+    }
+&lt;/style&gt;
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2017/02/08/CSS3 - 新增重要属性/"
+                     data-title="CSS3 - 新增重要属性"
+                     data-url="https://Jingdan.github.io/2017/02/08/CSS3 - 新增重要属性/"
+                     data-images="https://Jingdan.github.io/2017/02/08/CSS3 - 新增重要属性/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+本篇内容只要主要讲解CSS3新增属性,主要有伪类,动画,背景,边框,阴影等效果.CSS3学的... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/03/26/blog/" data-toggle="tooltip" data-placement="top"
+                           title="利用数组的reduce方法优化代码">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/08/15/JavaScript - 设计模式 - 命名空间/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 设计模式 - 命名空间">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2017/02/08/CSS3 - 新增重要属性/"
+                         data-title="CSS3 - 新增重要属性"
+                         data-url="https://Jingdan.github.io/2017/02/08/CSS3 - 新增重要属性/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#本篇内容只要主要讲解CSS3新增属性-主要有伪类-动画-背景-边框-阴影等效果-CSS3学的好-不用js也一样能做好动画-C3很强大-逼格很高-现在很多前卫的企业都在用C3做动画"><span class="toc-text">本篇内容只要主要讲解CSS3新增属性,主要有伪类,动画,背景,边框,阴影等效果.CSS3学的好,不用js也一样能做好动画,C3很强大,逼格很高,现在很多前卫的企业都在用C3做动画.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类选择器"><span class="toc-text">伪类选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#伪类选择器就是专门用于修改a标签不同状态样式的"><span class="toc-text">伪类选择器就是专门用于修改a标签不同状态样式的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#超链接美化"><span class="toc-text">超链接美化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#注意点-1"><span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#编码规范"><span class="toc-text">编码规范</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过度模块"><span class="toc-text">过度模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#过渡三要素"><span class="toc-text">过渡三要素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#如何给多个属性添加过渡效果"><span class="toc-text">如何给多个属性添加过渡效果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#过渡属性连写格式"><span class="toc-text">过渡属性连写格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#浏览器的私有前缀"><span class="toc-text">浏览器的私有前缀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#私有前缀"><span class="toc-text">私有前缀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2D维度模块"><span class="toc-text">2D维度模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2D维度模块可以让元素旋转-缩放-平移等操作"><span class="toc-text">2D维度模块可以让元素旋转/缩放/平移等操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2D维度模块-形变中心点"><span class="toc-text">2D维度模块 - 形变中心点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#透视-就是近大远小"><span class="toc-text">透视 就是近大远小</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#添加透视效果-perspective-0px"><span class="toc-text">添加透视效果 : perspective: 0px;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#注意点-2"><span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#灭点"><span class="toc-text">灭点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动画模块"><span class="toc-text">动画模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动画三要素"><span class="toc-text">动画三要素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动画模块其它属性"><span class="toc-text">动画模块其它属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#连写格式"><span class="toc-text">连写格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D维度模块"><span class="toc-text">3D维度模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景新增属性"><span class="toc-text">背景新增属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#背景尺寸属性"><span class="toc-text">背景尺寸属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#背景绘制位置属性"><span class="toc-text">背景绘制位置属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#背景裁剪属性"><span class="toc-text">背景裁剪属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多重背景"><span class="toc-text">多重背景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#边框圆角"><span class="toc-text">边框圆角</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#格式"><span class="toc-text">格式:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参数"><span class="toc-text">参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#边框图片"><span class="toc-text">边框图片</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vertical-align属性"><span class="toc-text">vertical-align属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线性渐变"><span class="toc-text">线性渐变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#径向渐变"><span class="toc-text">径向渐变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重复渐变"><span class="toc-text">重复渐变</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#css"
+                           title="css">css</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

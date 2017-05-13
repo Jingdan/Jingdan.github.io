@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        JavaScript - 闭包 - 函数回调 - 即时函数｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>JavaScript - 闭包 - 函数回调 - 即时函数</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2016-08-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            JavaScript - 闭包 - 函数回调 - 即时函数
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h5 id="作用域链的补充内容-—-gt-搜索规则"><a href="#作用域链的补充内容-—-gt-搜索规则" class="headerlink" title="作用域链的补充内容 —-&gt; 搜索规则"></a>作用域链的补充内容 —-&gt; 搜索规则</h5><p>如果有忘记的人,翻一下上一篇博客</p>
+<p>注意点:如果在内层作用域中声明了和外层作用域中同名的变量,那么这个变量是不会把外层的同名变量覆盖的</p>
+<p>搜索原则:</p>
+<ol>
+<li>在作用域中如果访问(读取|设置)某个变量,先在当前作用域中搜索,如果找到那么就直接使用  </li>
+<li>如果没有找到,那么就向上一级作用域中继续搜索,找到则使用,没有找到就重复上面的过程  </li>
+<li>直到0级作用域链  </li>
+</ol>
+<h5 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h5><h6 id="闭-关闭-封闭的意思-对外界不开方的"><a href="#闭-关闭-封闭的意思-对外界不开方的" class="headerlink" title="闭 : 关闭,封闭的意思,对外界不开方的"></a>闭 : 关闭,封闭的意思,对外界不开方的</h6><h6 id="包-包装起来"><a href="#包-包装起来" class="headerlink" title="包 : 包装起来"></a>包 : 包装起来</h6><h6 id="闭包技术"><a href="#闭包技术" class="headerlink" title="闭包技术"></a>闭包技术</h6><p>作用域规则 : 内层的作用域可以访问外层的的作用域,但反过来不行<br>有的时候,我们确实需要访问一个封闭空间里的数据源(外层作用域 —-&gt; 内层作用域)<br>就是提供一种间接访问封闭空间中私有数据的方法</p>
+<h6 id="访问数据"><a href="#访问数据" class="headerlink" title="访问数据"></a>访问数据</h6><p>直接返回 return<br>闭包 对直接返回的数据进行包装(函数)<br>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    function f1(){
+        var num = 10;
+        return num;
+    }
+    //num
+    var a = f1();
+    var b = f1();
+    console.log(a);
+    console.log(b);
+    //一次性获得数据
+    //1 每次调用函数获得的数据并不是同一份数据
+    //2 只能获取值,但是却不能修改值
+&lt;/script&gt;
+</code></pre><p>示例代码 : 闭包一般写法</p>
+<pre><code>&lt;script&gt;
+    function f1(){
+        var num = 10;
+        return function(param){
+            num = param;    //修改函数内部变量的值
+            return num;
+        };
+    }
+&lt;/script&gt;
+</code></pre><p>示例代码 : 访问获取数据<br>        <script><br>            function f1(){<br>                var num = 10;<br>                var name = “张学友”;<br>                return function(){<br>                    return [num,name];<br>                };<br>            }<br>            var func = f1();<br>            console.log(func()[0]);<br>            console.log(func()[1]);<br>        </script><br>示例代码 : 闭包基本写法</p>
+<pre><code>&lt;script&gt;
+    function f1(){
+        var num = 10;
+        var name = &quot;xxx&quot;;
+        return {
+            getNum:function(){
+                return num;
+            },
+            getName:function(){
+                return name;
+            }
+        }
+    }
+    var func = f1();
+    console.log(func.getName());
+    console.log(func.getNum());
+&lt;/script&gt;
+</code></pre><h5 id="闭包读取数据和设置数据"><a href="#闭包读取数据和设置数据" class="headerlink" title="闭包读取数据和设置数据"></a>闭包读取数据和设置数据</h5><pre><code>示例代码 : 获取数据
+&lt;script&gt;
+    function foo(){
+        var name = &quot;卡罗&quot;;
+        var age = 18;
+        return {
+            getName:function(nameValue){
+                //判断
+                if (nameValue != undefined)
+                {
+                    name = nameValue;
+                }
+                return name;
+            },
+            getAge:function(ageValue){
+                age = ageValue;
+                return age;
+            }
+        }
+    }
+    var func = foo();
+    console.log(func.getName());     //
+    console.log(func.getName(&quot;卡罗尔&quot;));
+    console.log(func.getName());
+&lt;/script&gt;
+示例代码 :设置数据
+&lt;script&gt;
+    function foo(){
+        var name = &quot;卡罗&quot;;
+        var age = 18;
+        return {
+            getName:function(){
+                return name;
+            },
+            getAge:function(){
+                return age;
+            },
+            setName:function(nameValue){
+                name = nameValue;
+            },
+            setAge:function(ageValue) {
+                age = ageValue;
+            }
+        }
+    }
+    var func = foo();
+    console.log(func.getName());
+    func.setName(&quot;卡米尔&quot;);
+    console.log(func.getName());
+    func.setAge(20);
+    console.log(func.getAge());
+&lt;/script&gt;
+</code></pre><h5 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h5><h6 id="提供了一种间接访问函数封闭空间中数据的方法"><a href="#提供了一种间接访问函数封闭空间中数据的方法" class="headerlink" title="提供了一种间接访问函数封闭空间中数据的方法"></a>提供了一种间接访问函数封闭空间中数据的方法</h6><p>访问函数内部的变量只能通过指定的借口<br>对变量的修改设置操作会更加安全,可以在设置之前对数据进行校验<br>延长变量的生命周期  </p>
+<pre><code>&lt;script&gt;
+    function f1(){
+        var age = 20;
+        var author= &quot;今何在&quot;;
+        return {
+            getAge:function(){
+                return age;
+            },
+            setAge:function(ageValue){
+                //校验处理
+                if (ageValue &lt;0)
+                {
+                    ageValue = 0;
+                }
+                //其他的处理(异常检测)
+                age = ageValue;
+            }
+        }
+    }
+    var func = f1();
+    func.setAge(22);
+    console.log(func.getAge());
+    //设置年龄  -3 (因为人的年龄不能是负值 所以得进行安全校验)
+    func.setAge(-3);
+    console.log(func.getAge());
+&lt;/script&gt;
+</code></pre><h5 id="setTimeout和闭包的执行"><a href="#setTimeout和闭包的执行" class="headerlink" title="setTimeout和闭包的执行"></a>setTimeout和闭包的执行</h5><h6 id="setTimeout-只调用一次函数-延迟函数-一次是隔两秒-至少"><a href="#setTimeout-只调用一次函数-延迟函数-一次是隔两秒-至少" class="headerlink" title="setTimeout(); 只调用一次函数(延迟函数) 一次是隔两秒(至少)"></a>setTimeout(); 只调用一次函数(延迟函数) 一次是隔两秒(至少)</h6><h6 id="每隔一定的时候就调用一次"><a href="#每隔一定的时候就调用一次" class="headerlink" title="每隔一定的时候就调用一次"></a>每隔一定的时候就调用一次</h6><p>参数设置 :<br>第一个参数:函数回调(时间到了之后执行的代码)<br>第二个参数:间隔时间(毫秒) 1秒 = 1000毫秒  </p>
+<h6 id="setTimeout的问题"><a href="#setTimeout的问题" class="headerlink" title="setTimeout的问题"></a>setTimeout的问题</h6><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    for (var i = 0; i &lt; 100; i++) {
+        setTimeout(function () {
+            console.log(i);
+        },0);
+        console.log(&quot;----&quot;);
+    }
+&lt;/script&gt;
+</code></pre><h6 id="解决setTimeout的问题"><a href="#解决setTimeout的问题" class="headerlink" title="解决setTimeout的问题"></a>解决setTimeout的问题</h6><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    for (var i = 0; i &lt; 10; i++) {
+        setTimeout((function (j) {
+            return function () {
+                console.log(j);
+            }
+        })(i),10);
+        console.log(&quot;+++++++++&quot;);
+    }
+&lt;/script&gt;
+</code></pre><h5 id="div事件和闭包"><a href="#div事件和闭包" class="headerlink" title="div事件和闭包"></a>div事件和闭包</h5><p>示例代码 :</p>
+<pre><code>&lt;div&gt;我是第1个div标签&lt;/div&gt;
+&lt;div&gt;我是第2个div标签&lt;/div&gt;
+&lt;div&gt;我是第3个div标签&lt;/div&gt;
+&lt;div&gt;我是第4个div标签&lt;/div&gt;
+&lt;div&gt;我是第5个div标签&lt;/div&gt;
+&lt;div&gt;我是第6个div标签&lt;/div&gt;
+
+
+&lt;script&gt;
+var divs  = document.getElementsByTagName(&quot;div&quot;);
+for (var i = 0; i &lt; divs.length; i++) {
+        divs[i].onclick = function(){
+            alert(&quot;我是第&quot; + i + &quot;标签&quot;);
+        }
+    }
+    // 每次点击得到的都是第六个标签
+&lt;/script&gt;
+</code></pre><p>用闭包解决问题 :</p>
+<pre><code>&lt;script&gt;
+    var divs  = document.getElementsByTagName(&quot;div&quot;);
+    for (var i = 0; i &lt; divs.length; i++) {
+       (function(a){
+           divs[a].onclick = function(){
+               alert(&quot;我是第&quot; + a + &quot;标签&quot;);
+           }
+       })(i)
+   }
+&lt;/script&gt;
+</code></pre><h5 id="函数的特性"><a href="#函数的特性" class="headerlink" title="函数的特性"></a>函数的特性</h5><p>函数本身也是对象(第一型的对象) 凡是可以使用对象的地方都可以使用函数<br>函数可以创建作用域<br>函数是可以被调用的  </p>
+<h5 id="函数的约定和name值"><a href="#函数的约定和name值" class="headerlink" title="函数的约定和name值"></a>函数的约定和name值</h5><p>函数声明<br>函数表达式<br>new 构造函数  </p>
+<p>示例代码 :  </p>
+<pre><code>&lt;script&gt;
+    //function funName(参数1,参数2){函数体}   //函数声明
+    //函数表达式(匿名)
+    var add = function(a,b){
+        console.log(a + b);
+    }
+    //函数表达式(命名)
+    var sum = function name(a,b){
+        console.log(a + b);
+    }
+    //sum.length // 形参的个数
+    console.log(add.name);   //add 跟浏览器的实现有关系(在火狐中name的值为空)
+    console.log(sum.name);   //name
+    //03构造函数创建对象
+    new Function(参数1,参数2,参数3)
+&lt;/script&gt;
+</code></pre><h5 id="函数的回调-作为参数传递"><a href="#函数的回调-作为参数传递" class="headerlink" title="函数的回调(作为参数传递)"></a>函数的回调(作为参数传递)</h5><h6 id="函数是第一型对象-因此可以使用对象的地方都可以使用函数"><a href="#函数是第一型对象-因此可以使用对象的地方都可以使用函数" class="headerlink" title="函数是第一型对象(因此可以使用对象的地方都可以使用函数)"></a>函数是第一型对象(因此可以使用对象的地方都可以使用函数)</h6><p>函数可以作为函数的参数<br>函数可以作为函数的返回值</p>
+<h6 id="回调函数-回调-当我们把某个函数作为参数传递给另一个函数的时候-这个函数就称为回调函数。"><a href="#回调函数-回调-当我们把某个函数作为参数传递给另一个函数的时候-这个函数就称为回调函数。" class="headerlink" title="回调函数(回调),当我们把某个函数作为参数传递给另一个函数的时候,这个函数就称为回调函数。"></a>回调函数(回调),当我们把某个函数作为参数传递给另一个函数的时候,这个函数就称为回调函数。</h6><h6 id="回调函数的基本模式"><a href="#回调函数的基本模式" class="headerlink" title="回调函数的基本模式"></a>回调函数的基本模式</h6><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    function func(callBack) {
+        //处理其他的操作
+        callBack();     //调用回调函数
+    }
+    function demo() {
+        console.log(&quot;这是一个回调函数&quot;);
+    }
+    func(demo); //注意调用函数的时候,参数是回调函数的引用(不要加括号);
+&lt;/script&gt;
+</code></pre><h6 id="回调函数-关于this丢失的问题"><a href="#回调函数-关于this丢失的问题" class="headerlink" title="回调函数(关于this丢失的问题)"></a>回调函数(关于this丢失的问题)</h6><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    //如果回调函数是某个对象的方法,而该对象方法中使用了this指针
+    //那么该方法作为回调函数来使用的时候,需要注意this丢失的问题
+    //01 提供一个对象,该对象中永远有showName方法
+    var obj = {
+        name:&quot;xxx名字&quot;,
+        age:30,
+        showName:function () {
+            console.log(this.name);
+        },
+        showAge:function () {
+            console.log(this.age);
+        }
+    }
+    //02 提供一个函数,该函数接受一个参数(函数引用)
+    function demo(callBack) {
+        callBack();
+    }
+    demo(obj.showName); //注意:不要带上括号 打印结果为空(window.name)
+    demo(obj.showAge);  //undefined
+&lt;/script&gt;
+</code></pre><h6 id="回调函数-解决this丢失的问题"><a href="#回调函数-解决this丢失的问题" class="headerlink" title="回调函数(解决this丢失的问题)"></a>回调函数(解决this丢失的问题)</h6><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    //01 提供一个对象,该对象中永远showName方法
+    var obj = {
+        name:&quot;默认的名字&quot;,
+        age:30,
+        showName:function () {
+            console.log(this.name);
+        },
+        showAge:function () {
+            console.log(this.age);
+        }
+    };
+    //02 提供一个函数,该函数接受一个参数(函数引用)
+    function demo(callBack,callBack_obj) {
+        if (typeof callBack == &apos;function&apos;)
+        {
+            callBack.call(callBack_obj);
+            console.log(&quot;++++&quot;);
+        }
+    }
+    demo(obj.showName,obj); //注意:不要带上括号
+    demo(obj.showAge,obj);  //undefined
+&lt;/script&gt;
+</code></pre><h6 id="回调函数-兼容字符串方式"><a href="#回调函数-兼容字符串方式" class="headerlink" title="回调函数(兼容字符串方式)"></a>回调函数(兼容字符串方式)</h6><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    //01 提供一个对象,该对象中永远showName方法
+    var obj = {
+        name:&quot;默认的名字&quot;,
+        age:30,
+        showName:function () {
+            console.log(this.name);
+        },
+        showAge:function () {
+            console.log(this.age);
+        }
+    };
+    //02 提供一个函数,该函数接受一个参数(函数引用)
+    function demo(callBack,callBack_obj) {
+        //处理第一个参数传递对象方法字符串的形式
+        if(typeof callBack == &apos;string&apos;)
+        {
+            callBack = callBack_obj[callBack];
+        }
+        if (typeof callBack == &apos;function&apos;)
+        {
+            callBack.call(callBack_obj);
+        }
+    }
+    //demo(obj.showName,obj);
+    //demo(obj.showAge,obj);
+    //传递字符串和对象来进行调用
+    demo(&quot;showName&quot;,obj);
+&lt;/script&gt;
+</code></pre><h5 id="函数作为返回值-计算器"><a href="#函数作为返回值-计算器" class="headerlink" title="函数作为返回值( 计算器)"></a>函数作为返回值( 计算器)</h5><p>示例代码 </p>
+<pre><code>&lt;script&gt;
+    //使用闭包实现一个计数器(在该示例中setup函数的返回值为一个函数)
+    //通过调用返回值(一个函数),可以操作setup函数中的变量
+    var setup = function () {
+        var count = 0;
+        return function () {
+            return count ++;
+        }
+    }
+    var next = setup();
+    console.log(next());    //0
+    console.log(next());    //1
+    console.log(next());    //2
+&lt;/script&gt;:
+</code></pre><h5 id="自定义函数-惰性函数"><a href="#自定义函数-惰性函数" class="headerlink" title="自定义函数( 惰性函数 )"></a>自定义函数( 惰性函数 )</h5><h6 id="惰性函数"><a href="#惰性函数" class="headerlink" title="惰性函数"></a>惰性函数</h6><p>某个函数直到第一次使用的时候才被正确的定义,并且其具有向后惰性,执行更少的工作。</p>
+<h6 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h6><p>函数有一些初始化的准备工作要做,且只需要执行一次的情况。</p>
+<h6 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h6><p>能够更新自己(函数)的实现。</p>
+<h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h6><p>当重新定义自身的时候,已经添加到原始函数的任何属性都会丢失。<br>如果函数被赋值给了其他的变量或者是对象方法,那么在使用变量或者是对象方法调用时仍然会执行旧的函数体。<br>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    var demo = function foo() {
+        console.log(&quot;foo!&quot;);
+        foo = function () {
+            console.log(&quot;new foo!&quot;);
+        }
+    }
+    //函数的调用
+    //foo();  //foo!
+    //foo();  //new foo!
+    //总结:该函数的实现特点在于能够更新自身的实现。
+    demo(); //foo!
+    demo(); //foo!
+&lt;/script&gt;
+</code></pre><h6 id="惰性定义函数存在的问题"><a href="#惰性定义函数存在的问题" class="headerlink" title="惰性定义函数存在的问题"></a>惰性定义函数存在的问题</h6><p>添加属性<br>把函数赋值给新的变量<br>以对象的方法调用函数<br>示例代码 :  </p>
+<pre><code>&lt;script&gt;
+    //01 声明函数foo
+    function foo() {
+        console.log(&quot;foo!&quot;);
+        foo = function () {
+            console.log(&quot;foo! foo!&quot;);
+        }
+    }
+    //02 为foo函数对象添加属性
+    foo.description = &quot;foo函数的描述信息&quot;;
+    //03 把foo函数赋值给其他的变量
+    var func = foo;
+    //04 把foo函数赋值给对象中的方法
+    var obj = {
+        showFoo:foo
+    }
+    //05 验证并演示输出
+    func(); //foo!
+    func(); //foo!
+    console.log(func.description);  //foo函数的描述信息
+    //总结:01 如果把函数赋值给其他的变量,那么在以其他变量的方式调用时不会更新自身,还是执行旧的函数体
+    obj.showFoo();  //foo!
+    obj.showFoo();  //foo!
+    console.log(obj.showFoo.description);   //foo函数的描述信息
+    //总结:02 如果把函数赋值给对象的方法,那么在以对象方法形式调用时不会更新自身,还是会执行旧的函数体。
+    foo();  //已经更新过foo函数 foo! foo!
+    foo();  //已经更新过foo函数 foo! foo!
+    console.log(foo.description);   //undefined
+&lt;/script&gt;
+</code></pre><h5 id="即时函数"><a href="#即时函数" class="headerlink" title="即时函数"></a>即时函数</h5><h6 id="在函数定义之后立即执行该函数。"><a href="#在函数定义之后立即执行该函数。" class="headerlink" title="在函数定义之后立即执行该函数。"></a>在函数定义之后立即执行该函数。</h6><h6 id="即时函数模式的组成"><a href="#即时函数模式的组成" class="headerlink" title="即时函数模式的组成:"></a>即时函数模式的组成:</h6><p>使用函数表达式来定义函数(匿名函数,注意不能使用函数声明方式)<br>在函数表达式末尾添加一组(),表示立即执行当前函数。<br>将整个函数包装在()中,有两种方式  </p>
+<h6 id="即时函数的作用"><a href="#即时函数的作用" class="headerlink" title="即时函数的作用"></a>即时函数的作用</h6><p>用来将所有的代码包装到当前的作用域中,并且不会将任何的变量泄露到全局作用域中。<br>js中没有代码块作用域,而函数是js中唯一可以创建作用域的。<br>即时函数就是利用了函数创建作用域这一点,来实现对一些需要封装且不允许外部访问的操作。  </p>
+<h6 id="即时函数的优点"><a href="#即时函数的优点" class="headerlink" title="即时函数的优点"></a>即时函数的优点</h6><p>封装在一起执行的代码,且不会产生全局变量,在即时函数内部定义的所有变量都仅仅只是该函数的局部变量,不会造成全局变量污染问题。<br>具有更好的封装性,外部无法访问到该函数内部的数据。<br>示例代码 : 即时函数两种写法 </p>
+<pre><code>&lt;script&gt;
+    //第一种写法
+    (function () {
+       console.log(&quot;即时函数的第一种写法&quot;);
+    }());
+    //第二种写法
+    (function () {
+        console.log(&quot;即时函数的第二种写法&quot;);
+    })();
+&lt;/script&gt; 
+</code></pre><p>示例代码 : 即时函数可以接受参数并提供返回值</p>
+<pre><code>&lt;script&gt;
+    //01 接受参数
+    (function (str) {
+        console.log(str);           //hello
+    })(&quot;hello&quot;);
+    //02 提供返回值并赋值给新的变量
+    var foo = (function () {
+        return 2 + 1;
+    })();
+    console.log(foo);           //3
+&lt;/script&gt;
+</code></pre><h6 id="即时函数和闭包"><a href="#即时函数和闭包" class="headerlink" title="即时函数和闭包"></a>即时函数和闭包</h6><p>相同点：他们都是函数的一种特殊形态，并且可以共存。而且闭包配合即时函数“效果更佳”。  </p>
+<p>不同点：即时函数是定义一个函数，并立即执行。它只能被使用一次，相当于“阅后即焚”。闭包是指一个函数与它捕获的外部变量的合体，按照MDN的说法，闭包就像一个对象—一个具有一个方法(行为)和一个或多个私有字段(状态)的对象。从这个角度看，闭包是符合面向对象的封装思想的。</p>
+<h5 id="即时对象初始化"><a href="#即时对象初始化" class="headerlink" title="即时对象初始化"></a>即时对象初始化</h5><h6 id="结构特征"><a href="#结构特征" class="headerlink" title="结构特征"></a>结构特征</h6><p>提供一个对象,在该对象内部提供一个init初始化方法,使用()把对象包装起来(让字面量变成表达式)<br>然后随即调用init方法,完成初始化操作。</p>
+<h6 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h6><p>({}).init();</p>
+<h6 id="模式优点"><a href="#模式优点" class="headerlink" title="模式优点"></a>模式优点</h6><p>在执行一次性的初始化任务时保护全局的命名空间。<br>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    ({
+        name:&quot;xxx&quot;,
+        age:23,
+        getDescript:function () {
+            console.log(&quot;名字:&quot; + this.name + &quot;年龄:&quot; + this.age);
+        },
+        //注意:在对象中访问对象的属性和方法都需要使用this.前缀
+        init:function () {
+            this.getDescript();
+            //其他的初始化处理
+        }
+    }).init();
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/"
+                     data-title="JavaScript - 闭包 - 函数回调 - 即时函数"
+                     data-url="https://Jingdan.github.io/2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/"
+                     data-images="https://Jingdan.github.io/2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+作用域链的补充内容 —-&gt; 搜索规则如果有忘记的人,翻一下上一篇博客
+注意点:如果在内... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/08/15/JavaScript - 设计模式 - 命名空间/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 设计模式 - 命名空间">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/07/21/JavaScript - 严格模式 - 作用域/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 严格模式 - 作用域">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/"
+                         data-title="JavaScript - 闭包 - 函数回调 - 即时函数"
+                         data-url="https://Jingdan.github.io/2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#作用域链的补充内容-—-gt-搜索规则"><span class="toc-text">作用域链的补充内容 —-> 搜索规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#闭-关闭-封闭的意思-对外界不开方的"><span class="toc-text">闭 : 关闭,封闭的意思,对外界不开方的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#包-包装起来"><span class="toc-text">包 : 包装起来</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#闭包技术"><span class="toc-text">闭包技术</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#访问数据"><span class="toc-text">访问数据</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#闭包读取数据和设置数据"><span class="toc-text">闭包读取数据和设置数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#闭包的作用"><span class="toc-text">闭包的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#提供了一种间接访问函数封闭空间中数据的方法"><span class="toc-text">提供了一种间接访问函数封闭空间中数据的方法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#setTimeout和闭包的执行"><span class="toc-text">setTimeout和闭包的执行</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#setTimeout-只调用一次函数-延迟函数-一次是隔两秒-至少"><span class="toc-text">setTimeout(); 只调用一次函数(延迟函数) 一次是隔两秒(至少)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#每隔一定的时候就调用一次"><span class="toc-text">每隔一定的时候就调用一次</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#setTimeout的问题"><span class="toc-text">setTimeout的问题</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#解决setTimeout的问题"><span class="toc-text">解决setTimeout的问题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#div事件和闭包"><span class="toc-text">div事件和闭包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数的特性"><span class="toc-text">函数的特性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数的约定和name值"><span class="toc-text">函数的约定和name值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数的回调-作为参数传递"><span class="toc-text">函数的回调(作为参数传递)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#函数是第一型对象-因此可以使用对象的地方都可以使用函数"><span class="toc-text">函数是第一型对象(因此可以使用对象的地方都可以使用函数)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#回调函数-回调-当我们把某个函数作为参数传递给另一个函数的时候-这个函数就称为回调函数。"><span class="toc-text">回调函数(回调),当我们把某个函数作为参数传递给另一个函数的时候,这个函数就称为回调函数。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#回调函数的基本模式"><span class="toc-text">回调函数的基本模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#回调函数-关于this丢失的问题"><span class="toc-text">回调函数(关于this丢失的问题)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#回调函数-解决this丢失的问题"><span class="toc-text">回调函数(解决this丢失的问题)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#回调函数-兼容字符串方式"><span class="toc-text">回调函数(兼容字符串方式)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数作为返回值-计算器"><span class="toc-text">函数作为返回值( 计算器)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自定义函数-惰性函数"><span class="toc-text">自定义函数( 惰性函数 )</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#惰性函数"><span class="toc-text">惰性函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#应用场景"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#缺点"><span class="toc-text">缺点:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#惰性定义函数存在的问题"><span class="toc-text">惰性定义函数存在的问题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#即时函数"><span class="toc-text">即时函数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#在函数定义之后立即执行该函数。"><span class="toc-text">在函数定义之后立即执行该函数。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#即时函数模式的组成"><span class="toc-text">即时函数模式的组成:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#即时函数的作用"><span class="toc-text">即时函数的作用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#即时函数的优点"><span class="toc-text">即时函数的优点</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#即时函数和闭包"><span class="toc-text">即时函数和闭包</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#即时对象初始化"><span class="toc-text">即时对象初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#结构特征"><span class="toc-text">结构特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#基本结构"><span class="toc-text">基本结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模式优点"><span class="toc-text">模式优点</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

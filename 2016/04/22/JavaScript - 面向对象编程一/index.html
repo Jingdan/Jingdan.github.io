@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Js语言的回顾｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2016/04/22/JavaScript - 面向对象编程一/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Js语言的回顾</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2016-04-22
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Js语言的回顾
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="Js语言的回顾"><a href="#Js语言的回顾" class="headerlink" title="Js语言的回顾"></a>Js语言的回顾</h2><h3 id="三个组成部分"><a href="#三个组成部分" class="headerlink" title="三个组成部分"></a>三个组成部分</h3><ul>
+<li>BOM：全称Browser Object Model 浏览器对象模型，核心对象（window loacation）；</li>
+<li>DOM：Document Object Model 文档对象模型，DOM树，本身为我们操作页面元素提供了一套方法(API)，API:application programming</li>
+<li>interface 应用程序编程接口<br>ECMAScript：规定js的核心语法，js语句，关键字，保留字</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
+<li>基本数据类型（简单数据类型）</li>
+</ul>
+<p>string 字符串类型<br>number 数值<br>boolean 布尔类型(true | false)<br>undefined 未定义<br>null 空(对象) 这个类型有点特殊  </p>
+<ul>
+<li>复杂数据类型（复合数据类型）</li>
+</ul>
+<p>Object 对象类型<br>Array 数组类型<br>Funcation 函数类型<br>Date 日期类型<br>String 对象<br>Number<br>Boolean  </p>
+<h3 id="判断数据类型的关键字是-typeof"><a href="#判断数据类型的关键字是-typeof" class="headerlink" title="判断数据类型的关键字是 typeof"></a>判断数据类型的关键字是 typeof</h3><p>注意：<br>复杂数据在使用typeof操作的时候,打印出来的结果都是object ,除了函数</p>
+<h3 id="等于和全等"><a href="#等于和全等" class="headerlink" title="等于和全等"></a>等于和全等</h3><p>赋值(=)<br>等于符号(==)：比较的时候只判断数值是否是相等的<br>全等符号(===)：比较的时候不仅要比较数据还需要比较类型<br>不等于(!=)<br>不全等于(!==)  </p>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><h4 id="返回值-布尔类型-要么是true要么是false"><a href="#返回值-布尔类型-要么是true要么是false" class="headerlink" title="返回值: 布尔类型,要么是true要么是false"></a>返回值: 布尔类型,要么是true要么是false</h4><p>大于 &gt;<br>小于 &lt;<br>大于等于 &gt;=<br>小于等于 &lt;=</p>
+<h3 id="逻辑运算符（重点）"><a href="#逻辑运算符（重点）" class="headerlink" title="逻辑运算符（重点）"></a>逻辑运算符（重点）</h3><ul>
+<li>逻辑非( ! ) 取反  </li>
+<li>逻辑或( || ) </li>
+<li>返回值是表达式，而不是布尔值<br>语法:表达式1 || 表达式2<br>结果:<br>1.判断表达式1,如果表达式1为真,那么就返回表达式<br>2.如果表达式1的值为假,那么就返回表达式2 </li>
+<li>逻辑与(&amp;&amp;)</li>
+</ul>
+<p>返回值是表达式，而不是布尔值<br>语法:表达式1 &amp;&amp; 表达式2<br>结果:<br>1.如果表达式1为真,返回表达式2<br>2.如果表达式1为假,返回表达式1  </p>
+<h3 id="值类型和引用类型（重点）"><a href="#值类型和引用类型（重点）" class="headerlink" title="值类型和引用类型（重点）"></a>值类型和引用类型（重点）</h3><ul>
+<li>值类型</li>
+</ul>
+<p>string<br>number<br>boolean<br>undefined<br>值类型:存储的是具体的值<br>赋值：<br>1.把右边变量存储存储的值(具体的数据)复制一份给左边的变量<br>2.值类型的赋值，是简单数据的复制,他们保存在相对独立的空间中,彼此不会影响</p>
+<ul>
+<li>引用类型</li>
+</ul>
+<p>object类型<br>引用类型:存储的是指向具体值得地址(引用)<br>赋值：<br>1.把右边变量存储存储的值(指向具体数据的地址)复制一份给左边的变量<br>2.引用类型赋值:修改了某个对象的属性,对另外一个对象的属性会有影响</p>
+<ul>
+<li>在函数中的使用</li>
+</ul>
+<p>值类型作为函数的参数：<br>1.实参和形参他们的数据是相互独立的<br>2.示例代码 :</p>
+<pre><code>&lt;script&gt;
+        function func(param){
+            console.log(param);  //我是字符串
+            param = &quot;我也是一个字符串&quot;;
+            console.log(param);
+        }
+        var a = &quot;我是字符串&quot;;
+        func(a);
+        console.log(a);
+&lt;/script&gt;
+</code></pre><p>引用类型作为函数的参数：<br>1.形参和实参共享同一份数据,修改其中的某个对象对另外一个对象也会有影响<br>2.示例代码 :</p>
+<pre><code>&lt;script&gt;
+    //02 引用类型作为函数的参数传递
+    var obj = {name:&quot;小明&quot;};
+    function funcName(param) {
+        param.name = &quot;小王&quot;;
+        param = {
+            name:&quot;张明明&quot;
+        };
+        console.log(param.name);    // 张明明
+    }
+    funcName(obj);
+    console.log(obj.name);   // 小王
+    //
+   //
+    var arr1 = [1,2,3];
+    var arr2 = arr1;
+    console.log(arr1);
+    console.log(arr2);
+    //该行代码切断和arr1的关系,对象内保存的地址指向了另外一块内存空间
+    arr1.push(4);
+    arr2 = [1,2,3];    
+    console.log(arr1);  //1,2,3,4
+    console.log(arr2);  //1,2,3
+&lt;/script&gt;
+</code></pre><h2 id="对象的动态特性"><a href="#对象的动态特性" class="headerlink" title="对象的动态特性"></a>对象的动态特性</h2><ul>
+<li>已经定义好的对象，我们对它进行增删改查的操作</li>
+<li>访问对象有两种形式:</li>
+</ul>
+<p>1.点语法<br>在使用点语法设置对象的属性的时候,如果对象中不存在改属性,就是增加操作<br>如果对象中已经存在该属性,那么就是修改操作<br>2.[]中括号语法<br>对象：键 - 值(key-value)对的集合<br>注意点:在使用[]语法的时候,键应该使用双引用</p>
+<h2 id="in关键词的使用"><a href="#in关键词的使用" class="headerlink" title="in关键词的使用"></a>in关键词的使用</h2><ul>
+<li>作用：<br>1.遍历对象的key<br>2.判断某个对象中是否存在指定的属性</li>
+<li>语法 1.( 键 in 对象 ) 返回值:布尔类型的值 2.注意点：在使用in关键字的时候，key是字符串，需要加上双引号**</li>
+<li>遍历数组<br>1.遍历对象 在这里必须使用[ ]语法不能直接使用点语法<br>2.在数组中索引是key ,数组的元素是value</li>
+</ul>
+<h2 id="delete关键字"><a href="#delete关键字" class="headerlink" title="delete关键字"></a>delete关键字</h2><ul>
+<li>作用:<br>1.删除对象中的属性<br>2.删除没有使用var关键字声明的全局变量<br>3.注意:<br>3.1-返回值 布尔类型的值(我们可以通过该值来判断是否删除成功)<br>3.2-使用var关键字声明的变量无法被删除<br>3.3-删除对象中不存在的属性没有任何变化,但是返回值为true<br>3.4-不能删除window下面的全局变量(使用var声明),但是可以删除直接定义在window上面的属性</li>
+</ul>
+<h2 id="循环对象"><a href="#循环对象" class="headerlink" title="循环对象"></a>循环对象</h2><p>for循环<br>while<br>do…while(至少会执行一次)<br>for…in(主要用于遍历对象)    </p>
+<h2 id="函数的几种创建"><a href="#函数的几种创建" class="headerlink" title="函数的几种创建"></a>函数的几种创建</h2><p>1.声明函数</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>&lt;script&gt;
+    function 函数名称 (形参1,形参2)
+    {
+        //函数体
+    }
+    //调用
+    //函数的名称();
+    function funcName (){
+    }
+&lt;/script&gt;
+</code></pre><p>2.函数表达式</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><pre><code>&lt;script&gt;
+    //01 匿名函数
+    var func01 = function (){
+    };
+    //02 命名的函数表达式
+    var func02 = function func(){
+    };
+&lt;/script&gt;
+</code></pre><p>3.使用构造函数创建函数对象</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre><code>&lt;script&gt;
+    var func = new Function();   //没有内容(没有函数体)
+    func();
+    function funcTest (){};     //等价
+    var func02 = new Function(&quot;console.log(&apos;demo&apos;);&quot;);
+    func02();
+&lt;/script&gt;
+</code></pre><p><br></p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><pre><code>&lt;script&gt;
+    var obj = {name:&quot;zhangsan&quot;};
+    var obj2 = new Object();
+    var obj3 = {};
+&lt;/script&gt;
+</code></pre><p><hr></p>
+<h2 id="面向过程-gt-面向对象"><a href="#面向过程-gt-面向对象" class="headerlink" title="面向过程 ==&gt; 面向对象"></a>面向过程 ==&gt; 面向对象</h2><p>都是一种解决问题的思路(思想)<br>面向过程在解决问题的时候,关注的是解决问题需要的一个接着一个的过程(步骤)<br>面向对象在解决问题的时候,关注的是解决问题所需要的对象.<br>举例:就用洗衣服来形象的打个比方</p>
+<pre><code>如果你是用手洗的话,那就不得不考虑 倒水-搓衣服-加洗衣液-清水涮-手拧干-晾起来 这就是面向过程
+但如果你忽略这些步骤 直接放洗衣机洗的话 可能都不用考虑晾干的步骤 这就是面向对象
+</code></pre><h3 id="什么是对象"><a href="#什么是对象" class="headerlink" title="什么是对象"></a>什么是对象</h3><p>对象的特征 (静态的描述信息),比如:学号 - 性别 - 年龄 - 家庭住址 - 身高 - 体重 … 等等<br>有的对象有行为 (动态的特征), 比如:吃饭 - 睡觉 - 开车 - 玩游戏 - 谈恋爱  </p>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>var zhangsan = {
+        name:&quot;张三&quot;,
+        sex:&quot;男&quot;,
+        age:18,
+        address:&quot;天上人间1号公馆&quot;,
+        eat:function () {
+            console.log(&apos;能吃&apos;);
+        },
+        sleep:function () {
+            console.log(&quot;能睡&quot;);
+        },
+        say:function () {
+            console.log(&quot;能说话&quot;);
+        },
+        run:function () {
+            console.log(&quot;能运动&quot;);
+        },
+        song:function () {
+            console.log(&quot;能唱歌&quot;);
+        }
+    };
+    //打印对象的属性并调用相关的方法
+    console.log(zhangsan.name,zhangsan.age,zhangsan.address);
+    zhangsan.say();
+    zhangsan.sleep();
+</code></pre><h3 id="现实中的对象和编码中的对象"><a href="#现实中的对象和编码中的对象" class="headerlink" title="现实中的对象和编码中的对象"></a>现实中的对象和编码中的对象</h3><p>静态的描述信息:属性<br>动态的行为特征:方法<br>面向对象和面向过程都是解决问题的一种方式(思想),没有孰优孰劣之分<br>面向对象本身是对面向过程的封装 </p>
+<h3 id="为什么要使用面向对象编程"><a href="#为什么要使用面向对象编程" class="headerlink" title="为什么要使用面向对象编程?"></a>为什么要使用面向对象编程?</h3><p>1更方便<br>2复用性会更好<br>高内聚和低耦合(电路)<br>冗余(重复的东西)–&gt;封装(提取相同的部分作为函数体,抽取不同的部分作为参数)</p>
+<h3 id="js对象是由两个对象组成的"><a href="#js对象是由两个对象组成的" class="headerlink" title="js对象是由两个对象组成的"></a>js对象是由两个对象组成的</h3><p>一个叫构造函数对象<br>一个叫原型对象</p>
+<h3 id="面向对象的特性："><a href="#面向对象的特性：" class="headerlink" title="面向对象的特性："></a>面向对象的特性：</h3><p>1.封装<br>作用：方便代码的维护，提高代码的复用性，更安全的访问数据的方式<br>注意: js中的封装多了一层意思，就是使用对象来封装变量和函数<br>2.继承<br>现实生活中的继承：继承遗产，一个人获得另一个人所拥有的财富或者是资源的方式。<br>编程语言中的继承：一个类（对象）获得另外一个类（对象）的属性和方法的一种方式。<br>面向对象的语言特征：类（C++）C（没有类）<br>js中没有类（class）,支持面向对象的语言。<br>3.多态<br>表现：<br>对于相同的操作，不同的对象表现出不同的行为。<br>隐藏不同。<br>实现：<br>js天生具备多态的特性（弱类型的语言） </p>
+<h3 id="创建对象的四种方法"><a href="#创建对象的四种方法" class="headerlink" title="创建对象的四种方法"></a>创建对象的四种方法</h3><p>1.字面量的方式<br>存在的问题：<br>创建的对象无法复用,复用性差<br>如果需要创建多个相似的对象，那么代码中冗余度太高（重复的代码太多）  </p>
+<h4 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>var book1 = {
+        name:&quot;悟空传&quot;,
+        author:&quot;今何在&quot;,
+        press:&quot;湖南文艺出版社&quot;,
+        price:&quot;28.00&quot;,
+        logDes:function(){
+            console.log(&quot;书名：&quot; + this.name + &quot;作者：&quot; + this.author);
+        }
+    }
+    var book2 = {
+        name:&quot;什么是批判&quot;,
+        author:&quot;福柯&quot;,
+        press:&quot;北京大学出版社&quot;,
+        price:&quot;52.00&quot;,
+        logDes:function(){
+            console.log(&quot;书名：&quot; + this.name + &quot;作者：&quot; + this.author);
+        }
+    }
+    var book3 = {
+        name:&quot;数据结构&quot;,
+        author:&quot;严蔚敏&quot;,
+        press:&quot;清华大学出版社&quot;,
+        price:&quot;30.00&quot;,
+        logDes:function(){
+            console.log(&quot;书名：&quot; + this.name + &quot;作者：&quot; + this.author);
+        }
+    }
+    console.log(book1.name);
+    boo1.logDes();
+</code></pre><p>2.内置的构造函数<br>存在的问题：<br>创建的对象无法复用,复用性差<br>如果需要创建多个相似的对象，那么代码中冗余度太高（重复的代码太多）  </p>
+<h4 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>//01 创建空的对象
+var book1 = new Object();
+//02 设置属性
+book1.name = &quot;花田半亩&quot;;
+book1.author = &quot;田维&quot;;
+book1.price = &quot;40.01&quot;;
+//03 设置方法
+book1.logDes = function (){
+    console.log(&quot;书名：&quot; + this.name);
+}
+book1.logDes();
+//创建多个对象
+var book2 = new Object();
+book2.name = &quot;三国演义&quot;;
+book2.author = &quot;罗贯中&quot;;
+book2.price = &quot;34.01&quot;;
+book2.logDes = function (){
+    console.log(&quot;书名：&quot; + this.name);
+}
+console.log(book1);
+console.log(book2);
+</code></pre><p>3.简单工厂函数创建对象<br>存在的问题：<br>如果创建多个不同类型的对象，那么我们无法分辨  </p>
+<h4 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>//01 封装创建对象的过程
+function createBook () {
+    var book = new Object();
+    book.name = &quot;声名狼藉者的生活&quot;;
+    book.price = 42.00;
+    book.author = &quot;福柯&quot;;
+    book.press = &quot;北京大学出版社&quot;;
+    book.read = function () {
+        console.log(&quot;我的书名为:声名狼藉者的的生活,作者为福柯....&quot;);
+    };
+    return book;
+}
+//02 使用封装好的工厂函数来创建对象
+var book1 = createBook();
+var book2 = createBook();
+//03 打印对象的属性并调用对象的方法
+console.log(book1.name);
+console.log(book2.name);
+book1.read();
+book2.read();
+console.log(&quot;_________________________&quot;);
+//04 说明:以上代码确实能够快速简单的创建出新的对象,但是创建出来的对象内部的属性和方法相同,这并不是我们想要的。
+//05 对上面的工厂函数进行改进
+//改进思路:封装不变的部分,提取变化的部分作为参数
+function createBookNew (name,price,author,press) {
+    var book = new Object();
+    book.name = name;
+    book.price = price;
+    book.author = author;
+    book.press = press;
+    book.read = function () {
+        console.log(&quot;我的书名为:&quot;+book.name+&quot;,作者为&quot;+book.author+&quot;....&quot;);
+    };
+    return book;
+}
+//06 使用新的工厂函数来创建对象
+var book1 = createBookNew(&quot;声名狼藉者的的生活&quot;,&quot;42.00&quot;,&quot;福柯&quot;,&quot;北京大学出版社&quot;);
+var book2 = createBookNew(&quot;人性的枷锁&quot;,&quot;49.00&quot;,&quot;毛姆&quot;,&quot;华东师范大学出版社&quot;);
+var book3 = createBookNew(&quot;悟空传&quot;,&quot;28.00&quot;,&quot;今何在&quot;,&quot;湖南文艺出版社&quot;);
+//07 打印对象的属性,调用对象的方法
+console.log(book1.name);
+console.log(book2.name);
+console.log(book3.name);
+book1.read();
+book2.read();
+book3.read();
+</code></pre><p>3.自定义构造函数创建对象<br>3.1.提供一个构造函数<br>3.2.通过this指针来设置属性和方法<br>3.3.通过new操作符创建对象  </p>
+<h4 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>  //1.提供一个构造函数
+    //构造函数简单介绍：
+    //作用：对对象进行一些初始化的设置
+    //和普通函数区别：（01）首字母大写（02）调用方式不一样和new配合使用
+    function Person(name,age){
+        // 默认 创建对象
+        //var o = new Object();
+        //默认会赋值给this
+        //this = o;
+        //2. 通过this指针来设置属性和方法
+        this.name = name;
+        this.age = age;
+        this.showName = function(){
+            console.log(this.name);
+        };
+        this.showAge = function(){
+            console.log(this.age);
+        }
+        //默认返回
+        //return this;
+    }
+    //3. 使用new操作符来创建对象
+    var p1 = new Person(&quot;张三&quot;,20);
+    var p2 = new Person(&quot;张老汉&quot;,200);
+    console.log(p1);
+    console.log(p2);
+/*
+ 1.  自定义构造函数方式创建对象内部的实现细节
+1.1 我们在使用new关键字调用构造哈函数的时候，内部默认会创建一个空的对象
+1.2 默认会把这个空的对象赋值给this
+1.3 通过this来设置新对象的属性和方法
+1.4 在构造函数的最后，默认会把新创建的对象返回
+2.自定义构造函数和工厂函数对比
+2.1 函数的名称不一样，构造函数首字母大写
+2.2 自定义构造函数创建方式内部会自动的创建空对象并且赋值给this
+2.3 默认会自动返回新创建的对象
+3.返回值
+3.1. 没有显示的return ,默认会把新创建的对象返回
+3.2. 显示的执行了return语句，就得看具体的情况
+3.2.1 返回的是值类型，那么直接忽略该返回，把新创建的对象返回
+3.2.2 返回的是引用类型的数据，会覆盖掉新创建的对象，直接返回引用数据类型的值
+*/
+        function Dog(name)
+        {
+            this.name = name;
+            //return &quot;demo&quot;;  忽略
+            //return function (){};
+        }
+        var dog = new Dog(&quot;阿黄&quot;);
+        console.log(dog);
+</code></pre><h3 id="构造函数的的注意事项"><a href="#构造函数的的注意事项" class="headerlink" title="构造函数的的注意事项"></a>构造函数的的注意事项</h3><p>函数传值  </p>
+<h4 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>function Student(number,className,log){
+        this.number = number;
+        this.className = className;
+        this.log = log;
+    }
+    var stu1 = new Student(&quot;201601&quot;,&quot;九阴真经修炼01班&quot;,function(){
+       console.log(&quot;学号：&quot; + this.number);
+    });
+    var stu2 = new Student(&quot;201602&quot;,&quot;九阴真经修炼01班&quot;,function(){
+        console.log(&quot;班级名称：&quot; + this.className);
+    });
+    stu1.log();
+    stu2.log();
+</code></pre><p>对象的类型(判断)  </p>
+<h4 id="示例代码-6"><a href="#示例代码-6" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>function Person(){};
+    function Dog(){};
+    var p1 = new Person();
+    var dog1 = new Dog();
+    //关键字 instanceOf 用来判断当前对象是否是某个类型的实例（检查某个对象是否是使用指定构造函数创建的）
+    //语法： 对象 instanceOf 构造函数（类型）
+    console.log(p1 instanceof Person);
+    console.log(p1 instanceof Dog);
+    console.log(dog1 instanceof Person);
+    console.log(dog1 instanceof Dog);
+</code></pre><p>构造器属性（获取)  </p>
+<h4 id="示例代码-7"><a href="#示例代码-7" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>function Person(){};
+    function Dog(){};
+    var p1 = new Person();
+    var dog1 = new Dog();
+    //在所有的对象中，都拥有一个构造器属性：constructor
+    console.log(p1.constructor);
+    console.log(dog1.constructor);
+</code></pre><p>函数调用<br>1.new ：创建对象，并在最后返回该对象<br>2.构造函数：用于初始化对象<br>3.以普通函数的方式来调用构造函数，那么内部的this指向的是window  </p>
+<h4 id="示例代码-8"><a href="#示例代码-8" class="headerlink" title="示例代码 :"></a>示例代码 :</h4><pre><code>function Person(name)
+    {
+        if(this instanceof Person)
+        {
+            this.name = name;
+        }else
+        {
+            return new Person(name);
+        }
+    }
+    var p1 = new Person(&quot;哔哩哔哩&quot;);
+    //构造函数本身是一个函数，在调用可以直接调用
+    var p2 =  Person(&quot;哗啦哗啦&quot;);  //这是一个错误的演示（不要这样写代码）
+    console.log(p2);  //undefined
+</code></pre><p>存在问题<br>1.把函数写在外部，破坏了封装性。<br>2.增加一个全局变量。 </p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code>var showName = function(){
+            console.log(&quot;姓名：&quot;);
+    }
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        this.showName = showName;
+    }
+    //创建对象
+    var p1 = new Person(&quot;张小花&quot;,18);
+    var p2 = new Person(&quot;张全蛋&quot;,99);
+    p1.showName();
+    p2.showName();
+    //每创建一个对象，内部都会声明一个showName函数
+    console.log(p1.showName == p2.showName);  //false
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/04/22/JavaScript - 面向对象编程一/"
+                     data-title="Js语言的回顾"
+                     data-url="https://Jingdan.github.io/2016/04/22/JavaScript - 面向对象编程一/"
+                     data-images="https://Jingdan.github.io/2016/04/22/JavaScript - 面向对象编程一/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+Js语言的回顾三个组成部分
+BOM：全称Browser Object Model 浏览器对象... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/04/28/JavaScript - 面向对象编程二/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 面向对象编程二">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/10/27/HTML5 - Bootstrap框架/" data-toggle="tooltip" data-placement="top"
+                           title="HTML5 - Bootstrap框架">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2016/04/22/JavaScript - 面向对象编程一/"
+                         data-title="Js语言的回顾"
+                         data-url="https://Jingdan.github.io/2016/04/22/JavaScript - 面向对象编程一/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Js语言的回顾"><span class="toc-text">Js语言的回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三个组成部分"><span class="toc-text">三个组成部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断数据类型的关键字是-typeof"><span class="toc-text">判断数据类型的关键字是 typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#等于和全等"><span class="toc-text">等于和全等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关系运算符"><span class="toc-text">关系运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#返回值-布尔类型-要么是true要么是false"><span class="toc-text">返回值: 布尔类型,要么是true要么是false</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑运算符（重点）"><span class="toc-text">逻辑运算符（重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#值类型和引用类型（重点）"><span class="toc-text">值类型和引用类型（重点）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象的动态特性"><span class="toc-text">对象的动态特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#in关键词的使用"><span class="toc-text">in关键词的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete关键字"><span class="toc-text">delete关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环对象"><span class="toc-text">循环对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数的几种创建"><span class="toc-text">函数的几种创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码-1"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码-2"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码-3"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向过程-gt-面向对象"><span class="toc-text">面向过程 ==> 面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是对象"><span class="toc-text">什么是对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#现实中的对象和编码中的对象"><span class="toc-text">现实中的对象和编码中的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要使用面向对象编程"><span class="toc-text">为什么要使用面向对象编程?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js对象是由两个对象组成的"><span class="toc-text">js对象是由两个对象组成的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向对象的特性："><span class="toc-text">面向对象的特性：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建对象的四种方法"><span class="toc-text">创建对象的四种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的的注意事项"><span class="toc-text">构造函数的的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-7"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-8"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码："><span class="toc-text">代码：</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

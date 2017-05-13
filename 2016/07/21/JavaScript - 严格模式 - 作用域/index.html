@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        JavaScript - 严格模式 - 作用域｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2016/07/21/JavaScript - 严格模式 - 作用域/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>JavaScript - 严格模式 - 作用域</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2016-07-21
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            JavaScript - 严格模式 - 作用域
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h5 id="图书管理操作"><a href="#图书管理操作" class="headerlink" title="图书管理操作"></a>图书管理操作</h5><p>示例代码 :</p>
+<pre><code>var list = [
+        {name:&quot;专业主义&quot;,author:&quot;大前研一&quot;},
+        {name:&quot;红楼梦&quot;,author:&quot;曹公子&quot;},
+        {name:&quot;什么是批判&quot;,author:&quot;福柯&quot;},
+        {name:&quot;十万个为什么？&quot;,author:&quot;作者不详&quot;}
+    ];
+    //01 提供构造函数
+    function BookListManager(){
+        this.bookList = null;
+    }
+    //02 设置原型对象
+    BookListManager.prototype = {
+        init:function(arrayList){
+            this.bookList = arrayList || [];
+        },
+        getBookByName:function (name) {
+        //01 能够找到该对象，返回
+        for (var i = 0; i &lt; this.bookList.length; i++)
+        {
+            var obj = this.bookList[i];
+            if (obj.name == name)
+            {
+                return obj;
+            }
+        }
+        //02 找不到这个对象，返回null
+        return null;
+    },
+        addBook:function (bookObj){
+        this.bookList.push(bookObj);
+    },
+        updateBook:function (name,author){
+        var book = this.getBookByName(name);   //在原型方法中要调用其它的原型方法需要使用this
+        book.author = author;
+    },
+        removeBook:function (name){
+        var book = this.getBookByName(name);
+        var index = this.bookList.indexOf(book); //返回指定对象的索引，如果没有那么就返回-1
+        if(index == -1)
+        {
+            throw &quot;要删除的数据不存在！&quot;;
+        }
+        //删除对象
+        this.bookList.splice(index,1);
+    }
+    }
+    //03 创建对象
+    var p1 = new BookListManager();
+    var p2 = new BookListManager();
+    console.log(p1);
+    console.log(p2);
+    p1.init([{name:&quot;城堡&quot;,author:&quot;卡夫卡&quot;}]);
+    p2.init([{name:&quot;一分钟学会H5开发&quot;,author:&quot;乌拉乌拉&quot;}]);
+    console.log(p1);
+    console.log(p2);
+&lt;/script&gt;
+</code></pre><p>总结 : 这个小Demo就是面向对象编程的示例,自习看代码的话会不会觉得封装性很好,以后可以直接拿到项目中应用,而且不用担心和别的同事的代码发生冲突.这就是面向对象编程的好处,代码看起来逼格也很高</p>
+<h5 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h5><p>说明</p>
+<ol>
+<li>在js开发中可以选择严格模式或者是非严格模式来进行开发，默认是非严格模式的</li>
+<li>区别：在严格模式下，会做更严格的检查，一以前在非严格模式下不会报错或者是可以使用的一些语句在严格模式下使用会报错或者是抛出异常。</li>
+<li>严格模式它本身做了向后兼容：如果是支持严格模式的引擎，在检测到这个字符串的时候，就会在作用域中开启严格模式，如果是不支持严格模式的引擎，那么就直接忽略处理</li>
+<li>建议：推荐以后全部使用严格模式。</li>
+<li><p>语法 : “use strict” 在提供字符串设置严格模式的时候，必须要把字符串写在当前作用域的最顶端<br>“use strict” 注意点 :<br>1.在书写字符串的使用双引号和单引号都可以<br>2.字符串后面的分号可以省略<br>3.所有的字符必须全部小写<br>4.这个字符串只能拥有10个字符<br>使用注意点  </p>
+</li>
+<li><p>所有的变量都必须要使用var声明</p>
+</li>
+<li>不能使用delete关键字来删除全局变量</li>
+<li>函数的形参列表中不能出现同名的参数</li>
+<li>在对象内部不能出现相同的属性</li>
+<li>禁止使用八进制</li>
+<li>禁止使用with语句</li>
+<li>禁止使用eval 和arguments作为标识符( 标识符就是不要这让两个参数作为变量使用 不然会报错 !)</li>
+<li>在函数调用的时候，修正了函数内部this的指向</li>
+</ol>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+  &quot;use strict&quot;;
+   var obj1 = {
+        name:&quot;张三&quot;,
+        showName:function(){
+            console.log(this);
+        }
+    }
+    obj1.showName();   //obj1            this---&gt;obj1
+    var showName = obj1.showName;
+    showName();         //this丢失的问题  this---&gt;window(非严格)|undefined（严格）
+    obj1.showName.call(null);  
+    //在严格模式下，函数内部的this绑定谁由第一个参数决定，如果没有传递那么是undefined，如果传入的值是null，那么绑定的就是null
+&lt;/script&gt;
+</code></pre><ol>
+<li>禁止使用callee | caller</li>
+<li>arguments在函数内部的表现和非严格模式不同<br>2.1.arguments 接收实参的值<br>2.2.值类型&amp;&amp;引用类型的数据作为函数的参数传递，在非严格模式下，arguments和形参共享一份数据<br>2.3.重新设置了形参的值，arguments的值也会发生改变，在严格模式下，arguments和形参是独立的，他们之间没有关系，修改了形参的值对arguments没有影响的 </li>
+</ol>
+<h5 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+  &quot;use strict&quot;;
+    function funcName(paramStr){
+        console.log(paramStr);
+        console.log(arguments[0]);
+        //重新设置形参的值
+        paramStr = &quot;测试的字符串&quot;;
+        console.log(arguments[0]);
+    }
+    var str = &quot;demoStr&quot;;
+    funcName(str);
+    function funcName02(obj)
+    {
+        console.log(obj);
+        console.log(arguments[0]);
+        //重新设置obj的值
+        obj = {age:20};
+        console.log(obj);
+        console.log(arguments[0]);
+    }
+    var obj = {
+        name:&quot;张三&quot;
+    };
+    funcName02(obj);
+&lt;/script&gt;
+</code></pre><h5 id="严格模式的作用域"><a href="#严格模式的作用域" class="headerlink" title="严格模式的作用域"></a>严格模式的作用域</h5><p>写在当前作用域的最顶端<br>作用范围</p>
+<h6 id="script标签-只对当前的标签有影响，仅仅设置当前的标签为严格模式"><a href="#script标签-只对当前的标签有影响，仅仅设置当前的标签为严格模式" class="headerlink" title="script标签 只对当前的标签有影响，仅仅设置当前的标签为严格模式"></a>script标签 只对当前的标签有影响，仅仅设置当前的标签为严格模式</h6><h6 id="函数内-那么只对当前的函数作用域有效"><a href="#函数内-那么只对当前的函数作用域有效" class="headerlink" title="函数内 那么只对当前的函数作用域有效"></a>函数内 那么只对当前的函数作用域有效</h6><h6 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h6><pre><code>&lt;script&gt;
+     // &quot;use strict&quot;;     位置01 对f1和f2都有效
+    function f1(){
+     // &quot;use strict&quot;;     位置02 对f1有效f2无效
+        //a = 10;
+    }
+    function f2(){
+    // &quot;use strict&quot;; 位置03  对f2有效f1无效
+        b = 20;
+    }
+    f1();
+    f2();
+&lt;/script&gt;
+</code></pre><h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><p>某个变量有( 起 ) 作用的范围</p>
+<p>块级作用域, 在别的语言里有块级作用域, 但是在js中没有块级作用域</p>
+<p>js中的作用域</p>
+<pre><code>script构成了全局作用域  
+在js中函数是唯一一个可以创建作用域的对象
+</code></pre><p>词法作用域 - 动态作用域</p>
+<pre><code>词法作用域：在变量声明的时候，它的作用域就已经确定了
+动态作用域：在程序运行的时候，由程序的当前上下文（执行环境）决定的
+js属于词法作用域
+</code></pre><p>词法作用域的访问规则：</p>
+<pre><code>先在当前作用域中查找，如果找到就直接使用,如果没有找到，那么就到上一级作用域中查找，如果还没有找到那么就重复这个查找的过程，直到全局作用域
+</code></pre><h5 id="变量和函数提升"><a href="#变量和函数提升" class="headerlink" title="变量和函数提升"></a>变量和函数提升</h5><p>js的执行顺序</p>
+<ol>
+<li>预解析阶段 变量和函数的提升（声明）</li>
+<li>具体的执行阶段</li>
+<li>变量和函数的提升</li>
+<li><p>示例1</p>
+<pre><code>&lt;script&gt;
+    console.log(a);   //undefined ?
+    var a = 10;
+    f1();
+    function f1(){
+        console.log(&quot;f1&quot;);
+    }
+&lt;/script&gt;代码 :
+</code></pre><p>变量和变量同名的情况:后面的变量会把前面的变量<br>覆盖示例代码 :</p>
+</li>
+</ol>
+<pre><code>&lt;script&gt;
+       //    var n1 = &quot;n1&quot;;
+       //    console.log(n1);                //n1
+       //
+       //    function test(){
+       //        console.log(n1);
+       //    }
+       //
+       //    test();                         //n1
+       //    var n1 = &quot;new n1&quot;;
+       //    console.log(n1);                //new n1
+       //    test();                         //new n1
+       //      模拟变量和函数的提升
+               var n1;
+               function test(){
+                   console.log(n1);
+               }
+               var n1;
+           n1 = &quot;n1&quot;;
+           console.log(n1);                //n1
+           test();                         //n1
+           n1= &quot;new n1&quot;;
+           console.log(n1);                //new n1
+           test();                         //new n1
+       &lt;/script&gt;
+</code></pre><p>函数和函数同名的情况<br>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    f1();                   //10 ? 20
+    function f1(){
+        console.log(10);
+    }
+    f1();                   //20
+    function f1(){
+        console.log(20);
+    }
+    f1();                   //20
+&lt;/script&gt;
+</code></pre><p>函数和变量同名的情况:可以理解为函数声明提升而变量的声明不提升（忽略）<br>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    console.log(demo);                      //
+    var demo = &quot;我是字符串&quot;;
+    function demo(){
+        console.log(&quot;我是函数&quot;);
+    }
+    console.log(demo);                      //
+    //......
+    var demo;
+    function demo(){
+        console.log(&quot;我是函数&quot;);
+    }
+    console.log(demo);                      //函数
+    demo = &quot;我是字符串&quot;;
+    console.log(demo);                      //我是字符串
+&lt;/script&gt;
+&lt;script&gt;
+    console.log(test);                      //函数
+    function test(){
+        console.log(&quot;我是函数&quot;);
+    }
+    var test = &quot;我是帅哥&quot;;
+    console.log(test);                      //
+    ///////变量声明（和函数同名的）不会提升
+    function test(){
+        console.log(&quot;我是函数&quot;);
+    }
+    console.log(test);                      //
+    var test = &quot;我是帅哥&quot;;
+    console.log(test);
+&lt;/script&gt;
+</code></pre><p>注意 : 如果是函数的表达式,那么在做函数声明提升的时候,仅仅只会把var 变量的名称(函数)提升到当前作用域的最顶端</p>
+<h5 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h5><p>js中函数可以创建作用域<br>js中的函数中可以声明函数<br>函数内部的函数中又可以声明函数<br>以上,会形成一个链式的结构,这个是作用域链<br>示例代码 :  </p>
+<pre><code>&lt;script&gt;
+    var a = 10;
+    function f1(){
+        function f2(){
+            var d = &quot;demoD&quot;;
+        }
+    }
+    function f3(){
+        function f4(){
+        }
+        var b = &quot;demoB&quot;;
+        function f5(){
+            var c = &quot;demoC&quot;
+        }
+    }
+&lt;/script&gt;
+</code></pre><p>图解<br><img src="http://upload-images.jianshu.io/upload_images/3359912-c3256e20149e82a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/07/21/JavaScript - 严格模式 - 作用域/"
+                     data-title="JavaScript - 严格模式 - 作用域"
+                     data-url="https://Jingdan.github.io/2016/07/21/JavaScript - 严格模式 - 作用域/"
+                     data-images="https://Jingdan.github.io/2016/07/21/JavaScript - 严格模式 - 作用域/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+图书管理操作示例代码 :
+var list = [
+        {name:&quot;... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/08/01/JavaScript - 闭包 - 函数回调 - 即时函数/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 闭包 - 函数回调 - 即时函数">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/06/27/JavaScript - 函数相关知识点/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 函数相关知识点">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2016/07/21/JavaScript - 严格模式 - 作用域/"
+                         data-title="JavaScript - 严格模式 - 作用域"
+                         data-url="https://Jingdan.github.io/2016/07/21/JavaScript - 严格模式 - 作用域/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#图书管理操作"><span class="toc-text">图书管理操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#严格模式"><span class="toc-text">严格模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#严格模式的作用域"><span class="toc-text">严格模式的作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#script标签-只对当前的标签有影响，仅仅设置当前的标签为严格模式"><span class="toc-text">script标签 只对当前的标签有影响，仅仅设置当前的标签为严格模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#函数内-那么只对当前的函数作用域有效"><span class="toc-text">函数内 那么只对当前的函数作用域有效</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#作用域"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#变量和函数提升"><span class="toc-text">变量和函数提升</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#作用域链"><span class="toc-text">作用域链</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

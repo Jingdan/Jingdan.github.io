@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        JavaScript - 函数相关知识点｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2016/06/27/JavaScript - 函数相关知识点/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>JavaScript - 函数相关知识点</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2016-06-27
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            JavaScript - 函数相关知识点
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="函数内部的隐藏参数-–-gt-arguments-重点"><a href="#函数内部的隐藏参数-–-gt-arguments-重点" class="headerlink" title="函数内部的隐藏参数 –&gt; arguments ( 重点 )"></a>函数内部的隐藏参数 –&gt; arguments ( 重点 )</h2><h5 id="arguments-接收实参"><a href="#arguments-接收实参" class="headerlink" title="arguments:接收实参"></a>arguments:接收实参</h5><ol>
+<li><p>该参数是一个类似于数组的结构（可以像数组一样遍历 + 还可以使用下标来访问数据），但是并不是数组。  </p>
+</li>
+<li><p>函数调用的时候，会把实参的值赋值给形参，而且会使用arguments来接收实参  </p>
+</li>
+<li><p>如果实参的个数超过形参的个数，那么可以通过arguments来获取超出的数据  </p>
+</li>
+<li><p>如果实参的格式小于形参的个数，那么不足的全部设置为undefined</p>
+</li>
+</ol>
+<h5 id="this指向的是一个对象，具体指向的是哪个对象由函数调用方式来决定。总之-this是面向对象里面最让人蛋疼的一个东西"><a href="#this指向的是一个对象，具体指向的是哪个对象由函数调用方式来决定。总之-this是面向对象里面最让人蛋疼的一个东西" class="headerlink" title="this指向的是一个对象，具体指向的是哪个对象由函数调用方式来决定。总之,this是面向对象里面最让人蛋疼的一个东西"></a>this指向的是一个对象，具体指向的是哪个对象由函数调用方式来决定。总之,this是面向对象里面最让人蛋疼的一个东西</h5><ol>
+<li>使用this会让我们的代码灵活  </li>
+<li>函数以普通方式调用：this指向window(注释：在非严格模式下指向window) 严格模式是 : use static  </li>
+<li>以对象的方法来调用：this指向调用方法的对象</li>
+<li>以构造函数的方式来调用 ：this指向的是构造函数内部新创建的对象</li>
+<li>上下文的方式调用（call|apply）: 第一个参数</li>
+</ol>
+<h5 id="length属性"><a href="#length属性" class="headerlink" title="length属性"></a>length属性</h5><p>1.arguments.length 实参长度（个数）<br>2.函数名.length 形参的长度（个数）</p>
+<p>示例代码1 :</p>
+<pre><code>&lt;script&gt;
+    //1 扩展内置对象
+    Array.prototype.des = &quot;描述信息&quot;;
+    var arr1 = new Array();
+    console.log(arr1.des);
+    //2 怎么判断一个对象的类型
+    //typeof
+    // 字符串|数字基本数据类型  string /number /boolean
+    //函数  function
+    //数组 | 日期类型     ---&gt;object
+    //判断数组：Array.isArray()
+    //3 toString判断
+    function sum()
+    {
+        var result = 0;
+        for (var i = 0; i &lt; arguments.length; i++) {
+           result += arguments[i];
+        }
+        console.log(arguments.des,&quot;______________&quot;);
+        console.log(Array.isArray(arguments));   //false
+        console.log(result);
+        //数组  [object Array]?
+        console.log(Object.prototype.toString.call(arguments));   
+        //不是数组  [object Arguments]
+    }
+    sum(1,2,3,4,5);   // 3
+&lt;/script&gt;
+</code></pre><p>示例代码2 :</p>
+<pre><code>&lt;script&gt;
+    function demo(a,b,c){
+        // 打印用户传入的参数的个数
+        console.log(arguments.length);
+        //abc ===&gt; 123
+        //4和5可以拿到
+        console.log(arguments[demo.length],&quot;+++&quot;);
+        console.log(c);
+        //a =1 b = 2 c = undefined
+    }
+    demo(1,2,3,4,5);
+    console.log(demo.length);
+    demo(1,2);
+&lt;/script&gt;
+</code></pre><p>示例代码3 :</p>
+<pre><code>&lt;script&gt;
+    //&quot;use strict&quot;;
+    var obj = {name:&quot;电话情缘1&quot;};
+    var obj2 = {name:&quot;电话情缘2&quot;};
+    function showName(){
+        console.log(this);
+    };
+//    obj.showName = showName;
+//    obj2.showName = showName;
+//    obj.showName();
+    showName();
+&lt;/script&gt;
+</code></pre><h5 id="callee和caller"><a href="#callee和caller" class="headerlink" title="callee和caller"></a>callee和caller</h5><p>callee : 函数自身</p>
+<ol>
+<li>主要用途：递归</li>
+<li>递归的特点：</li>
+<li>自己调用自己</li>
+<li>要有退出条件 不然就会陷入死循环<br>caller : 调用函数的函数 注意点：在全局作用域中调用，指向的是null</li>
+</ol>
+<p>示例代码1 :</p>
+<pre><code>&lt;script&gt;
+    function demo1(){
+        console.log(demo1.caller);   //demo2这个函数
+    }
+    function demo2(){
+        demo1();
+    }
+    demo2();
+    demo1();
+&lt;/script&gt;
+</code></pre><p>示例代码2 :</p>
+<pre><code>&lt;script&gt;
+    function func(){
+        console.log(arguments.callee);  //函数自身
+    }
+    func();
+&lt;/script&gt;
+</code></pre><p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+  //1 - 2: 1+2
+  //1 - 3: 1+2+3
+  //1 - 4: 1+2+3+4
+  //1 - 5: 1+2+3+4+5
+  //1 - 6: 1+2+3+4+5+6
+  //1 - n: 1+2+3+4.....n  ==&gt;1~(n-1) + n
+  console.log((function (n) {
+      if (n == 1) {
+          return 1;
+      }
+      //如果函数的匿名函数，那么要在函数内部调用自身，可以使用arguments.callee
+      return arguments.callee(n - 1) + n;
+  })(100));
+  //console.log(demo(3000));  //1+2+3
+&lt;/script&gt;
+</code></pre><h5 id="Function的小应用"><a href="#Function的小应用" class="headerlink" title="Function的小应用"></a>Function的小应用</h5><p>数组去重</p>
+<p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+     // 使用反括号`` 其实这里是走个铺垫 为之后的node.js
+    var func = new Function(`
+     var arr = [];
+        for (var i = 0; i &lt; arguments.length; i++) {
+            //去arr数组中查找指定的元素是否存在，如果不存在那么就添加
+            if (arr.indexOf(arguments[i]) == -1)
+            {
+                arr.push(arguments[i])
+            }
+        }
+        return arr;
+    `)
+    console.log(func(1, 2, 3, 4, 5, , 4, 7, 8, 2, 8, 9));
+&lt;/script&gt;
+</code></pre><p>求最大值</p>
+<p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    function getMax(){
+        var maxNum = arguments[0];
+        //遍历arguments
+        for (var i = 0; i &lt; arguments.length; i++) {
+            if (maxNum &lt; arguments[i])
+            {
+                maxNum = arguments[i];
+            }
+        }
+        return maxNum;
+    }
+    console.log(getMax(1, 20, 30, 21,220,44,55,123));
+&lt;/script&gt;
+</code></pre><h5 id="eval-函数"><a href="#eval-函数" class="headerlink" title="eval 函数"></a>eval 函数</h5><p>作用：把字符串转换为js的代码</p>
+<ol>
+<li>new Function(“字符串”); // 把字符串转换为js的代码区别：</li>
+<li>Function：当函数调用的时候才会执行</li>
+<li>eval：立刻执行</li>
+</ol>
+<p>使用建议：不推荐使用（js是词法作用域，eval和with可以动态的调整破坏js的词法作用域），性能不好。</p>
+<ol>
+<li>场景：页面中接收用户的js代码 + json处理</li>
+</ol>
+<p>Json和XML</p>
+<ol>
+<li>json是一种国际标准协议,只要我们将数据转换成这个格式,就能实现传输</li>
+<li>XML比json更国际化标准,在所有语言中通用</li>
+<li>从整个互联网开发来看 XML占据80%,而json只有20%. 如果是前端开发的话,json占据55%,而XML占据45%</li>
+<li>HTML就是一种XML,XML不是一种语言,是一种规定,协议</li>
+</ol>
+<p>Json协议和XML协议区别</p>
+<ol>
+<li>相同点<br>都是一种通信协议<br>都可以用来描述数据  </li>
+<li>不同点<br>1.json:一种轻量级的数据结构，用来表示、存储、传输数据.<br>2.XML专用带宽大,json占用带宽小<br>3.json没有XML这么通用<br>4.json可以和js对象互相转换,和js是天生的一对,因此广泛用于前端开发<br>5.XML已经被业界广泛的使用,而json才刚刚开始,但是在Ajax这个特定的领域.未来的发展一定是XML让位给json,到时候Ajax就会编程Ajaj<br>6.示例代码 :</li>
+</ol>
+<pre><code>&lt;script&gt;
+    //把JSON数据转换为对象
+    var obj = JSON.parse(&quot;{\&quot;name\&quot;:\&quot;默默的备胎\&quot;}&quot;);
+    console.log(obj);
+    //把对象转换为json数据
+    var str = JSON.stringify(obj);
+    console.log(str);
+&lt;/script&gt;
+&lt;script&gt;
+    var jsonStr = &quot;{\&quot;name\&quot;:\&quot;默默的备胎\&quot;}&quot;;
+    //json---&gt;对象
+    eval(&quot;var o =&quot; +jsonStr);
+    console.log(o);
+    var obj = eval(&quot;(&quot; + jsonStr +&quot;)&quot;);
+    console.log(obj);
+&lt;/script&gt;
+</code></pre><h5 id="Function-prototype的原型链"><a href="#Function-prototype的原型链" class="headerlink" title="Function.prototype的原型链"></a>Function.prototype的原型链</h5><h6 id="Function是Object构造函数的实例对象"><a href="#Function是Object构造函数的实例对象" class="headerlink" title="Function是Object构造函数的实例对象"></a>Function是Object构造函数的实例对象</h6><h6 id="Object可以看作是Function的实例对象"><a href="#Object可以看作是Function的实例对象" class="headerlink" title="Object可以看作是Function的实例对象"></a>Object可以看作是Function的实例对象</h6><h6 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h6><pre><code>  &lt;script&gt;
+    function Person(){}
+    function Boy(){}
+    //设置继承
+    var p1 = new Person();
+    Boy.prototype = p1;
+    var boy = new Boy();
+    //console.log(Function.prototype);  //function () {}
+    console.log(Boy.__proto__ == Function.prototype);
+    console.log(Boy.__proto__.constructor);   //function Function() { [native code] }
+    console.log(Boy.__proto__.__proto__ == Object.prototype);     //
+    console.log(Function.constructor == Function);
+    console.log(Function.__proto__ == Function.prototype);
+&lt;/script&gt;
+&lt;script&gt;
+    console.log(Object.constructor);
+    console.log(Object.__proto__);
+    console.log(Object.__proto__ == Function.__proto__);
+&lt;/script&gt;
+</code></pre><p>解释<br>1.Boy构造函数本身是一个对象，因此有构造函数，它的构造函数是Function,它的原型对象是Boy.proto == Function.prototype 空函数<br>2.Function的原型对象是一个空的函数<br>3.这个空的函数也是一个对象，因此也有构造函数，它的构造函数是Function<br>4.推论：Function的原型对象是空函数，因此空函数的原型对象应该是自己（错误）是空的对象<br>5.空函数的原型对象 == Object.prototype<br>6.Function也是一个对象，因此也有构造函  数，它的构造函数是谁？是自己Function<br>7.Function作为一个对象来说，也有自己的原型对象Function.proto<br>8.Function对象的原型对象和其构造函数的原型对象是空函数<br>9.Object.prototype的构造函数是Object<br>10.Object本身也是一个对象，因此也有自己的构造函数—&gt;Function  </p>
+<p>图解 –&gt; 可以慢慢理解 这种东西急不得</p>
+<p><img src="src=&quot;http://upload-images.jianshu.io/upload_images/3359912-d0fe79bf5c26ea67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot;" alt=""></p>
+<h5 id="with的使用"><a href="#with的使用" class="headerlink" title="with的使用"></a>with的使用</h5><p>作用：把对象的作用域引申到{}中,达到缩减代码的目的<br>应用场合：在写代码的时候，要写很长的前缀.对象.属性.属性.属性<br>具体的使用注意：<br>1.在{}中不能使用无前缀的方式来增加属性<br>2.this应该是谁？ window<br>3.严格模式下，with被禁止使用了<br>使用建议：不建议使用 ,因为内部的this指向会有问题  </p>
+<h5 id="私有变量和私有函数"><a href="#私有变量和私有函数" class="headerlink" title="私有变量和私有函数"></a>私有变量和私有函数</h5><p>在构造函数内部声明的变量称之为私有变量  </p>
+<p>示例代码 :</p>
+<pre><code>&lt;script&gt;
+    function Person(){
+        this.name = &quot;momo&quot;;
+        this.showName = function(){};
+        var a = &quot;测试的值&quot;;
+        function getA(){
+            return a;
+        };
+        //像test这样的实例方法，它可以访问构造函数内部的变量和函数，这种方法被称为特权方法
+        this.test = function(){
+            console.log(getA());
+        };
+    }
+    var p1 = new Person();
+    p1.test();
+&lt;/script&gt;
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/06/27/JavaScript - 函数相关知识点/"
+                     data-title="JavaScript - 函数相关知识点"
+                     data-url="https://Jingdan.github.io/2016/06/27/JavaScript - 函数相关知识点/"
+                     data-images="https://Jingdan.github.io/2016/06/27/JavaScript - 函数相关知识点/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+函数内部的隐藏参数 –&gt; arguments ( 重点 )arguments:接收实参... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/07/21/JavaScript - 严格模式 - 作用域/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 严格模式 - 作用域">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/06/02/JavaScript - 函数 - 原型链/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 函数 - 原型链">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2016/06/27/JavaScript - 函数相关知识点/"
+                         data-title="JavaScript - 函数相关知识点"
+                         data-url="https://Jingdan.github.io/2016/06/27/JavaScript - 函数相关知识点/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数内部的隐藏参数-–-gt-arguments-重点"><span class="toc-text">函数内部的隐藏参数 –> arguments ( 重点 )</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#arguments-接收实参"><span class="toc-text">arguments:接收实参</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#this指向的是一个对象，具体指向的是哪个对象由函数调用方式来决定。总之-this是面向对象里面最让人蛋疼的一个东西"><span class="toc-text">this指向的是一个对象，具体指向的是哪个对象由函数调用方式来决定。总之,this是面向对象里面最让人蛋疼的一个东西</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#length属性"><span class="toc-text">length属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#callee和caller"><span class="toc-text">callee和caller</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Function的小应用"><span class="toc-text">Function的小应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#eval-函数"><span class="toc-text">eval 函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Function-prototype的原型链"><span class="toc-text">Function.prototype的原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Function是Object构造函数的实例对象"><span class="toc-text">Function是Object构造函数的实例对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Object可以看作是Function的实例对象"><span class="toc-text">Object可以看作是Function的实例对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#with的使用"><span class="toc-text">with的使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#私有变量和私有函数"><span class="toc-text">私有变量和私有函数</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>

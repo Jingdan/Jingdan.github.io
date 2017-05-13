@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="荆蛋在 Github 上的个人博客">
+    <meta name="keyword" content="荆蛋,前端,大前端,H5,全栈工程师,hexo,blog,github,杭州">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://img.zcool.cn/sucaiori/49D4C592-1978-4E70-DAD3-0DD5A3B47775.png@700w_0e_1l.png">
+    <link rel="alternate" type="application/atom+xml" title="Jingdan" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        JavaScript - 面向对象 - 继承性｜Jingdan&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Jingdan.github.io/2016/05/04/JavaScript - 面向对象 - 继承性/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/%E5%B1%B1%E8%84%89.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Jingdan
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">About me</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/demo/">demo</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>JavaScript - 面向对象 - 继承性</h1>
+                    
+                    <span class="meta">
+                         作者 荆蛋
+                        <span>
+                          日期 2016-05-04
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            JavaScript - 面向对象 - 继承性
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <hr>
+<h2 id="继承-gt-重点"><a href="#继承-gt-重点" class="headerlink" title="继承 ==&gt; 重点"></a>继承 ==&gt; 重点</h2><p>子对象–&gt;父对象,Object是所有对象的父级<br>一种把其他对象的属性和方法变为己有的方式<br>通过继承可以提高代码的复用性和可维护性<br>举例 : 动物 – 狗类 – 金毛狗类  </p>
+<pre><code>1.对于狗类来説:动物是它的父类型,而金毛狗类是它的子类型  
+2.对于金毛狗类来説.狗类是它的父类型,动物类是它的超类型.
+</code></pre><h2 id="继承的两种方式"><a href="#继承的两种方式" class="headerlink" title="继承的两种方式"></a>继承的两种方式</h2><p>接口继承<br>实现继承<br>js中的继承:<br>javaScript中继承只支持实现继承,实现继承主要依赖原型链来完成Js中继承的几种实现方式</p>
+<h2 id="Js中继承的几种实现方式"><a href="#Js中继承的几种实现方式" class="headerlink" title="Js中继承的几种实现方式"></a>Js中继承的几种实现方式</h2><h3 id="混入式继承"><a href="#混入式继承" class="headerlink" title="混入式继承"></a>混入式继承</h3><h5 id="示例代码1"><a href="#示例代码1" class="headerlink" title="示例代码1 :"></a>示例代码1 :</h5><pre><code>//1. 创建一个空的对象o
+var o = {};
+//2. 提供一个已经有的对象obj
+var obj = {
+    name:&quot;对象的属性&quot;,
+    age:20,
+    sayHello:function () {
+        console.log(&quot;hello&quot;);
+    }
+}
+//3. 混入式继承(把原有对象的所有属性和方法都拷贝给新的对象)
+for(var k in obj)
+{
+    o[k] = obj[k];
+}
+//4. 打印查看o对象
+console.log(o);
+//5. 如果属性的值是引用类型的,那么子对象和父对象共享一块数据,修改了某个对象对另外一个对象有影响
+console.log(o.sayHello == obj.sayHello);    //true
+</code></pre><h5 id="示例代码2"><a href="#示例代码2" class="headerlink" title="示例代码2 :"></a>示例代码2 :</h5><pre><code>&lt;script&gt;
+    //参数:
+    //第一个参数是目标对象
+    //第二个,第三个参数是要拷贝属性的对象
+    var o = {};
+    var obj1 = {name:&quot;name&quot;};
+    var obj2 = {age:20};
+    var obj3 = {car:{type:&quot;飞船&quot;}};
+    Object.assign(o,obj2,obj1,obj3);
+    console.log(o);
+    obj3.car.type = &apos;汽车&apos;;
+    console.log(o);
+&lt;/script&gt;
+</code></pre><h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><p>原型对象中的成员(属性|方法)可以被使用该构造函数创建出来的所有对象共享<br>利用上面的性质,可以实现原型式的继承  </p>
+<h5 id="示例代码1-1"><a href="#示例代码1-1" class="headerlink" title="示例代码1 :"></a>示例代码1 :</h5><pre><code>&lt;script&gt;
+    //1. 提供一个构造函数
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    //2. 设置原型对象的属性
+    Person.prototype.className = &quot;逍遥派1班&quot;;
+    //3. 使用构造函数来创建原型对象
+    var p1 = new Person(&quot;张三&quot;,10);
+    var p2 = new Person(&quot;李四&quot;,20);
+    //4. 打印p1和p2对象中的className属性
+    console.log(p1.className);
+    console.log(p2.className);
+    //结论:对象p1和p2继承了构造函数原型对象中的属性className
+    //但是这并不是严格意义上的继承
+&lt;/script&gt;
+</code></pre><h5 id="示例代码2-1"><a href="#示例代码2-1" class="headerlink" title="示例代码2 :"></a>示例代码2 :</h5><pre><code>&lt;script&gt;
+    //1. 提供一个构造函数
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    //2. 设置原型对象的属性
+    Person.prototype = {
+        constructor:Person,
+        className:&quot;逍遥派1班&quot;
+    };
+    //3. 使用构造函数来创建原型对象
+    var p1 = new Person(&quot;张三&quot;,10);
+    var p2 = new Person(&quot;李四&quot;,20);
+    //4. 打印p1和p2对象中的className属性
+    console.log(p1.className);
+    console.log(p2.className);
+    //结论:对象p1和p2继承了构造函数原型对象中的属性className
+    //注意:使用原型替换的方式实现继承的时候,原有原型对象中的属性和方法会丢失
+&lt;/script&gt;
+</code></pre><h5 id="示例代码3"><a href="#示例代码3" class="headerlink" title="示例代码3 :"></a>示例代码3 :</h5><pre><code>&lt;script&gt;
+    //1. 提供超类型|父类型
+    function SuperClass() {
+        this.name = &apos;SuperClass的名称&apos;;
+        this.showName = function () {
+            console.log(this.name);
+        }
+    }
+    //2. 设置父类型的原型属性和原型方法
+    SuperClass.prototype.info = &apos;SuperClass的信息&apos;;
+    SuperClass.prototype.showInfo = function () {
+        console.log(this.info);
+    };
+    //3. 提供子类型
+    function SubClass() {
+    }
+    //4. 设置继承(原型对象继承)
+    SubClass.prototype = SuperClass.prototype;
+    SubClass.prototype.constructor = SubClass;
+    var sub = new SubClass();
+    console.log(sub.name);          //undefined
+    console.log(sub.info);          //SuperClass的信息
+    sub.showInfo();                 //SuperClass的信息
+    sub.showName();                 //sub.showName is not a function
+&lt;/script&gt;
+</code></pre><p>存在的问题 :</p>
+<pre><code>1.构造器属性指向(默认指向的是父构造函数)
+2.无法获得实例属性和方法,只能继承(获得)父构造函数原型对象的属性和方法
+</code></pre><p>扩展内置对象<br>要给数组扩展一个name的属性和一个sayHello方法</p>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    //1. 创建数组对象
+    var arr = [1,2,3];
+    var arr2 = new Array(1,2,3);
+    console.log(arr2);
+    //2. 设置Array构造函数的原型对象
+    Array.prototype.name = &quot;默认的名称&quot;;
+    Array.prototype.sayHello = function () {
+        console.log(&quot;hello&quot;);
+    };
+    console.log(arr.name);  //默认的名称
+    console.log(arr2.name); //默认的名称
+    arr.sayHello();         //hello
+    arr2.sayHello();        //hello
+    //1.上面的方式可以达到扩展内置对象的效果,但不推荐这样去做
+    //2.遇到那种大项目可能需要多人合作一起开发,而且项目中的代码数量可能非常庞大
+    //3.如果大家都通过这种方式来扩展内置对象,那么日后必将难以管理,而且可能会出现方法被覆盖等安全问题
+&lt;/script&gt;
+</code></pre><p>安全的扩展内置对象<br>核心过程  </p>
+<pre><code>1.提供一个构造函数（自定义）
+2.设置构造函数的原型对象为内置构造函数创建出来的对象
+</code></pre><h5 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>//Array
+function MyArray(){};
+//设置原型对象
+MyArray.prototype = new Array();
+MyArray.prototype.des = &quot;描述信息&quot;;
+MyArray.prototype.logDes = function(){
+    console.log(this.des);
+}
+//使用自己的构造函数来创建对象
+var myArr01 = new MyArray();
+var myArr02 = new MyArray();
+myArr01.push(&quot;123&quot;,&quot;abc&quot;);
+console.log(myArr01);
+console.log(myArr01.des);
+function OtherArray(){};
+OtherArray.prototype = new Array();
+OtherArray.prototype.des = &quot;描述信息&quot;;
+OtherArray.prototype.logDes = function(){
+    console.log(&quot;------------&quot;);
+}
+var otherArr01 = new OtherArray();
+var otherArr02 = new OtherArray();
+console.log(otherArr01.des);
+otherArr01.logDes();
+</code></pre><p>图解<br><img src="http://upload-images.jianshu.io/upload_images/3359912-8eb146cf35f77a01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="原型链继承-什么是原型链"><a href="#原型链继承-什么是原型链" class="headerlink" title="原型链继承 ( 什么是原型链 ? )"></a>原型链继承 ( 什么是原型链 ? )</h3><p>每个对象都是由构造函数创建出来的，因为每个对象都有构造函数<br>每个构造函数都有一个与之对应的原型对象<br>原型对象本身也是对象<br>因此，原型对象也有自己的构造函数<br>原型对象的构造函数也有自己的原型对象<br>原型对象的构造函数的原型对象也是对象，所以它也有自己的构造函数<br>原型对象的构造函数的原型对象的构造函数也有自己的原型对象。<br>以上，形成一个链式的结构，就称为是原型链<br>原型链的顶端是Object.prototype,Object.prototype本身也是一个对象，因此也有原型对象<br><code>Object.prototype.__proto__ 是null</code><br>原型链的搜索规则 :  </p>
+<pre><code>是向上查找,如果有直接使用,如果没有,继续向上查找.直到找到原型链的顶端
+原型链搜索的路径越长，查询属性所花费的时间就越多
+原则：就近原型
+**
+</code></pre><p>继承方法</p>
+<pre><code>1.提供一个父构造函数
+2.提供子构造函数
+3.设置子构造函数的原型对象为父构造函数的一个实例对象
+4.在这个实例对象上面设置属性和方法
+</code></pre><h5 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    function A(){
+        this.age = 55;
+        this.showAge = function(){
+            console.log(this.age);
+        }
+    };
+    //设置A的属性和方法
+    A.prototype.logDes = function(){
+        console.log(&quot;des&quot;);
+    }
+    function B(){
+    };
+    //设置原型链继承
+    B.prototype = new A();
+    B.prototype.des = &quot;des&quot;;
+    B.prototype.show = function(){
+        console.log(&quot;show&quot;);
+    };
+    var b1 = new B();
+    console.log(b1.age);
+    b1.showAge();
+    b1.logDes();
+    console.log(b1);
+&lt;/script&gt;
+</code></pre><p>复杂的原型链</p>
+<pre><code>1.提供构造函数（4）
+2.设置属性和方法（建议：属性设置在实例上，方法设置在原型上）
+3.设置继承
+4.修正构造器属性
+</code></pre><h5 id="示例代码-3"><a href="#示例代码-3" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    Animal.prototype.run = function(){
+        console.log(&quot;run&quot;);
+    }
+    function Animal(color){
+        this.color = color
+    }
+    Person.prototype = new Animal();
+    Person.prototype.eat = function(){
+        console.log(&quot;chi&quot;);
+    }
+    Person.prototype.constructor = Person;
+    function Person(){
+        this.name = &quot;默认的名称&quot;
+    }
+    Student.prototype = new Person();
+    Student.prototype.study = function(){
+        console.log(&quot;good good study, day day up&quot;);
+    }
+    Student.prototype.constructor = Student;
+    function Student(){
+        this.id = &quot;20160501&quot;
+    }
+    Boy.prototype = new Student();
+    Boy.prototype.lol = function(){
+        console.log(&quot;LoL&quot;);
+    }
+    Boy.prototype.constructor = Boy;
+    function Boy(){
+        this.sex = &quot;男&quot;
+    }
+    //创建对象
+    var boy = new Boy(&quot;红色&quot;);
+    console.log(boy);
+&lt;/script&gt;
+</code></pre><p>原型链继承的注意点</p>
+<pre><code>1.注意必须要在设置子对象的原型属性和原型方法之前来实现继承
+2.在子对象的原型对象中可以设置同名的属性或方法,覆盖父对象的原型对象中的属性和方法
+3.原型链继承之后,使用字面量的方式来设置原型会导致之前的原型对象丢失
+</code></pre><h5 id="示例代码1-2"><a href="#示例代码1-2" class="headerlink" title="示例代码1"></a>示例代码1</h5><pre><code>&lt;script&gt;
+    //注意点
+    //如果代码段2==&gt;代码段1 则运行正常,,如果代码段1==&gt;代码段2,则报错&apos;eat方法不存在&apos;
+     function Person() {};
+     Person.prototype.run = function () {
+        console.log(&apos;Person__run&apos;);
+     };
+     function Man() {};
+     //代码段1
+     Man.prototype.eat = function () {
+        console.log(&apos;Man__eat&apos;);
+     };
+    //代码段2
+    Man.prototype = new Person(); //设置原型链继承
+     var m = new Man();
+     m.run();                //Person__run
+     m.eat();                //Man__eat
+    //建议:在设置完原型链继承之后,再设置子对象原型对象上面的属性和方法,否则会丢失(之前的原型对象被切断)
+&lt;/script&gt;
+</code></pre><h5 id="示例代码2-2"><a href="#示例代码2-2" class="headerlink" title="示例代码2 :"></a>示例代码2 :</h5><pre><code>&lt;script&gt;
+    // 注意点2 &amp;&amp; 注意点3
+    // 在子对象中(原型对象中)可以重写父对象中(原型对象中)的方法
+    // 子对象在调用的时候原型对象中的方法会覆盖父对象原型对象中的
+    // 方法,父类型的实例调用方法不受影响
+     function Person() {};
+     Person.prototype.run = function () {
+        console.log(&apos;Person__run&apos;);
+     };
+     function Man() {};
+     //代码段2
+     Man.prototype = new Person(); //设置原型链继承
+     Man.prototype.run = function () {
+     console.log(&apos;Man__run&apos;);
+     };
+     var m = new Man();
+     m.run();                //Man__run
+     var p = new Person();
+     p.run();                //Person__run
+&lt;/script&gt;
+</code></pre><h5 id="示例代码3-1"><a href="#示例代码3-1" class="headerlink" title="-示例代码3 :"></a>-示例代码3 :</h5><pre><code>&lt;script&gt;
+    // 在重写原型对象实现继承之后,不能使用字面量的方式来设置原型对象,
+    // 否则之前的原型继承关系会被切断
+    function Person() {};
+    Person.prototype.run = function () {
+        console.log(&apos;Person__run&apos;);
+    };
+    function Man() {};
+    //代码段2
+    Man.prototype = new Person(); //设置原型链继承
+    Man.prototype = {
+        eat:function () {
+            console.log(&apos;Man__eat&apos;);
+        }
+    }
+    var m = new Man();
+    m.eat();    //Man__eat
+    m.run();    //调用的方法不存在
+&lt;/script&gt;
+</code></pre><p>原型链继承存在的问题</p>
+<pre><code>1.父类型实例属性会转换为子类型原型的原型属性，而如果父类型是实例属性是引用类型则会存在共享问题
+2.在创建子类型的实例时，不能向父类型的构造函数中传递参数
+</code></pre><h5 id="示例代码-4"><a href="#示例代码-4" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    //1. 提供父类型的构造函数
+    function SuperType() {
+        //2. 在构造函数中中设置实例属性,该属性为引用类型
+        this.family = [&apos;哥哥&apos;,&apos;姐姐&apos;,&apos;爸爸&apos;,&apos;妈妈&apos;];
+    };
+    //3. 提供子类型的构造函数
+    function SubType() {};
+    //4. 设置原型继承
+    SubType.prototype = new SuperType();
+    //5. 创建父类型的实例对象,并对内部的实例化属性进行修改
+    var subDemo1 = new SubType();
+    var subDemo2 = new SubType();
+    console.log(subDemo1);
+    alert(subDemo1.family);    //哥哥,姐姐,爸爸,妈妈
+    alert(subDemo2.family);      //哥哥,姐姐,爸爸,妈妈
+    subDemo1.family.push(&apos;爷爷&apos;,&apos;奶奶&apos;);
+    alert(subDemo1.family);    //哥哥,姐姐,爸爸,妈妈,爷爷,奶奶
+    alert(subDemo2.family);    //哥哥,姐姐,爸爸,妈妈,爷爷,奶奶
+    //6. 如果父类型的实例属性中有引用类型,那么在子类型创建的实例对象中存在共享问题
+&lt;/script&gt;
+</code></pre><p>Object.Create<br>作用：创建对象，并且设置该对象的原型对象<br>兼容性问题：ES5<br>基本用法  </p>
+<h5 id="示例代码1-3"><a href="#示例代码1-3" class="headerlink" title="示例代码1 :"></a>示例代码1 :</h5><pre><code>&lt;script&gt;
+    //JavaScript语言精粹
+    function create(o) {
+        var F = function () {};
+        F.prototype = o;
+        return new F();
+    }
+    var obj1 = create({name:&quot;默认的名字&quot;});
+    console.log(obj1);
+    //把参数(对象)作为新对象的原型对象
+    var obj = Object.create({name:&quot;默认的名字&quot;});
+    console.log(obj);
+    //需要考虑到浏览器兼容的问题
+&lt;/script&gt;
+</code></pre><h5 id="实例代码2-若不兼容则动态添加create方法"><a href="#实例代码2-若不兼容则动态添加create方法" class="headerlink" title="实例代码2 : 若不兼容则动态添加create方法"></a>实例代码2 : 若不兼容则动态添加create方法</h5><pre><code>&lt;script&gt;
+    var tmp = {age:20};
+    if (Object.create){
+        //如果有值那么就直接调用
+        var o = Object.create(tmp)
+    }
+    else{
+        Object.create = function () {
+            var F = function () {};
+            F.prototype = tmp;
+            var o = new F();
+        }
+    }
+&lt;/script&gt;
+</code></pre><h5 id="示例代码3-使用函数来封装"><a href="#示例代码3-使用函数来封装" class="headerlink" title="示例代码3 : 使用函数来封装"></a>示例代码3 : 使用函数来封装</h5><pre><code>&lt;script&gt;
+    function create(o) {
+        if (Object.create)
+        {
+            //如果有值那么就直接调用
+            return Object.create(o)
+        }else
+        {
+            var F = function () {};
+            F.prototype = o;
+            return F();
+        }
+    }
+    var a = create({name:&quot;默认的名字&quot;,age:20});
+    console.log(a);
+&lt;/script&gt;
+</code></pre><h5 id="call-amp-amp-apply函数-gt-重点"><a href="#call-amp-amp-apply函数-gt-重点" class="headerlink" title="call &amp;&amp; apply函数 ==&gt; 重点"></a>call &amp;&amp; apply函数 ==&gt; 重点</h5><pre><code>1.这两个方法都是原型对象上面的方法 – 借用其他对象的方法
+2.call和apply两个函数的作用是一样的，都可以用来借用方法
+参数：
+第一个参数是调用该方法的对象（函数内部的this绑定的对象）
+后面的参数：
+call:参数列表
+apply:数组
+3.调用方法
+对象1.方法.call(调用方法的真正的对象，参数1，参数2，参数3)；
+对象1.方法.apply(调用方法的真正的对象，[参数1，参数2，参数3..]);
+</code></pre><h5 id="示例代码-5"><a href="#示例代码-5" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    //console.log(Function.prototype);
+    var demo01 = {
+        name:&quot;小偷&quot;,
+        showName:function(param1,param2){
+            console.log(this.name,param1,param2);
+        }
+    }
+    var demo02 = {
+        name:&quot;我是老实人&quot;
+    }
+    demo01.showName(&quot;小贼&quot;,&quot;毛贼&quot;);
+    demo01.showName.call(demo02,&quot;江洋大盗&quot;,&quot;采花大盗&quot;);
+    demo01.showName.apply(demo02,[&quot;山贼&quot;,&quot;土匪&quot;]);
+&lt;/script&gt;
+</code></pre><h5 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h5><pre><code>1.javaScript中的this总是指向一个对象。
+2.调用方式 :
+2.1作为对象的方法来调用 this—&gt;当前的对象
+2.2作为普通的函数调用 this—&gt;window
+2.3作为构造函数和new使用 this—&gt;构造函数内部新创建的对象
+2.4被call或者是apply调用（函数上下文调用） this—&gt;第一个参数
+</code></pre><h5 id="示例代码1-当函数作为对象的方法调用时-this指向该对象"><a href="#示例代码1-当函数作为对象的方法调用时-this指向该对象" class="headerlink" title="示例代码1 : 当函数作为对象的方法调用时,this指向该对象"></a>示例代码1 : 当函数作为对象的方法调用时,this指向该对象</h5><pre><code>&lt;script&gt;
+    var obj = {
+        name:&quot;张三&quot;,
+        demoFunc:function () {
+            console.log(this == obj);       //true
+            console.log(this.name);         //张三
+        }
+    }
+    obj.demoFunc();
+&lt;/script&gt;
+</code></pre><h5 id="示例代码2-当函数作为普通函数调用是-this总是指向全局对象"><a href="#示例代码2-当函数作为普通函数调用是-this总是指向全局对象" class="headerlink" title="示例代码2 : 当函数作为普通函数调用是,this总是指向全局对象"></a>示例代码2 : 当函数作为普通函数调用是,this总是指向全局对象</h5><pre><code>&lt;script&gt;
+    window.name = &quot;window测试的name&quot;;
+    var funcName = function () {
+        console.log(this.name);     //window测试的name
+    }
+    funcName();
+&lt;/script&gt;
+</code></pre><h5 id="示例代码3-使用new-构造函数创建对象调用-this总是指向内部默认创建并返回的对象"><a href="#示例代码3-使用new-构造函数创建对象调用-this总是指向内部默认创建并返回的对象" class="headerlink" title="示例代码3: 使用new 构造函数创建对象调用,this总是指向内部默认创建并返回的对象"></a>示例代码3: 使用new 构造函数创建对象调用,this总是指向内部默认创建并返回的对象</h5><pre><code>&lt;script&gt;
+    function Person() {
+        this.name = &quot;默认的姓名&quot;
+    }
+    var p1 = new Person();
+    console.log(p1.name);   //默认的姓名
+&lt;/script&gt;
+</code></pre><h5 id="实例代码4-Function-prototype-call或Function-prototype-apply调用"><a href="#实例代码4-Function-prototype-call或Function-prototype-apply调用" class="headerlink" title="实例代码4: Function.prototype.call或Function.prototype.apply调用"></a>实例代码4: Function.prototype.call或Function.prototype.apply调用</h5><pre><code>&lt;script&gt;
+    var obj = {
+        name:&quot;张三&quot;,
+        getName:function () {
+            console.log(this.name);
+        }
+    }
+    obj.getName();      //张三
+    var obj2 = {name:&quot;李四&quot;};
+    obj.getName.call(obj2); //打印李四
+&lt;/script&gt;
+</code></pre><h3 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h3><p>借用构造函数实现继承：可以获得父构造函数中的实例属性，解决了传参的问题  </p>
+<h5 id="示例代码-6"><a href="#示例代码-6" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    };
+    function Boy(bookName,name,age){
+        this.bookName = bookName;
+        //Person.call(this,&quot;八戒&quot;,600);  //借用构造函数
+        Person.call(this,name,age);
+    }
+    //创建对象
+    var boy = new Boy(&quot;水煮三国&quot;,&quot;悟空&quot;,600);
+    var boy02 = new Boy(&quot;大话西游&quot;,&quot;云风&quot;,40);
+    console.log(boy);
+    console.log(boy02);
+&lt;/script&gt;
+</code></pre><h3 id="组合-原型链-借用-继承"><a href="#组合-原型链-借用-继承" class="headerlink" title="组合(原型链 + 借用)继承"></a>组合(原型链 + 借用)继承</h3><pre><code>借用构造函数实现继承：可以获得父构造函数中的实例属性
+Person.call(this,name,age)
+获得原型属性和方法 ( Boy.prototype = Person.prototype)
+组合继承：原型 + 借用构造函数
+</code></pre><h5 id="示例代码-7"><a href="#示例代码-7" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    };
+    Person.prototype.des = &quot;描述信息&quot;;
+    Person.prototype.logDes = function(){
+        console.log(this.des);
+    };
+    function Boy(bookName,name,age){
+        this.bookName = bookName;
+        //Person.call(this,&quot;八戒&quot;,600);  //借用构造函数
+        Person.call(this,name,age);
+    }
+    //设置原型继承
+    //Boy.prototype = new Person();
+    Boy.prototype = Person.prototype;
+    //创建对象
+    var boy = new Boy(&quot;水煮三国&quot;,&quot;悟空&quot;,600);
+    var boy02 = new Boy(&quot;大话西游&quot;,&quot;云风&quot;,40);
+    console.log(boy);
+    console.log(boy02);
+    boy.logDes();
+    var p1 = new Person();
+    p1.logDes();
+    Boy.prototype.des = &quot;描述信息-bOY&quot;;
+    boy.logDes();
+    p1.logDes();
+&lt;/script&gt;
+</code></pre><h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><h5 id="示例代码-浅拷贝"><a href="#示例代码-浅拷贝" class="headerlink" title="示例代码 : 浅拷贝"></a>示例代码 : 浅拷贝</h5><pre><code>&lt;script&gt;
+    var obj = {
+        name:&quot;小花脸&quot;,
+        car:{
+            type:&quot;客车&quot;
+        }
+    };
+    var o = {};
+    for (var k in obj)
+    {
+        o[k] = obj[k];
+    }
+    console.log(o);
+    o.car.type = &quot;银河战舰&quot;;
+    console.log(obj);
+&lt;/script&gt;
+</code></pre><h5 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h5><pre><code>1.提供一个函数，两个参数（原对象，要拷贝属性的对象）
+2.在函数中先检查第一个参数是否有值，如果没有值那么就初始化一个空的对象
+3.for..in循环来变量参数2,
+3.1检查当前的属性值是什么类型
+3.2如果是值类型，那么就直接拷贝赋值
+3.3如果是引用类型，那么就再调用一次这个方法，去内部拷贝这个对象的所有属性
+</code></pre><h5 id="示例代码-深拷贝封装"><a href="#示例代码-深拷贝封装" class="headerlink" title="示例代码 : 深拷贝封装"></a>示例代码 : 深拷贝封装</h5><pre><code>&lt;script  &gt;
+    var obj = {
+        name:&quot;小花脸&quot;,
+        car:{
+            type:&quot;客车&quot;,
+        },
+        friends:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]
+    };
+    //兼容性处理
+    if(typeof Array.isArray != &quot;function&quot;) {
+        Array.isArray = function(obj){
+            return Object.prototype.toString.call(obj) == &quot;[object Array]&quot;;
+        }
+    }
+    var o = {};
+    //deepCopy(o,obj);
+    function deepCopy(obj1,obj2) {
+        obj1 = obj1 || {};
+        for (var i in obj2)
+        {
+            if (obj2.hasOwnProperty(i))
+            {
+                if( typeof obj2[i] == &quot;object&quot;)
+                {
+                    //判断是数组还是对象
+                    obj1[i] = Array.isArray(obj2[i])?[]:{};
+                    //引用类型
+                    deepCopy(obj1[i],obj2[i]);   //函数调用
+                }else
+                {
+                    //值类型
+                    obj1[i] = obj2[i];
+                }
+            }
+        }
+    }
+    deepCopy(o,obj);
+    console.log(o);
+    //共享问题
+    //o.car.type = &quot;小货车&quot;;
+    console.log(obj);
+&lt;/script&gt;
+</code></pre><h3 id="通过深拷贝实现继承"><a href="#通过深拷贝实现继承" class="headerlink" title="通过深拷贝实现继承"></a>通过深拷贝实现继承</h3><p>完整的继承方案</p>
+<pre><code>1.拥有父构造函数的实例属性
+2.拥有父构造函数的原型属性
+3.是相互独立的，彼此不受影响
+</code></pre><h5 id="示例代码-8"><a href="#示例代码-8" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    if(typeof Array.isArray != &quot;function&quot;) {
+        Array.isArray = function(obj){
+            return Object.prototype.toString.call(obj) == &quot;[object Array]&quot;;
+        }
+    }
+    function deepCopy(obj1,obj2) {
+        obj1 = obj1 || {};
+        for (var i in obj2)
+        {
+            if (obj2.hasOwnProperty(i))
+            {
+                if( typeof obj2[i] == &quot;object&quot;)
+                {
+                    //判断是数组还是对象
+                    obj1[i] = Array.isArray(obj2[i])?[]:{};
+                    //引用类型
+                    deepCopy(obj1[i],obj2[i]);   //函数调用
+                }else
+                {
+                    //值类型
+                    obj1[i] = obj2[i];
+                }
+            }
+        }
+    }
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    };
+    Person.prototype.des = &quot;描述信息&quot;;
+    Person.prototype.car = {
+        type:&quot;汽车&quot;
+    }
+    Person.prototype.logDes = function(){
+        console.log(this.des);
+    };
+    function Boy(bookName,name,age){
+        this.bookName = bookName;
+        //Person.call(this,&quot;悟空&quot;,600);  //借用构造函数
+        Person.call(this,name,age);
+    }
+    //设置原型继承
+    //Boy.prototype = Person.prototype;
+    deepCopy(Boy.prototype,Person.prototype);  //把父构造函数原型对象上面的属性和方法全部拷贝一份给Boy
+    //创建对象
+    var boy01 = new Boy(&quot;水煮三国&quot;,&quot;悟空&quot;,600);
+    var boy02 = new Boy(&quot;大话西游&quot;,&quot;云风&quot;,40);
+    Boy.prototype.car.type = &quot;火车&quot;;
+    console.log(Boy.prototype);
+    var p1 = new Person();
+    console.log(p1.car.type);
+&lt;/script&gt;
+</code></pre><h3 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h3><h5 id="String-Number-Boolean"><a href="#String-Number-Boolean" class="headerlink" title="String Number Boolean"></a>String Number Boolean</h5><h5 id="示例代码-9"><a href="#示例代码-9" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    //1. 创建字符串对象
+    var str1 = new String(&quot;demo01&quot;);  //object
+    var str2 = &quot;demo01&quot;;              //string
+    var str3 = String(&quot;demo01&quot;);     //string(正确) | object
+    console.log(typeof str1);
+    console.log(typeof str2);
+    console.log(typeof str3);
+    //2. 创建数字对象
+    var num1 = new Number(10);      //object
+    var num2 = 10;                  //number
+    var num3 = Number(20);          //number
+    //3. 布尔类型的对象
+    var bool01 = new Boolean(true); //object
+    var bool02 = true;              //boolean
+    var bool03 = Boolean(true);
+    console.log(typeof bool01);
+    //4. 特殊的创建方式
+    var str4 = new Object(&quot;demo01&quot;);    //object | string
+    var num4 = new Object(10);
+    var bool04 = new Object(true);
+    console.log(typeof str4);
+&lt;/script&gt;
+</code></pre><h5 id="基本包装类型注意点"><a href="#基本包装类型注意点" class="headerlink" title="基本包装类型注意点:"></a>基本包装类型注意点:</h5><pre><code>&lt;script&gt;
+    var str1 = &quot;demo01&quot;;                      //string
+    var str2 = new String(&quot;demo01&quot;);          //object
+    var str3 = String(&quot;demo01&quot;);
+    console.log(str1 == str2);  //true  转换
+    console.log(str1 === str2); //false
+    console.log(str1.length);   //6 获得字符串的长度
+    //基本数据类型的值怎么能够访问属性呢？
+    //属性和方法只有对象才有
+    //为什么？
+    //字符串、数值以及布尔值在访问属性或者调用方法的时候
+    //1. 内部会隐式的创建一个对象，利用该对象来访问属性或者是调用方法
+    //2. 得到结果之后，把结果赋值给基本数据类型的值
+    //3. 销毁这个创建的对象
+    str1.des = &quot;描述信息&quot;;
+    console.log(str1.des);            //undefined
+    str2.des = &quot;des&quot;;
+    console.log(str2.des);           //des(正确的) | undefined
+&lt;/script&gt;
+</code></pre><h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><pre><code>1.变量的方式调用成功
+2.表达式的方式调用成功
+3.数值的方式调用失败
+</code></pre><h5 id="示例代码-10"><a href="#示例代码-10" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><pre><code>&lt;script&gt;
+    Number.prototype.sum = function(param){
+        return this + param;
+    }
+    var num1= new Number(&quot;10&quot;);
+    var num2 = 30;
+    console.log(num1.sum(2));
+    console.log(num1.sum(33));
+    console.log(num2.sum(44));  //可以调用吗？ 74
+    console.log((10).sum(11));      //可以调用吗？  （）表达式  21
+    console.log(10.sum(22));        //不可以调用
+&lt;/script&gt;
+</code></pre>
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/05/04/JavaScript - 面向对象 - 继承性/"
+                     data-title="JavaScript - 面向对象 - 继承性"
+                     data-url="https://Jingdan.github.io/2016/05/04/JavaScript - 面向对象 - 继承性/"
+                     data-images="https://Jingdan.github.io/2016/05/04/JavaScript - 面向对象 - 继承性/http://omj9dkm9p.bkt.clouddn.com/2017-03-14%E5%BE%AE%E6%8B%8D2.JPG"
+                     data-content="
+继承 ==&gt; 重点子对象–&gt;父对象,Object是所有对象的父级一种把其他对象的... | Jingdan&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/06/02/JavaScript - 函数 - 原型链/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 函数 - 原型链">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/04/28/JavaScript - 面向对象编程二/" data-toggle="tooltip" data-placement="top"
+                           title="JavaScript - 面向对象编程二">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                         data-thread-key="2016/05/04/JavaScript - 面向对象 - 继承性/"
+                         data-title="JavaScript - 面向对象 - 继承性"
+                         data-url="https://Jingdan.github.io/2016/05/04/JavaScript - 面向对象 - 继承性/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#继承-gt-重点"><span class="toc-text">继承 ==> 重点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承的两种方式"><span class="toc-text">继承的两种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Js中继承的几种实现方式"><span class="toc-text">Js中继承的几种实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#混入式继承"><span class="toc-text">混入式继承</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码1"><span class="toc-text">示例代码1 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码2"><span class="toc-text">示例代码2 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型式继承"><span class="toc-text">原型式继承</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码1-1"><span class="toc-text">示例代码1 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码2-1"><span class="toc-text">示例代码2 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码3"><span class="toc-text">示例代码3 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-1"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链继承-什么是原型链"><span class="toc-text">原型链继承 ( 什么是原型链 ? )</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-2"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-3"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码1-2"><span class="toc-text">示例代码1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码2-2"><span class="toc-text">示例代码2 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码3-1"><span class="toc-text">-示例代码3 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-4"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码1-3"><span class="toc-text">示例代码1 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实例代码2-若不兼容则动态添加create方法"><span class="toc-text">实例代码2 : 若不兼容则动态添加create方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码3-使用函数来封装"><span class="toc-text">示例代码3 : 使用函数来封装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#call-amp-amp-apply函数-gt-重点"><span class="toc-text">call && apply函数 ==> 重点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-5"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#关于this"><span class="toc-text">关于this</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码1-当函数作为对象的方法调用时-this指向该对象"><span class="toc-text">示例代码1 : 当函数作为对象的方法调用时,this指向该对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码2-当函数作为普通函数调用是-this总是指向全局对象"><span class="toc-text">示例代码2 : 当函数作为普通函数调用是,this总是指向全局对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码3-使用new-构造函数创建对象调用-this总是指向内部默认创建并返回的对象"><span class="toc-text">示例代码3: 使用new 构造函数创建对象调用,this总是指向内部默认创建并返回的对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实例代码4-Function-prototype-call或Function-prototype-apply调用"><span class="toc-text">实例代码4: Function.prototype.call或Function.prototype.apply调用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#借用构造函数继承"><span class="toc-text">借用构造函数继承</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-6"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合-原型链-借用-继承"><span class="toc-text">组合(原型链 + 借用)继承</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-7"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深拷贝和浅拷贝"><span class="toc-text">深拷贝和浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-浅拷贝"><span class="toc-text">示例代码 : 浅拷贝</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#深拷贝"><span class="toc-text">深拷贝</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-深拷贝封装"><span class="toc-text">示例代码 : 深拷贝封装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过深拷贝实现继承"><span class="toc-text">通过深拷贝实现继承</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-8"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本包装类型"><span class="toc-text">基本包装类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#String-Number-Boolean"><span class="toc-text">String Number Boolean</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-9"><span class="toc-text">示例代码 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基本包装类型注意点"><span class="toc-text">基本包装类型注意点:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码-10"><span class="toc-text">示例代码 :</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#js"
+                           title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Reset';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Jingdan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jingdan 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- Canvas - ParticleLine  -->
+<script src="/js/particleLineByCanvas.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Jingdan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ool6jd8cp.bkt.clouddn.com/IMG_7466.png">
+</body>
+
+</html>
